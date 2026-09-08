@@ -26,7 +26,7 @@ contract AdvanceEvidenceTest is AdvanceTestBase {
         assertEq(profile.version, 1);
     }
 
-    function testFailedNativeProofCannotUpdateProfile() public {
+    function testRejectsInvalidNativeProofWithoutUpdatingProfile() public {
         verifier.setShouldVerify(false);
         bytes memory transaction = _validPayment();
         vm.expectRevert(AttestcoinVerifierAdapter.ProofVerificationFailed.selector);
