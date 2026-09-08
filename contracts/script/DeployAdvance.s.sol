@@ -7,10 +7,7 @@ import {IAdvance} from "../src/interfaces/IAdvance.sol";
 import {ReferenceLender} from "../src/reference/ReferenceLender.sol";
 
 contract DeployAdvance is Script {
-    function run()
-        external
-        returns (AdvanceRegistry registry, ReferenceLender lenderA, ReferenceLender lenderB)
-    {
+    function run() external returns (AdvanceRegistry registry, ReferenceLender lenderA, ReferenceLender lenderB) {
         uint256 deployerKey = vm.envUint("CREDITCOIN_PRIVATE_KEY");
         uint64 sourceChainKey = uint64(vm.envUint("SOURCE_CHAIN_KEY"));
         address sourceRegistry = vm.envAddress("SOURCE_REGISTRY_ADDRESS");

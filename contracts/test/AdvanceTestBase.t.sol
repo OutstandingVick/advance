@@ -78,11 +78,7 @@ abstract contract AdvanceTestBase is Test {
             topics[0] = advance.CREDIT_EVENT_SIGNATURE();
             topics[1] = bytes32(uint256(uint160(wallet)));
             topics[2] = keccak256(abi.encode("facility", i));
-            logs[i] = LogTuple({
-                address_: emitter,
-                topics: topics,
-                data: abi.encode(eventType, amount, occurredAt)
-            });
+            logs[i] = LogTuple({address_: emitter, topics: topics, data: abi.encode(eventType, amount, occurredAt)});
         }
 
         bytes[] memory chunks = new bytes[](3);
@@ -96,8 +92,7 @@ abstract contract AdvanceTestBase is Test {
         internal
         returns (bytes32)
     {
-        INativeQueryVerifier.MerkleProofEntry[] memory siblings =
-            new INativeQueryVerifier.MerkleProofEntry[](0);
+        INativeQueryVerifier.MerkleProofEntry[] memory siblings = new INativeQueryVerifier.MerkleProofEntry[](0);
         return advance.submitAttestedEvent(
             uint8(eventType),
             SOURCE_CHAIN_KEY,

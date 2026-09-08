@@ -32,7 +32,9 @@ abstract contract AttestcoinVerifierAdapter {
         bytes32 lowerEndpointDigest,
         bytes32[] calldata continuityRoots
     ) external returns (bytes32 evidenceId) {
-        if (chainKey != SOURCE_CHAIN_KEY) revert WrongSourceChain(chainKey, SOURCE_CHAIN_KEY);
+        if (chainKey != SOURCE_CHAIN_KEY) {
+            revert WrongSourceChain(chainKey, SOURCE_CHAIN_KEY);
+        }
 
         INativeQueryVerifier.MerkleProof memory merkleProof =
             INativeQueryVerifier.MerkleProof({root: merkleRoot, siblings: siblings});
@@ -40,26 +42,16 @@ abstract contract AttestcoinVerifierAdapter {
         evidenceId = keccak256(abi.encode(chainKey, blockHeight, transactionIndex));
         if (consumedEvidence[evidenceId]) revert EvidenceAlreadyConsumed(evidenceId);
 
-        INativeQueryVerifier.ContinuityProof memory continuityProof = INativeQueryVerifier.ContinuityProof({
-            lowerEndpointDigest: lowerEndpointDigest,
-            roots: continuityRoots
-        });
+        INativeQueryVerifier.ContinuityProof memory continuityProof =
+            INativeQueryVerifier.ContinuityProof({lowerEndpointDigest: lowerEndpointDigest, roots: continuityRoots});
 
-        bool verified = VERIFIER.verifyAndEmit(
-            chainKey,
-            blockHeight,
-            encodedTransaction,
-            merkleProof,
-            continuityProof
-        );
+        bool verified = VERIFIER.verifyAndEmit(chainKey, blockHeight, encodedTransaction, merkleProof, continuityProof);
         if (!verified) revert ProofVerificationFailed();
 
         consumedEvidence[evidenceId] = true;
         _processVerifiedEvent(action, evidenceId, encodedTransaction);
     }
 
-    function _processVerifiedEvent(uint8 action, bytes32 evidenceId, bytes memory encodedTransaction)
-        internal
-        virtual;
+    function _processVerifiedEvent(uint8 action, bytes32 evidenceId, bytes memory encodedTransaction) internal virtual;
 }
 

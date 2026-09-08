@@ -51,12 +51,7 @@ contract ReferenceLender {
         }
 
         emit QuoteProduced(
-            sessionId,
-            session.wallet,
-            session.score,
-            terms.annualRateBps,
-            terms.collateralBps,
-            terms.maxPrincipal
+            sessionId, session.wallet, session.score, terms.annualRateBps, terms.collateralBps, terms.maxPrincipal
         );
     }
 }

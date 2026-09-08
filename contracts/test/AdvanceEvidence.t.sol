@@ -36,36 +36,18 @@ contract AdvanceEvidenceTest is AdvanceTestBase {
 
     function testRejectsWrongSourceChain() public {
         bytes memory transaction = _validPayment();
-        INativeQueryVerifier.MerkleProofEntry[] memory siblings =
-            new INativeQueryVerifier.MerkleProofEntry[](0);
+        INativeQueryVerifier.MerkleProofEntry[] memory siblings = new INativeQueryVerifier.MerkleProofEntry[](0);
         vm.expectRevert(
-            abi.encodeWithSelector(
-                AttestcoinVerifierAdapter.WrongSourceChain.selector,
-                uint64(99),
-                SOURCE_CHAIN_KEY
-            )
+            abi.encodeWithSelector(AttestcoinVerifierAdapter.WrongSourceChain.selector, uint64(99), SOURCE_CHAIN_KEY)
         );
         advance.submitAttestedEvent(
-            1,
-            99,
-            103,
-            transaction,
-            bytes32(uint256(1)),
-            siblings,
-            bytes32(uint256(1)),
-            new bytes32[](0)
+            1, 99, 103, transaction, bytes32(uint256(1)), siblings, bytes32(uint256(1)), new bytes32[](0)
         );
     }
 
     function testRejectsWrongEmitter() public {
         bytes memory transaction = _encodedCreditEvent(
-            address(0xBAD),
-            WALLET,
-            AdvanceTypes.CreditEventType.PaymentRecorded,
-            1e6,
-            uint64(block.timestamp),
-            1,
-            1
+            address(0xBAD), WALLET, AdvanceTypes.CreditEventType.PaymentRecorded, 1e6, uint64(block.timestamp), 1, 1
         );
         vm.expectRevert(
             abi.encodeWithSelector(AdvanceRegistry.WrongSourceContract.selector, address(0xBAD), SOURCE_CONTRACT)
@@ -75,13 +57,7 @@ contract AdvanceEvidenceTest is AdvanceTestBase {
 
     function testRejectsFailedSourceTransaction() public {
         bytes memory transaction = _encodedCreditEvent(
-            SOURCE_CONTRACT,
-            WALLET,
-            AdvanceTypes.CreditEventType.PaymentRecorded,
-            1e6,
-            uint64(block.timestamp),
-            0,
-            1
+            SOURCE_CONTRACT, WALLET, AdvanceTypes.CreditEventType.PaymentRecorded, 1e6, uint64(block.timestamp), 0, 1
         );
         vm.expectRevert(AdvanceRegistry.FailedSourceTransaction.selector);
         _submit(105, AdvanceTypes.CreditEventType.PaymentRecorded, transaction);
@@ -89,13 +65,7 @@ contract AdvanceEvidenceTest is AdvanceTestBase {
 
     function testRejectsMissingCreditEvent() public {
         bytes memory transaction = _encodedCreditEvent(
-            SOURCE_CONTRACT,
-            WALLET,
-            AdvanceTypes.CreditEventType.PaymentRecorded,
-            1e6,
-            uint64(block.timestamp),
-            1,
-            0
+            SOURCE_CONTRACT, WALLET, AdvanceTypes.CreditEventType.PaymentRecorded, 1e6, uint64(block.timestamp), 1, 0
         );
         vm.expectRevert(abi.encodeWithSelector(AdvanceRegistry.AmbiguousCreditEvent.selector, 0));
         _submit(106, AdvanceTypes.CreditEventType.PaymentRecorded, transaction);
@@ -103,13 +73,7 @@ contract AdvanceEvidenceTest is AdvanceTestBase {
 
     function testRejectsAmbiguousCreditEvents() public {
         bytes memory transaction = _encodedCreditEvent(
-            SOURCE_CONTRACT,
-            WALLET,
-            AdvanceTypes.CreditEventType.PaymentRecorded,
-            1e6,
-            uint64(block.timestamp),
-            1,
-            2
+            SOURCE_CONTRACT, WALLET, AdvanceTypes.CreditEventType.PaymentRecorded, 1e6, uint64(block.timestamp), 1, 2
         );
         vm.expectRevert(abi.encodeWithSelector(AdvanceRegistry.AmbiguousCreditEvent.selector, 2));
         _submit(107, AdvanceTypes.CreditEventType.PaymentRecorded, transaction);
@@ -118,9 +82,7 @@ contract AdvanceEvidenceTest is AdvanceTestBase {
     function testRejectsReplayedEvidence() public {
         bytes memory transaction = _validPayment();
         bytes32 evidenceId = _submit(108, AdvanceTypes.CreditEventType.PaymentRecorded, transaction);
-        vm.expectRevert(
-            abi.encodeWithSelector(AttestcoinVerifierAdapter.EvidenceAlreadyConsumed.selector, evidenceId)
-        );
+        vm.expectRevert(abi.encodeWithSelector(AttestcoinVerifierAdapter.EvidenceAlreadyConsumed.selector, evidenceId));
         _submit(108, AdvanceTypes.CreditEventType.PaymentRecorded, transaction);
     }
 

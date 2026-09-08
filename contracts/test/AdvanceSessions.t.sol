@@ -63,13 +63,7 @@ contract AdvanceSessionsTest is AdvanceTestBase {
         bytes32 sessionId = advance.requestScore(grantId, 1 hours);
 
         bytes memory transaction = _encodedCreditEvent(
-            SOURCE_CONTRACT,
-            WALLET,
-            AdvanceTypes.CreditEventType.PaymentRecorded,
-            500e6,
-            uint64(block.timestamp),
-            1,
-            1
+            SOURCE_CONTRACT, WALLET, AdvanceTypes.CreditEventType.PaymentRecorded, 500e6, uint64(block.timestamp), 1, 1
         );
         _submit(201, AdvanceTypes.CreditEventType.PaymentRecorded, transaction);
         assertFalse(advance.isScoreValid(sessionId, CONSUMER_A));

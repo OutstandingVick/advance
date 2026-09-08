@@ -1,6 +1,7 @@
 # Deployment Runbook
 
-The destination is Creditcoin USC Testnet V2 (`chainId 102033`). The source
+The destination is Creditcoin Testnet (`chainId 102031`) with the Attestcoin
+V2 precompiles enabled. The source
 chain and `SOURCE_CHAIN_KEY` must be read from the live ChainInfo precompile;
 the numeric chain key is not the source chain's EVM chain ID.
 
@@ -31,4 +32,3 @@ forge script contracts/script/DeployAdvance.s.sol:DeployAdvance \
 
 Record every address and transaction hash in `deployments/testnet.json` as soon
 as each transaction confirms.
-

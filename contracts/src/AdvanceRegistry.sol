@@ -24,11 +24,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     error MalformedCreditEvent();
 
     event GrantCreated(
-        bytes32 indexed grantId,
-        address indexed wallet,
-        address indexed consumer,
-        uint8 eventMask,
-        uint64 expiresAt
+        bytes32 indexed grantId, address indexed wallet, address indexed consumer, uint8 eventMask, uint64 expiresAt
     );
     event GrantRevoked(bytes32 indexed grantId, address indexed wallet, address indexed consumer);
     event EvidenceAccepted(
@@ -55,8 +51,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     uint64 public constant MAX_SCORE_VALIDITY = 24 hours;
 
     address public immutable SOURCE_CONTRACT;
-    bytes32 public constant CREDIT_EVENT_SIGNATURE =
-        keccak256("CreditEvent(address,bytes32,uint8,uint256,uint64)");
+    bytes32 public constant CREDIT_EVENT_SIGNATURE = keccak256("CreditEvent(address,bytes32,uint8,uint256,uint64)");
 
     uint256 private nextGrantNonce;
     uint256 private nextSessionNonce;
@@ -69,10 +64,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
         SOURCE_CONTRACT = sourceContract;
     }
 
-    function createGrant(address consumer, uint8 eventMask, uint64 expiresAt)
-        external
-        returns (bytes32 grantId)
-    {
+    function createGrant(address consumer, uint8 eventMask, uint64 expiresAt) external returns (bytes32 grantId) {
         if (consumer == address(0)) revert InvalidAddress();
         if (expiresAt <= block.timestamp) revert InvalidExpiry();
         // The MVP refuses selective disclosure because hiding negative events would make
@@ -129,8 +121,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
         EvmV1Decoder.ReceiptFields memory receipt = EvmV1Decoder.decodeReceiptFields(encodedTransaction);
         if (receipt.receiptStatus != 1) revert FailedSourceTransaction();
 
-        EvmV1Decoder.LogEntry[] memory logs =
-            EvmV1Decoder.getLogsByEventSignature(receipt, CREDIT_EVENT_SIGNATURE);
+        EvmV1Decoder.LogEntry[] memory logs = EvmV1Decoder.getLogsByEventSignature(receipt, CREDIT_EVENT_SIGNATURE);
         if (logs.length != 1) revert AmbiguousCreditEvent(logs.length);
 
         EvmV1Decoder.LogEntry memory creditLog = logs[0];
@@ -205,8 +196,8 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     }
 
     function _computeScore(AdvanceTypes.Profile storage profile) internal view returns (uint16) {
-        uint256 positive = _min(uint256(profile.loansOpened) * 10, 50)
-            + _min(uint256(profile.paymentsRecorded) * 25, 250);
+        uint256 positive =
+            _min(uint256(profile.loansOpened) * 10, 50) + _min(uint256(profile.paymentsRecorded) * 25, 250);
         if (profile.totalBorrowed != 0) {
             positive += _min(profile.totalRepaid * 100 / profile.totalBorrowed, 100);
         }

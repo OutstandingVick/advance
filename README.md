@@ -25,12 +25,31 @@ Advance is infrastructure, not a lending market. The reference lenders exist
 only to demonstrate that multiple applications can consume the same portable
 signal.
 
-## Status
+## Quick start
 
-Day 1 implementation is in progress. Network addresses and verified explorer
-transactions will be recorded under `deployments/` after testnet execution.
+```bash
+npm install
+forge install
+npm run check
+CREDITCOIN_RPC_URL=https://rpc.cc3-testnet.creditcoin.network npm run chains
+```
+
+Copy `.env.example` to `.env` before deployment. See
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the runbook and
+[`docs/ATTESTCOIN-INTEGRATION.md`](docs/ATTESTCOIN-INTEGRATION.md) for the exact
+proof path.
+
+## Day 1 status
+
+- Contracts and deployment scripts compile.
+- 20 focused Foundry tests pass.
+- TypeScript proof tooling passes strict type checking.
+- The live Creditcoin RPC, proof-builder health endpoint, and ChainInfo
+  precompile have been checked.
+- Sepolia is currently advertised as source chain key `1`.
+- Funded-wallet deployment and a real source proof remain operational steps;
+  no keys are stored in this repository.
 
 ## License
 
 MIT
-

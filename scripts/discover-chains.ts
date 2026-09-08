@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 import { chainInfo } from '@gluwa/usc-sdk';
-import { JsonRpcProvider } from 'ethers';
+import { JsonRpcProvider, toUtf8String } from 'ethers';
 
 async function main(): Promise<void> {
   const rpcUrl = required('CREDITCOIN_RPC_URL');
@@ -13,10 +13,18 @@ async function main(): Promise<void> {
     chains.map((chain) => ({
       chainKey: chain.chainKey,
       chainId: chain.chainId,
-      name: chain.chainName,
+      name: decodeChainName(chain.chainName),
       encoding: chain.chainEncoding,
     })),
   );
+}
+
+function decodeChainName(value: string): string {
+  try {
+    return value.startsWith('0x') ? toUtf8String(value) : value;
+  } catch {
+    return value;
+  }
 }
 
 function required(name: string): string {
@@ -29,4 +37,3 @@ main().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
 });
-

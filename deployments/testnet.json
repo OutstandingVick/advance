@@ -1,9 +1,10 @@
 {
   "destination": {
-    "name": "Creditcoin USC Testnet V2",
-    "chainId": 102033,
-    "rpcUrl": "https://rpc.usc-testnet.creditcoin.network",
-    "explorerUrl": "https://explorer.usc-testnet.creditcoin.network/",
+    "name": "Creditcoin Testnet",
+    "chainId": 102031,
+    "rpcUrl": "https://rpc.cc3-testnet.creditcoin.network",
+    "proofBuilderUrl": "https://prover.cc3-testnet.creditcoin.network",
+    "explorerUrl": "https://creditcoin-testnet.blockscout.com/",
     "blockProverPrecompile": "0x0000000000000000000000000000000000000FD2",
     "chainInfoPrecompile": "0x0000000000000000000000000000000000000FD3"
   },
@@ -21,4 +22,3 @@
   },
   "proofEvidence": []
 }
-

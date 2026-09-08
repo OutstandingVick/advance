@@ -27,11 +27,7 @@ contract SourceLoanRegistry {
     error FacilityDefaulted(bytes32 facilityId);
 
     event CreditEvent(
-        address indexed wallet,
-        bytes32 indexed facilityId,
-        CreditEventType eventType,
-        uint256 amount,
-        uint64 occurredAt
+        address indexed wallet, bytes32 indexed facilityId, CreditEventType eventType, uint256 amount, uint64 occurredAt
     );
 
     mapping(bytes32 => Facility) public facilities;
@@ -41,13 +37,8 @@ contract SourceLoanRegistry {
         if (principal == 0) revert InvalidAmount();
         if (facilities[facilityId].lender != address(0)) revert FacilityAlreadyExists(facilityId);
 
-        facilities[facilityId] = Facility({
-            lender: msg.sender,
-            borrower: borrower,
-            principal: principal,
-            repaid: 0,
-            defaulted: false
-        });
+        facilities[facilityId] =
+            Facility({lender: msg.sender, borrower: borrower, principal: principal, repaid: 0, defaulted: false});
 
         emit CreditEvent(borrower, facilityId, CreditEventType.LoanOpened, principal, uint64(block.timestamp));
     }
@@ -59,11 +50,7 @@ contract SourceLoanRegistry {
 
         facility.repaid += amount;
         emit CreditEvent(
-            facility.borrower,
-            facilityId,
-            CreditEventType.PaymentRecorded,
-            amount,
-            uint64(block.timestamp)
+            facility.borrower, facilityId, CreditEventType.PaymentRecorded, amount, uint64(block.timestamp)
         );
     }
 
@@ -74,11 +61,7 @@ contract SourceLoanRegistry {
 
         facility.defaulted = true;
         emit CreditEvent(
-            facility.borrower,
-            facilityId,
-            CreditEventType.DefaultRecorded,
-            outstandingAmount,
-            uint64(block.timestamp)
+            facility.borrower, facilityId, CreditEventType.DefaultRecorded, outstandingAmount, uint64(block.timestamp)
         );
     }
 
