@@ -60,7 +60,7 @@ abstract contract AdvanceTestBase is Test {
 
     function _grant(address consumer) internal returns (bytes32) {
         vm.prank(WALLET);
-        return advance.createGrant(consumer, advance.ALL_EVENT_TYPES(), uint64(block.timestamp + 2 days));
+        return advance.createGrant(consumer, 0x07, uint64(block.timestamp + 2 days));
     }
 
     function _encodedCreditEvent(
@@ -110,4 +110,3 @@ abstract contract AdvanceTestBase is Test {
         );
     }
 }
-

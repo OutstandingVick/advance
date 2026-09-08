@@ -21,7 +21,7 @@ contract AdvanceGrantsTest is AdvanceTestBase {
     function testRejectsExpiredGrantAtCreation() public {
         vm.prank(WALLET);
         vm.expectRevert(AdvanceRegistry.InvalidExpiry.selector);
-        advance.createGrant(CONSUMER_A, advance.ALL_EVENT_TYPES(), uint64(block.timestamp));
+        advance.createGrant(CONSUMER_A, 0x07, uint64(block.timestamp));
     }
 
     function testRejectsSelectiveHistoryDisclosure() public {
@@ -44,4 +44,3 @@ contract AdvanceGrantsTest is AdvanceTestBase {
         assertTrue(advance.getGrant(grantId).revoked);
     }
 }
-
