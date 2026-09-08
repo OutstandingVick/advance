@@ -9,6 +9,8 @@
     "test": "forge test -vvv",
     "test:gas": "forge test --gas-report",
     "typecheck": "tsc --noEmit",
+    "chains": "tsx scripts/discover-chains.ts",
+    "proof:submit": "tsx scripts/prove-and-submit.ts",
     "check": "npm run typecheck && npm run build && npm test"
   },
   "dependencies": {
@@ -23,4 +25,3 @@
     "typescript": "^6.0.2"
   }
 }
-
