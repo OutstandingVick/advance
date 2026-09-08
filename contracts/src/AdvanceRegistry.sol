@@ -15,6 +15,9 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     error GrantNotFound(bytes32 grantId);
     error NotGrantOwner(address caller);
     error UnsupportedAction(uint8 action);
+    error GrantInactive(bytes32 grantId);
+    error UnauthorizedConsumer(address caller);
+    error InvalidScoreValidity();
     error FailedSourceTransaction();
     error AmbiguousCreditEvent(uint256 count);
     error WrongSourceContract(address supplied, address expected);
@@ -37,14 +40,26 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
         uint64 occurredAt,
         uint64 profileVersion
     );
+    event ScoreIssued(
+        bytes32 indexed sessionId,
+        bytes32 indexed grantId,
+        address indexed consumer,
+        address wallet,
+        uint16 score,
+        uint64 profileVersion,
+        uint64 expiresAt
+    );
 
     uint8 public constant ALL_EVENT_TYPES = 0x07;
+    uint64 public constant MIN_SCORE_VALIDITY = 5 minutes;
+    uint64 public constant MAX_SCORE_VALIDITY = 24 hours;
 
     address public immutable SOURCE_CONTRACT;
     bytes32 public constant CREDIT_EVENT_SIGNATURE =
         keccak256("CreditEvent(address,bytes32,uint8,uint256,uint64)");
 
     uint256 private nextGrantNonce;
+    uint256 private nextSessionNonce;
     mapping(bytes32 => AdvanceTypes.Grant) private grants;
     mapping(address => AdvanceTypes.Profile) private profiles;
     mapping(bytes32 => AdvanceTypes.ScoreSession) private scoreSessions;
@@ -60,7 +75,9 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     {
         if (consumer == address(0)) revert InvalidAddress();
         if (expiresAt <= block.timestamp) revert InvalidExpiry();
-        if (eventMask == 0 || eventMask & ~ALL_EVENT_TYPES != 0) revert InvalidEventMask();
+        // The MVP refuses selective disclosure because hiding negative events would make
+        // the resulting score misleading. The field is retained for future proof policy.
+        if (eventMask != ALL_EVENT_TYPES) revert InvalidEventMask();
 
         grantId = keccak256(abi.encode(msg.sender, consumer, ++nextGrantNonce, block.chainid));
         grants[grantId] = AdvanceTypes.Grant({
@@ -144,15 +161,62 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
         emit EvidenceAccepted(evidenceId, wallet, facilityId, eventType, amount, occurredAt, profile.version);
     }
 
-    function requestScore(bytes32, uint64) external pure returns (bytes32) {
-        revert("score sessions not implemented");
+    function requestScore(bytes32 grantId, uint64 validitySeconds) external returns (bytes32 sessionId) {
+        AdvanceTypes.Grant storage grant = _grant(grantId);
+        if (!_isGrantActive(grant)) revert GrantInactive(grantId);
+        if (grant.consumer != msg.sender) revert UnauthorizedConsumer(msg.sender);
+        if (validitySeconds < MIN_SCORE_VALIDITY || validitySeconds > MAX_SCORE_VALIDITY) {
+            revert InvalidScoreValidity();
+        }
+
+        AdvanceTypes.Profile storage profile = profiles[grant.wallet];
+        uint16 score = _computeScore(profile);
+        uint64 issuedAt = uint64(block.timestamp);
+        uint64 expiresAt = issuedAt + validitySeconds;
+        sessionId = keccak256(abi.encode(grantId, msg.sender, ++nextSessionNonce, profile.version));
+        scoreSessions[sessionId] = AdvanceTypes.ScoreSession({
+            grantId: grantId,
+            wallet: grant.wallet,
+            consumer: msg.sender,
+            score: score,
+            profileVersion: profile.version,
+            issuedAt: issuedAt,
+            expiresAt: expiresAt
+        });
+
+        emit ScoreIssued(sessionId, grantId, msg.sender, grant.wallet, score, profile.version, expiresAt);
     }
 
-    function isScoreValid(bytes32, address) external pure returns (bool) {
-        return false;
+    function isScoreValid(bytes32 sessionId, address consumer) public view returns (bool) {
+        AdvanceTypes.ScoreSession storage session = scoreSessions[sessionId];
+        if (session.wallet == address(0) || session.consumer != consumer || session.expiresAt < block.timestamp) {
+            return false;
+        }
+        AdvanceTypes.Grant storage grant = grants[session.grantId];
+        return _isGrantActive(grant) && profiles[session.wallet].version == session.profileVersion;
     }
 
-    function computeScore(address) external pure returns (uint16) {
-        return 500;
+    function computeScore(address wallet) public view returns (uint16) {
+        return _computeScore(profiles[wallet]);
+    }
+
+    function _isGrantActive(AdvanceTypes.Grant storage grant) internal view returns (bool) {
+        return grant.wallet != address(0) && !grant.revoked && grant.expiresAt >= block.timestamp;
+    }
+
+    function _computeScore(AdvanceTypes.Profile storage profile) internal view returns (uint16) {
+        uint256 positive = _min(uint256(profile.loansOpened) * 10, 50)
+            + _min(uint256(profile.paymentsRecorded) * 25, 250);
+        if (profile.totalBorrowed != 0) {
+            positive += _min(profile.totalRepaid * 100 / profile.totalBorrowed, 100);
+        }
+        uint256 penalty = _min(uint256(profile.defaultsRecorded) * 150, 400);
+        uint256 raw = 500 + positive;
+        raw = penalty >= raw ? 100 : raw - penalty;
+        return uint16(_min(raw, 900));
+    }
+
+    function _min(uint256 a, uint256 b) private pure returns (uint256) {
+        return a < b ? a : b;
     }
 }
