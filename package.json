@@ -1,0 +1,26 @@
+{
+  "name": "advance-credit-oracle",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portable cross-chain credit attestations on Creditcoin",
+  "license": "MIT",
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test -vvv",
+    "test:gas": "forge test --gas-report",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run build && npm test"
+  },
+  "dependencies": {
+    "@gluwa/asc-contracts": "0.2.1",
+    "@gluwa/usc-sdk": "0.18.0",
+    "dotenv": "17.4.2",
+    "ethers": "^6.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.2"
+  }
+}
+
