@@ -1,0 +1,24 @@
+{
+  "destination": {
+    "name": "Creditcoin USC Testnet V2",
+    "chainId": 102033,
+    "rpcUrl": "https://rpc.usc-testnet.creditcoin.network",
+    "explorerUrl": "https://explorer.usc-testnet.creditcoin.network/",
+    "blockProverPrecompile": "0x0000000000000000000000000000000000000FD2",
+    "chainInfoPrecompile": "0x0000000000000000000000000000000000000FD3"
+  },
+  "source": {
+    "chainKey": null,
+    "chainId": null,
+    "registryAddress": null,
+    "deploymentTx": null
+  },
+  "advance": {
+    "registryAddress": null,
+    "deploymentTx": null,
+    "lenderAAddress": null,
+    "lenderBAddress": null
+  },
+  "proofEvidence": []
+}
+
