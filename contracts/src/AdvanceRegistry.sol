@@ -1,19 +1,24 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.30;
 
-import {ASCBase} from "@gluwa/asc-contracts/contracts/readability/ASCBase.sol";
+import {EvmV1Decoder} from "@gluwa/asc-contracts/contracts/common/EvmV1Decoder.sol";
+import {AttestcoinVerifierAdapter} from "./AttestcoinVerifierAdapter.sol";
 import {AdvanceTypes} from "./AdvanceTypes.sol";
 import {IAdvance} from "./interfaces/IAdvance.sol";
 
 /// @title AdvanceRegistry
 /// @notice Permissioned, reusable credit signals backed by Attestcoin-verified source events.
-contract AdvanceRegistry is ASCBase, IAdvance {
+contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     error InvalidAddress();
     error InvalidExpiry();
     error InvalidEventMask();
     error GrantNotFound(bytes32 grantId);
     error NotGrantOwner(address caller);
     error UnsupportedAction(uint8 action);
+    error FailedSourceTransaction();
+    error AmbiguousCreditEvent(uint256 count);
+    error WrongSourceContract(address supplied, address expected);
+    error MalformedCreditEvent();
 
     event GrantCreated(
         bytes32 indexed grantId,
@@ -23,20 +28,29 @@ contract AdvanceRegistry is ASCBase, IAdvance {
         uint64 expiresAt
     );
     event GrantRevoked(bytes32 indexed grantId, address indexed wallet, address indexed consumer);
+    event EvidenceAccepted(
+        bytes32 indexed evidenceId,
+        address indexed wallet,
+        bytes32 indexed facilityId,
+        AdvanceTypes.CreditEventType eventType,
+        uint256 amount,
+        uint64 occurredAt,
+        uint64 profileVersion
+    );
 
     uint8 public constant ALL_EVENT_TYPES = 0x07;
 
-    uint64 public immutable SOURCE_CHAIN_KEY;
     address public immutable SOURCE_CONTRACT;
+    bytes32 public constant CREDIT_EVENT_SIGNATURE =
+        keccak256("CreditEvent(address,bytes32,uint8,uint256,uint64)");
 
     uint256 private nextGrantNonce;
     mapping(bytes32 => AdvanceTypes.Grant) private grants;
     mapping(address => AdvanceTypes.Profile) private profiles;
     mapping(bytes32 => AdvanceTypes.ScoreSession) private scoreSessions;
 
-    constructor(uint64 sourceChainKey, address sourceContract) {
+    constructor(uint64 sourceChainKey, address sourceContract) AttestcoinVerifierAdapter(sourceChainKey) {
         if (sourceContract == address(0)) revert InvalidAddress();
-        SOURCE_CHAIN_KEY = sourceChainKey;
         SOURCE_CONTRACT = sourceContract;
     }
 
@@ -86,8 +100,48 @@ contract AdvanceRegistry is ASCBase, IAdvance {
         if (grant.wallet == address(0)) revert GrantNotFound(grantId);
     }
 
-    function _processAndEmitEvent(uint8 action, bytes32, bytes memory) internal pure override {
-        revert UnsupportedAction(action);
+    function _processVerifiedEvent(uint8 action, bytes32 evidenceId, bytes memory encodedTransaction)
+        internal
+        override
+    {
+        if (action > uint8(AdvanceTypes.CreditEventType.DefaultRecorded)) revert UnsupportedAction(action);
+        if (!EvmV1Decoder.isValidTransactionType(EvmV1Decoder.getTransactionType(encodedTransaction))) {
+            revert MalformedCreditEvent();
+        }
+
+        EvmV1Decoder.ReceiptFields memory receipt = EvmV1Decoder.decodeReceiptFields(encodedTransaction);
+        if (receipt.receiptStatus != 1) revert FailedSourceTransaction();
+
+        EvmV1Decoder.LogEntry[] memory logs =
+            EvmV1Decoder.getLogsByEventSignature(receipt, CREDIT_EVENT_SIGNATURE);
+        if (logs.length != 1) revert AmbiguousCreditEvent(logs.length);
+
+        EvmV1Decoder.LogEntry memory creditLog = logs[0];
+        if (creditLog.address_ != SOURCE_CONTRACT) {
+            revert WrongSourceContract(creditLog.address_, SOURCE_CONTRACT);
+        }
+        if (creditLog.topics.length != 3 || creditLog.data.length != 96) revert MalformedCreditEvent();
+
+        address wallet = address(uint160(uint256(creditLog.topics[1])));
+        bytes32 facilityId = creditLog.topics[2];
+        (AdvanceTypes.CreditEventType eventType, uint256 amount, uint64 occurredAt) =
+            abi.decode(creditLog.data, (AdvanceTypes.CreditEventType, uint256, uint64));
+        if (uint8(eventType) != action) revert UnsupportedAction(action);
+        AdvanceTypes.Profile storage profile = profiles[wallet];
+        if (eventType == AdvanceTypes.CreditEventType.LoanOpened) {
+            profile.loansOpened++;
+            profile.totalBorrowed += amount;
+        } else if (eventType == AdvanceTypes.CreditEventType.PaymentRecorded) {
+            profile.paymentsRecorded++;
+            profile.totalRepaid += amount;
+        } else {
+            profile.defaultsRecorded++;
+            profile.totalDefaulted += amount;
+        }
+        profile.lastActivityAt = occurredAt;
+        profile.version++;
+
+        emit EvidenceAccepted(evidenceId, wallet, facilityId, eventType, amount, occurredAt, profile.version);
     }
 
     function requestScore(bytes32, uint64) external pure returns (bytes32) {
@@ -102,4 +156,3 @@ contract AdvanceRegistry is ASCBase, IAdvance {
         return 500;
     }
 }
-
