@@ -1,0 +1,15 @@
+{
+  "scope": "day-3-parts-1-and-2",
+  "day2Baseline": "4774052f44f829b69335b338488e811588fb5fb1",
+  "featureScopeFrozen": true,
+  "releaseReady": false,
+  "liveGatePassed": false,
+  "app": {
+    "url": "https://advance-credit-demo.outstandingvick.chatgpt.site",
+    "audience": "owner-private",
+    "publishedSourceCommit": "4774052f44f829b69335b338488e811588fb5fb1"
+  },
+  "blockers": ["LIVE-01", "LIVE-02", "ACCESS-01", "WALLET-01"],
+  "policy": "docs/FEATURE-FREEZE.md",
+  "evidenceDirectory": "docs/evidence/day3"
+}
