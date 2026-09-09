@@ -2,6 +2,7 @@
 pragma solidity ^0.8.30;
 
 import {EvmV1Decoder} from "@gluwa/asc-contracts/contracts/common/EvmV1Decoder.sol";
+import {FullMath} from "@gluwa/asc-contracts/contracts/write-ability/common/v3/FullMath.sol";
 import {AttestcoinVerifierAdapter} from "./AttestcoinVerifierAdapter.sol";
 import {AdvanceTypes} from "./AdvanceTypes.sol";
 import {IAdvance} from "./interfaces/IAdvance.sol";
@@ -200,7 +201,10 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
         uint256 positive =
             _min(uint256(profile.loansOpened) * 10, 50) + _min(uint256(profile.paymentsRecorded) * 25, 250);
         if (profile.totalBorrowed != 0) {
-            positive += _min(profile.totalRepaid * 100 / profile.totalBorrowed, 100);
+            // Cap before multiplication; sub-100 ratios still need a 512-bit intermediate.
+            positive += profile.totalRepaid >= profile.totalBorrowed
+                ? 100
+                : FullMath.mulDiv(profile.totalRepaid, 100, profile.totalBorrowed);
         }
         uint256 penalty = _min(uint256(profile.defaultsRecorded) * 150, 400);
         uint256 raw = 500 + positive;
