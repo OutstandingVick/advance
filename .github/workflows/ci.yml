@@ -21,4 +21,8 @@ jobs:
       - uses: foundry-rs/foundry-toolchain@v1
       - run: npm ci
       - run: npm run check
-
+      - run: npm ci --prefix app
+      - run: npx tsc --noEmit
+        working-directory: app
+      - run: npm run build
+        working-directory: app

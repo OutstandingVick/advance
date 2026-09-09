@@ -11,7 +11,13 @@
     "typecheck": "tsc --noEmit",
     "chains": "tsx scripts/discover-chains.ts",
     "proof:submit": "tsx scripts/prove-and-submit.ts",
-    "check": "npm run typecheck && npm run build && npm test"
+    "test:sdk": "node --import tsx --test sdk/test/*.test.ts",
+    "test:app": "node --import tsx --test app/test/*.test.ts",
+    "preflight": "tsx scripts/preflight.ts",
+    "proof:generate": "tsx scripts/generate-proof.ts",
+    "example:two-lenders": "tsx sdk/examples/two-lenders.ts",
+    "check": "npm run typecheck && npm run build && npm test && npm run test:sdk && npm run test:app",
+    "check:app": "npm --prefix app exec -- tsc --noEmit -p tsconfig.json && npm --prefix app run build"
   },
   "dependencies": {
     "@gluwa/asc-contracts": "0.2.1",
