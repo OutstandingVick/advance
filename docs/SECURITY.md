@@ -12,7 +12,7 @@
   history while presenting a favorable score.
 - Score sessions expire, are caller-bound, and are invalidated by grant
   revocation or any profile-version change.
-- Scores and arithmetic are bounded.
+- Scores are clamped; Solidity checked arithmetic reverts on overflow.
 
 ## Honest limitations
 
@@ -24,10 +24,18 @@
 - Reorganization handling relies on Attestcoin's attestation and continuity
   rules; Advance does not claim a separate reorg oracle.
 - A single configured source contract is supported in the MVP.
+- Source fixture events are lender assertions, not proof of asset transfers.
+  Small repeated payments can inflate the count-based score. Do not use this
+  formula to allocate real credit or capital.
+- Public getters expose scores and profiles without grants. Grants constrain
+  protocol-recognized score sessions, not third-party reading or copying.
+- Browser session IDs are in memory and are cleared on reload, account change,
+  or deployment edits. Refresh chain state before relying on displayed quotes;
+  other clients can invalidate sessions between refreshes. No automated retry
+  submits a second transaction after an uncertain confirmation.
 
 ## Test coverage
 
-The Foundry suite contains 20 tests covering grants, authorization, proof
+The Foundry suite contains 25 tests covering grants, authorization, proof
 failure, chain and emitter binding, receipt status, missing/ambiguous logs,
 replay, session lifetime, profile versioning, and independent lenders.
-

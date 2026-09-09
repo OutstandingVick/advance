@@ -39,16 +39,36 @@ Copy `.env.example` to `.env` before deployment. See
 [`docs/ATTESTCOIN-INTEGRATION.md`](docs/ATTESTCOIN-INTEGRATION.md) for the exact
 proof path.
 
-## Day 1 status
+## Day 2 app and SDK
+
+```bash
+npm ci
+npm ci --prefix app
+npm --prefix app run dev
+```
+
+Open the displayed localhost URL. Rehearsal needs no wallet. Live mode requires
+four deployment addresses, a browser wallet, and testnet gas; nothing is deployed
+automatically. See [Day 2 status](docs/DAY-2.md), [demo steps](docs/DEMO.md), and
+[SDK documentation](sdk/README.md).
+
+`npm run check` checks contracts, scripts, SDK tests and rehearsal-state tests.
+`npm --prefix app run build` builds the app. `npm run preflight` checks external
+dependencies without signing. `npm run example:two-lenders` signs testnet
+transactions only when explicitly run with a configured funded signer.
+
+## Verification status
 
 - Contracts and deployment scripts compile.
-- 20 focused Foundry tests pass.
+- 25 focused Foundry tests pass; 13 TypeScript tests pass.
 - TypeScript proof tooling passes strict type checking.
 - The live Creditcoin RPC, proof-builder health endpoint, and ChainInfo
   precompile have been checked.
 - Sepolia is currently advertised as source chain key `1`.
 - Funded-wallet deployment and a real source proof remain operational steps;
   no keys are stored in this repository.
+- On September 9, the proof service reported degraded with its Creditcoin RPC
+  disconnected. No live proof success or end-to-end testnet completion is claimed.
 
 ## License
 
