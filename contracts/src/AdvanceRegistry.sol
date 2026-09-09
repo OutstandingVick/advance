@@ -164,6 +164,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
         uint16 score = _computeScore(profile);
         uint64 issuedAt = uint64(block.timestamp);
         uint64 expiresAt = issuedAt + validitySeconds;
+        if (expiresAt > grant.expiresAt) expiresAt = grant.expiresAt;
         sessionId = keccak256(abi.encode(grantId, msg.sender, ++nextSessionNonce, profile.version));
         scoreSessions[sessionId] = AdvanceTypes.ScoreSession({
             grantId: grantId,
@@ -180,7 +181,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
 
     function isScoreValid(bytes32 sessionId, address consumer) public view returns (bool) {
         AdvanceTypes.ScoreSession storage session = scoreSessions[sessionId];
-        if (session.wallet == address(0) || session.consumer != consumer || session.expiresAt < block.timestamp) {
+        if (session.wallet == address(0) || session.consumer != consumer || session.expiresAt <= block.timestamp) {
             return false;
         }
         AdvanceTypes.Grant storage grant = grants[session.grantId];
@@ -192,7 +193,7 @@ contract AdvanceRegistry is AttestcoinVerifierAdapter, IAdvance {
     }
 
     function _isGrantActive(AdvanceTypes.Grant storage grant) internal view returns (bool) {
-        return grant.wallet != address(0) && !grant.revoked && grant.expiresAt >= block.timestamp;
+        return grant.wallet != address(0) && !grant.revoked && grant.expiresAt > block.timestamp;
     }
 
     function _computeScore(AdvanceTypes.Profile storage profile) internal view returns (uint16) {
