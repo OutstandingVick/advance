@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { BrowserProvider } from 'ethers';
 import { AdvanceClient, validateDeployment, type Hex, type Profile, type Quote } from '../../sdk/src/index';
 import { deploymentFrom, type ConfigInput } from '@/lib/config';
-export interface Access {grantId?:Hex;sessionId?:Hex;valid:boolean;quote?:Quote;expiresAt?:number}
+export interface Access {grantId?:Hex;sessionId?:Hex;valid:boolean;revoked?:boolean;quote?:Quote;expiresAt?:number}
 export function useAdvance(provider:BrowserProvider|null,account:string,config:ConfigInput,onTx:(phase:string,hash?:string)=>void) {
   const [profile,setProfile]=useState<Profile|null>(null);
   const [score,setScore]=useState<number|null>(null);
@@ -36,7 +36,7 @@ export function useAdvance(provider:BrowserProvider|null,account:string,config:C
         const {id}=await api.requestScore(deployment.lenders[index],current.grantId,onTx);
         const session=await api.getScoreSession(id);
         result={...current,sessionId:id,valid:true,quote:await api.getQuote(deployment.lenders[index],id),expiresAt:Number(session.expiresAt)};
-      }else{await api.revokeGrant(current.grantId,onTx);result={...current,valid:false};}
+      }else{await api.revokeGrant(current.grantId,onTx);result={...current,valid:false,revoked:true};}
     }
     setAccess(previous=>{const next=[...previous] as [Access,Access];next[index]=result;return next;});
   }
