@@ -24,4 +24,26 @@ contract SourceRegistryTest is Test {
         vm.expectRevert(abi.encodeWithSelector(SourceLoanRegistry.FacilityAlreadyExists.selector, id));
         source.openLoan(id, address(4), 500);
     }
+    function testRejectsZeroBorrower() public {
+        vm.expectRevert(SourceLoanRegistry.InvalidAddress.selector);
+        source.openLoan(bytes32(uint256(2)), address(0), 100);
+    }
+    function testRejectsZeroPrincipal() public {
+        vm.expectRevert(SourceLoanRegistry.InvalidAmount.selector);
+        source.openLoan(bytes32(uint256(2)), address(3), 0);
+    }
+    function testNonLenderCannotRecordDefault() public {
+        bytes32 id = bytes32(uint256(2));
+        source.openLoan(id, address(3), 100);
+        vm.prank(address(4));
+        vm.expectRevert(abi.encodeWithSelector(SourceLoanRegistry.NotFacilityLender.selector, address(4)));
+        source.recordDefault(id, 100);
+    }
+    function testCannotDefaultTwice() public {
+        bytes32 id = bytes32(uint256(2));
+        source.openLoan(id, address(3), 100);
+        source.recordDefault(id, 100);
+        vm.expectRevert(abi.encodeWithSelector(SourceLoanRegistry.FacilityDefaulted.selector, id));
+        source.recordDefault(id, 100);
+    }
 }
