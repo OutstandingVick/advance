@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { BrowserProvider } from 'ethers';
 import { AdvanceClient, validateDeployment, type Hex, type Profile, type Quote } from '../../sdk/src/index';
 import { deploymentFrom, type ConfigInput } from '@/lib/config';
@@ -8,6 +8,9 @@ export function useAdvance(provider:BrowserProvider|null,account:string,config:C
   const [profile,setProfile]=useState<Profile|null>(null);
   const [score,setScore]=useState<number|null>(null);
   const [access,setAccess]=useState<[Access,Access]>([{valid:false},{valid:false}]);
+  const context=[account,config.registry,config.sourceRegistry,config.lenderA,config.lenderB].join(':');
+  const current=useRef({context,provider});current.current={context,provider};
+  const active=()=>current.current.context===context&&current.current.provider===provider;
   useEffect(()=>{setProfile(null);setScore(null);setAccess([{valid:false},{valid:false}]);},[account,provider,config.registry,config.sourceRegistry,config.lenderA,config.lenderB]);
   async function client() {
     if(!provider||!account)throw new Error('Connect your wallet first.');
@@ -17,10 +20,10 @@ export function useAdvance(provider:BrowserProvider|null,account:string,config:C
   }
   async function refresh() {
     const {api}=await client();
-    setProfile(await api.getProfile(account));setScore(Number(await api.computeScore(account)));
+    const profile=await api.getProfile(account),score=Number(await api.computeScore(account));
     const d=deploymentFrom(config);
     const updated=await Promise.all(access.map(async(a,i)=>({...a,valid:a.sessionId?await api.isScoreValid(a.sessionId,d.lenders[i]):false})));
-    setAccess(updated as [Access,Access]);
+    if(active()){setProfile(profile);setScore(score);setAccess(updated as [Access,Access]);}
   }
   async function act(type:'grant'|'score'|'revoke',index:0|1) {
     const {api,deployment}=await client();
@@ -38,7 +41,7 @@ export function useAdvance(provider:BrowserProvider|null,account:string,config:C
         result={...current,sessionId:id,valid:true,quote:await api.getQuote(deployment.lenders[index],id),expiresAt:Number(session.expiresAt)};
       }else{await api.revokeGrant(current.grantId,onTx);result={...current,valid:false,revoked:true};}
     }
-    setAccess(previous=>{const next=[...previous] as [Access,Access];next[index]=result;return next;});
+    if(active())setAccess(previous=>{const next=[...previous] as [Access,Access];next[index]=result;return next;});
   }
   return {profile,score,access,refresh,act,client,setAccess};
 }
