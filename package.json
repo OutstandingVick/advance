@@ -16,7 +16,12 @@
     "preflight": "tsx scripts/preflight.ts",
     "proof:generate": "tsx scripts/generate-proof.ts",
     "example:two-lenders": "tsx sdk/examples/two-lenders.ts",
-    "check": "npm run typecheck && npm run build && npm test && npm run test:sdk && npm run test:app",
+    "test:release": "node --test scripts/release/*.test.mjs",
+    "security:scan": "node scripts/release/scan-secrets.mjs",
+    "security:history": "node scripts/release/scan-secrets.mjs --history",
+    "deployment:check": "node scripts/release/deployment-record.mjs",
+    "release:evidence": "node scripts/release/capture-evidence.mjs",
+    "check": "npm run typecheck && npm run build && npm test && npm run test:sdk && npm run test:app && npm run test:release",
     "check:app": "app/node_modules/.bin/tsc --noEmit -p app/tsconfig.json && npm --prefix app run build"
   },
   "dependencies": {
