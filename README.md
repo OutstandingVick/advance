@@ -60,7 +60,7 @@ transactions only when explicitly run with a configured funded signer.
 ## Verification status
 
 - Contracts and deployment scripts compile.
-- 25 focused Foundry tests pass; 13 TypeScript tests pass.
+- 25 focused Foundry tests pass; 15 TypeScript tests pass.
 - TypeScript proof tooling passes strict type checking.
 - The live Creditcoin RPC, proof-builder health endpoint, and ChainInfo
   precompile have been checked.
