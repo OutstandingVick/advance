@@ -8,7 +8,14 @@ export class AdvanceClient extends AdvanceReader {
   private async send(call: () => Promise<ContractTransactionResponse>, event: string, field: string, notify?: OnTransaction): Promise<{ id: Hex; receipt: TransactionReceipt }> {
     notify?.('awaiting-wallet');
     const tx = await call(); notify?.('submitted', tx.hash);
-    const receipt = await tx.wait();
+    let receipt: TransactionReceipt | null;
+    try { receipt = await tx.wait(); }
+    catch (error) {
+      const replacement = error as {code?:string;cancelled?:boolean;receipt?:TransactionReceipt};
+      // Only a same-intent gas-price replacement may complete this operation.
+      if(replacement.code !== 'TRANSACTION_REPLACED' || replacement.cancelled || !replacement.receipt) throw error;
+      receipt = replacement.receipt;
+    }
     if (!receipt || receipt.status !== 1) throw new Error('Transaction did not confirm successfully.');
     notify?.('confirmed', receipt.hash);
     for (const log of receipt.logs) {
