@@ -8,4 +8,4 @@ broadcast/
 coverage/
 dist/
 .DS_Store
-
+*.tsbuildinfo
