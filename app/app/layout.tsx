@@ -13,7 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Untitled site',
+  title: 'Advance — portable credit',
+  description: 'Verified cross-chain credit history with independent lenders and revocable permissions.',
 };
 
 export default function RootLayout({
