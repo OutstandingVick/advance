@@ -12,7 +12,7 @@ export function bytes32(value: string): Hex {
 }
 export function safeInteger(value: unknown, name: string): number {
   const number = Number(value);
-  if (!Number.isSafeInteger(number) || number < 0 || value === '' || value == null) {
+  if (!Number.isSafeInteger(number) || number < 0 || !['number','string'].includes(typeof value) || (typeof value==='string'&&!/^\d+$/.test(value))) {
     throw new Error(`${name} must be a non-negative safe integer.`);
   }
   return number;
@@ -22,7 +22,7 @@ export function parseProof(value: unknown): ProofBundle {
   const p = value as ProofBundle;
   const chainKey = safeInteger(p.chainKey, 'chainKey');
   const headerNumber = safeInteger(p.headerNumber, 'headerNumber');
-  if (!isHexString(p.txBytes) || p.txBytes.length < 4) throw new Error('Missing encoded transaction.');
+  if (!isHexString(p.txBytes) || p.txBytes.length < 4 || p.txBytes.length % 2 !== 0) throw new Error('Missing or malformed encoded transaction.');
   if (!p.merkleProof || !Array.isArray(p.merkleProof.siblings) || !p.continuityProof || !Array.isArray(p.continuityProof.roots)) {
     throw new Error('Incomplete inclusion or continuity proof.');
   }

@@ -18,3 +18,7 @@ test('grant receipt exposes actual generated id', () => {
   assert.equal(iface.parseLog(encoded)?.args.grantId, hash);
 });
 test('wallet rejection gives actionable feedback', () => assert.match(explainError({code:4001}), /cancelled/));
+test('reject coerced booleans arrays and whitespace as block heights',()=>{
+  for(const value of [true,false,[],[1],' ','1.5','-1'])assert.throws(()=>safeInteger(value,'height'));
+});
+test('reject odd-length transaction hex',()=>assert.throws(()=>parseProof({...proof,txBytes:'0xabc'})));

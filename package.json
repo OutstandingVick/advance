@@ -17,7 +17,7 @@
     "proof:generate": "tsx scripts/generate-proof.ts",
     "example:two-lenders": "tsx sdk/examples/two-lenders.ts",
     "check": "npm run typecheck && npm run build && npm test && npm run test:sdk && npm run test:app",
-    "check:app": "npm --prefix app exec -- tsc --noEmit -p tsconfig.json && npm --prefix app run build"
+    "check:app": "app/node_modules/.bin/tsc --noEmit -p app/tsconfig.json && npm --prefix app run build"
   },
   "dependencies": {
     "@gluwa/asc-contracts": "0.2.1",
