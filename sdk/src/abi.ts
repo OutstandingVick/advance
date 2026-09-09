@@ -1,0 +1,34 @@
+export const registryAbi = [
+  'function SOURCE_CHAIN_KEY() view returns (uint64)',
+  'function SOURCE_CONTRACT() view returns (address)',
+  'function createGrant(address,uint8,uint64) returns (bytes32)',
+  'function revokeGrant(bytes32)',
+  'function computeScore(address) view returns (uint16)',
+  'function requestScore(bytes32,uint64) returns (bytes32)',
+  'function isScoreValid(bytes32,address) view returns (bool)',
+  'function consumedEvidence(bytes32) view returns (bool)',
+  'function getProfile(address) view returns ((uint32 loansOpened,uint32 paymentsRecorded,uint32 defaultsRecorded,uint64 lastActivityAt,uint64 version,uint256 totalBorrowed,uint256 totalRepaid,uint256 totalDefaulted))',
+  'function getGrant(bytes32) view returns ((address wallet,address consumer,uint64 sourceChainKey,address sourceContract,uint8 eventMask,uint64 expiresAt,bool revoked))',
+  'function getScoreSession(bytes32) view returns ((bytes32 grantId,address wallet,address consumer,uint16 score,uint64 profileVersion,uint64 issuedAt,uint64 expiresAt))',
+  'function submitAttestedEvent(uint8,uint64,uint64,bytes,bytes32,(bytes32 hash,bool isLeft)[],bytes32,bytes32[]) returns (bytes32)',
+  'event GrantCreated(bytes32 indexed grantId,address indexed wallet,address indexed consumer,uint8 eventMask,uint64 expiresAt)',
+  'event GrantRevoked(bytes32 indexed grantId,address indexed wallet,address indexed consumer)',
+  'event ScoreIssued(bytes32 indexed sessionId,bytes32 indexed grantId,address indexed consumer,address wallet,uint16 score,uint64 profileVersion,uint64 expiresAt)',
+  'event EvidenceAccepted(bytes32 indexed evidenceId,address indexed wallet,bytes32 indexed facilityId,uint8 eventType,uint256 amount,uint64 occurredAt,uint64 profileVersion)',
+  'error GrantInactive(bytes32)', 'error UnauthorizedConsumer(address)',
+  'error NotGrantOwner(address)', 'error EvidenceAlreadyConsumed(bytes32)',
+  'error ProofVerificationFailed()', 'error WrongSourceChain(uint64,uint64)',
+] as const;
+export const lenderAbi = [
+  'function ADVANCE() view returns (address)',
+  'function lenderName() view returns (string)',
+  'function requestBorrowerScore(bytes32) returns (bytes32)',
+  'function quote(bytes32) returns ((uint16 annualRateBps,uint16 collateralBps,uint256 maxPrincipal))',
+  'error InvalidScoreSession(bytes32)',
+] as const;
+export const sourceAbi = [
+  'function openLoan(bytes32,address,uint256)',
+  'function recordPayment(bytes32,uint256)',
+  'function recordDefault(bytes32,uint256)',
+  'event CreditEvent(address indexed wallet,bytes32 indexed facilityId,uint8 eventType,uint256 amount,uint64 occurredAt)',
+] as const;
