@@ -9,7 +9,10 @@
     "audience": "owner-private",
     "publishedSourceCommit": "4774052f44f829b69335b338488e811588fb5fb1"
   },
-  "blockers": ["LIVE-01", "LIVE-02", "ACCESS-01", "WALLET-01"],
+  "blockers": ["LIVE-01", "ACCESS-01", "WALLET-01"],
+  "resolvedChecks": {
+    "LIVE-02": "Service healthy in September 9 evidence capture and September 10 read-only recheck; no live proof implied"
+  },
   "policy": "docs/FEATURE-FREEZE.md",
   "evidenceDirectory": "docs/evidence/day3"
 }

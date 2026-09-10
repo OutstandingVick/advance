@@ -23,3 +23,16 @@ Defer P2 polish. A feature freeze is not a declaration that Gate C passed.
 Deck, video, DoraHacks submission, new features, mainnet use, and changing the
 existing private demo's audience. No signer configuration has been supplied;
 do not create fictional addresses, transaction hashes or live proof results.
+
+## Completed review checkpoint
+
+20 commits from the Day 2 baseline deliver the first two parts. The security
+review fixed repayment-ratio overflow, added 18 Foundry regressions/properties
+and 11 publication-tool tests, and documented the exact protocol call flow.
+The frozen candidate has 69 passing tests, a passing app typecheck/build,
+captured scans and dependency results, and labeled rehearsal screenshots.
+
+See [captured evidence](evidence/day3/README.md) and
+[feature-freeze policy](FEATURE-FREEZE.md). Feature scope is frozen; release
+readiness is still blocked by missing real deployments/proofs, fresh-wallet
+acceptance testing, and public demo access. No deck/video/submission was made.

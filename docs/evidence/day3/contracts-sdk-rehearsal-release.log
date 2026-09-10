@@ -1,0 +1,157 @@
+
+> advance-credit-oracle@0.1.0 check
+> npm run typecheck && npm run build && npm test && npm run test:sdk && npm run test:app && npm run test:release
+
+
+> advance-credit-oracle@0.1.0 typecheck
+> tsc --noEmit
+
+
+> advance-credit-oracle@0.1.0 build
+> forge build
+
+Compiling 5 files with Solc 0.8.30
+Solc 0.8.30 finished in 4.48s
+Compiler run successful!
+
+> advance-credit-oracle@0.1.0 test
+> forge test -vvv
+
+No files changed, compilation skipped
+
+Ran 2 tests for contracts/test/WalletAttribution.t.sol:WalletAttributionTest
+[PASS] testOtherWalletEvidenceDoesNotInvalidateBorrowerSession() (gas: 347951)
+[PASS] testRelayerCannotTakeCreditForBorrowerEvent() (gas: 131447)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 7.47ms (356.54µs CPU time)
+
+Ran 4 tests for contracts/test/LenderSafety.t.sol:LenderSafetyTest
+[PASS] testDefaultInvalidatesOldQuote() (gas: 340998)
+[PASS] testExactExpiryCannotQuote() (gas: 238937)
+[PASS] testOtherLenderCannotQuoteSession() (gas: 239590)
+[PASS] testUnknownSessionCannotQuote() (gas: 15091)
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 7.51ms (323.25µs CPU time)
+
+Ran 2 tests for contracts/test/ExpiryBoundary.t.sol:ExpiryBoundaryTest
+[PASS] testSessionExpiresAtExactBoundary() (gas: 230710)
+[PASS] testSessionNeverOutlivesGrant() (gas: 230602)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 7.30ms (157.33µs CPU time)
+
+Ran 5 tests for contracts/test/AdvanceGrants.t.sol:AdvanceGrantsTest
+[PASS] testNonOwnerCannotRevokeGrant() (gas: 104315)
+[PASS] testRejectsExpiredGrantAtCreation() (gas: 9737)
+[PASS] testRejectsSelectiveHistoryDisclosure() (gas: 9817)
+[PASS] testWalletCreatesConsumerScopedGrant() (gas: 105926)
+[PASS] testWalletRevokesGrant() (gas: 108799)
+Suite result: ok. 5 passed; 0 failed; 0 skipped; finished in 7.58ms (437.38µs CPU time)
+
+Ran 7 tests for contracts/test/SourceRegistry.t.sol:SourceRegistryTest
+[PASS] testCannotDefaultTwice() (gas: 107892)
+[PASS] testCannotRecordPaymentAfterDefault() (gas: 107795)
+[PASS] testFacilityCannotBeOverwritten() (gas: 83852)
+[PASS] testNonLenderCannotRecordDefault() (gas: 84305)
+[PASS] testOnlyFacilityLenderCanRecordPayment() (gas: 84462)
+[PASS] testRejectsZeroBorrower() (gas: 8473)
+[PASS] testRejectsZeroPrincipal() (gas: 8817)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 7.46ms (1.58ms CPU time)
+
+Ran 3 tests for contracts/test/EvidenceAtomicity.t.sol:EvidenceAtomicityTest
+[PASS] testActionMismatchDoesNotConsumeEvidence() (gas: 171546)
+[PASS] testDecoderFailureDoesNotConsumeEvidence() (gas: 157293)
+[PASS] testDistinctTransactionIndexesAreNotFalseReplays() (gas: 181619)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 7.78ms (649.63µs CPU time)
+
+Ran 7 tests for contracts/test/AdvanceSessions.t.sol:AdvanceSessionsTest
+[PASS] testAuthorizedConsumerReceivesValidSession() (gas: 231265)
+[PASS] testExpiredSessionBecomesInvalid() (gas: 228036)
+[PASS] testProfileUpdateInvalidatesExistingSession() (gas: 332888)
+[PASS] testRejectsInvalidSessionDuration() (gas: 104572)
+[PASS] testRejectsUnauthorizedScoreRequester() (gas: 105130)
+[PASS] testRevocationInvalidatesExistingSession() (gas: 231811)
+[PASS] testTwoLendersShareProfileButRevokeIndependently() (gas: 448983)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 7.90ms (653.75µs CPU time)
+
+Ran 8 tests for contracts/test/AdvanceEvidence.t.sol:AdvanceEvidenceTest
+[PASS] testRejectsAmbiguousCreditEvents() (gas: 75659)
+[PASS] testRejectsFailedSourceTransaction() (gas: 63079)
+[PASS] testRejectsInvalidNativeProofWithoutUpdatingProfile() (gas: 45367)
+[PASS] testRejectsMissingCreditEvent() (gas: 55755)
+[PASS] testRejectsReplayedEvidence() (gas: 123018)
+[PASS] testRejectsWrongEmitter() (gas: 65941)
+[PASS] testRejectsWrongSourceChain() (gas: 22684)
+[PASS] testVerifiedPaymentUpdatesProfile() (gas: 118446)
+Suite result: ok. 8 passed; 0 failed; 0 skipped; finished in 21.52ms (1.19ms CPU time)
+
+Ran 2 tests for contracts/test/GrantProperties.t.sol:GrantPropertiesTest
+[PASS] testFuzzOnlyFullMaskIsAccepted(uint8) (runs: 256, μ: 10168, ~: 10168)
+[PASS] testFuzzSessionNeverOutlivesGrant(uint64,uint64) (runs: 256, μ: 234486, ~: 234480)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 30.86ms (37.37ms CPU time)
+
+Ran 3 tests for contracts/test/ScoreArithmetic.t.sol:ScoreArithmeticTest
+[PASS] testFuzzScoreRatioIsBounded(uint256,uint256) (runs: 256, μ: 193919, ~: 193972)
+[PASS] testHugeRepaymentDoesNotDisableScoring() (gas: 413096)
+[PASS] testHugeSubUnitRatioUsesFullPrecision() (gas: 193806)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 30.88ms (24.27ms CPU time)
+
+Ran 10 test suites in 37.96ms (136.27ms CPU time): 43 tests passed, 0 failed, 0 skipped (43 total tests)
+
+> advance-credit-oracle@0.1.0 test:sdk
+> node --import tsx --test sdk/test/*.test.ts
+
+✔ reject zero addresses (1.814708ms)
+✔ reject truncated identifiers (0.113334ms)
+✔ reject imprecise block heights (0.094625ms)
+✔ validate complete proof (0.151542ms)
+✔ reject missing continuity (0.065041ms)
+✔ reject non-boolean proof direction (0.111959ms)
+✔ grant receipt exposes actual generated id (5.246875ms)
+✔ wallet rejection gives actionable feedback (0.128333ms)
+✔ reject coerced booleans arrays and whitespace as block heights (0.140708ms)
+✔ reject odd-length transaction hex (0.122792ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 274.146375
+
+> advance-credit-oracle@0.1.0 test:app
+> node --import tsx --test app/test/*.test.ts
+
+✔ independent consumers and immediate revocation (1.074666ms)
+✔ fresh evidence invalidates both snapshots and replay is rejected (0.296375ms)
+✔ expiry is invalid at the exact boundary (0.093584ms)
+✔ missing and duplicate deployments cannot enable live actions (1.438208ms)
+✔ explorer links reject injected URLs (0.162459ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 213.799833
+
+> advance-credit-oracle@0.1.0 test:release
+> node --test scripts/release/*.test.mjs
+
+✔ null deployment template is incomplete, never verified (1.964458ms)
+✔ complete record still requires independent on-chain verification (0.197208ms)
+✔ rejects wrong destination chain (0.072875ms)
+✔ rejects duplicated lenders and zero addresses (0.091208ms)
+✔ rejects failed proof receipts (0.082583ms)
+✔ malformed proof entry is reported instead of crashing (0.076625ms)
+✔ flags real-looking assigned wallet keys without returning the key (1.835875ms)
+✔ allows blank environment examples but rejects environment secrets files (0.337375ms)
+✔ transaction hashes are not treated as wallet keys (0.087625ms)
+✔ flags credential URLs and key blocks (0.070167ms)
+✔ flags personal filesystem paths (0.07925ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.98875

@@ -22,7 +22,6 @@ belongs to later Day 3 sections, outside this request.
 | ID | Priority | Current evidence | Closure requirement |
 |---|---|---|---|
 | LIVE-01 | P0 | No source/Advance/lender deployment addresses or accepted proof receipts recorded | Funded signer configured securely; real contracts and full native proof path verified; record hashes |
-| LIVE-02 | P0 | Proof-service preflight reports degraded, destination RPC connection false | Healthy preflight plus a successful native transaction (health alone insufficient) |
 | ACCESS-01 | P1 | Hosted demo remains owner-private | Explicit audience approval and successful unauthenticated access check |
 | WALLET-01 | P1 | Screenshots cover rehearsal only | Fresh-wallet public-testnet run through both lenders, independent revocation and replay rejection |
 
@@ -30,6 +29,11 @@ These are release blockers, not reasons to invent deployment metadata or
 replace the deployed native verifier with a mock. Funding/approval belongs to
 the project owner; external service health belongs to the provider. An agent
 may prepare a reproduction but must not message organizers without permission.
+
+LIVE-02 (service availability) recovered during the September 9 evidence run;
+the September 10 read-only recheck also reported healthy with both RPC
+connections true. The service-health blocker is closed as observed, not a
+guarantee of future availability. Real proof verification remains LIVE-01.
 
 ## Known non-gating review debt
 

@@ -1,0 +1,16 @@
+{
+  "status": "incomplete",
+  "errors": [],
+  "blockers": [
+    "source.chainId: missing",
+    "source.chainKey: missing",
+    "source.registryAddress: missing",
+    "source.deploymentTx: missing",
+    "advance.registryAddress: missing",
+    "advance.lenderAAddress: missing",
+    "advance.lenderBAddress: missing",
+    "advance.deploymentTx: missing",
+    "proofEvidence: no live proof recorded"
+  ],
+  "limitation": "Schema checks do not verify deployments, receipts, native proofs or two-consumer behavior on chain."
+}

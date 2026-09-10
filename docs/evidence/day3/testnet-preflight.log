@@ -1,0 +1,23 @@
+{
+  "chainId": 102031,
+  "supportedChains": [
+    {
+      "chainKey": 3,
+      "chainId": 1,
+      "chainName": "0x457468657265756d",
+      "chainEncoding": 1
+    },
+    {
+      "chainKey": 1,
+      "chainId": 11155111,
+      "chainName": "0x5365706f6c696120657468657265756d",
+      "chainEncoding": 1
+    }
+  ],
+  "proofService": {
+    "status": "healthy",
+    "cc3_rpc_connected": true,
+    "eth_rpc_connected": true,
+    "uptime_seconds": 672383
+  }
+}

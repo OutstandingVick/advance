@@ -1,0 +1,99 @@
+{
+  "capturedAt": "2026-09-09T13:57:01.281Z",
+  "sourceCommit": "6b0b19f22ab68340b816bddbfd08dbb33e2a534a",
+  "sourceTree": "ffc6126e5c2b557053bedd04d705645e68f73f08",
+  "nodeVersion": "v25.8.1",
+  "platform": "darwin",
+  "note": "Local evidence only. Non-gating operational checks may be blocked; this does not assert live release readiness.",
+  "results": [
+    {
+      "name": "contracts-sdk-rehearsal-release",
+      "command": "npm run check",
+      "exitCode": 0,
+      "signal": null,
+      "required": true,
+      "log": "docs/evidence/day3/contracts-sdk-rehearsal-release.log"
+    },
+    {
+      "name": "app-typecheck-build",
+      "command": "npm run check:app",
+      "exitCode": 0,
+      "signal": null,
+      "required": true,
+      "log": "docs/evidence/day3/app-typecheck-build.log"
+    },
+    {
+      "name": "tracked-secret-scan",
+      "command": "node scripts/release/scan-secrets.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "required": true,
+      "log": "docs/evidence/day3/tracked-secret-scan.log"
+    },
+    {
+      "name": "history-secret-scan",
+      "command": "node scripts/release/scan-secrets.mjs --history",
+      "exitCode": 0,
+      "signal": null,
+      "required": true,
+      "log": "docs/evidence/day3/history-secret-scan.log"
+    },
+    {
+      "name": "deployment-record",
+      "command": "node scripts/release/deployment-record.mjs",
+      "exitCode": 0,
+      "signal": null,
+      "required": true,
+      "log": "docs/evidence/day3/deployment-record.log"
+    },
+    {
+      "name": "deployment-completeness",
+      "command": "node scripts/release/deployment-record.mjs --require-complete",
+      "exitCode": 1,
+      "signal": null,
+      "required": false,
+      "log": "docs/evidence/day3/deployment-completeness.log"
+    },
+    {
+      "name": "app-lint",
+      "command": "npm --prefix app run lint",
+      "exitCode": 1,
+      "signal": null,
+      "required": false,
+      "log": "docs/evidence/day3/app-lint.log"
+    },
+    {
+      "name": "testnet-preflight",
+      "command": "node --import tsx scripts/preflight.ts",
+      "exitCode": 0,
+      "signal": null,
+      "required": false,
+      "log": "docs/evidence/day3/testnet-preflight.log"
+    },
+    {
+      "name": "root-production-audit",
+      "command": "npm audit --omit=dev --json",
+      "exitCode": 0,
+      "signal": null,
+      "required": false,
+      "log": "docs/evidence/day3/root-production-audit.log"
+    },
+    {
+      "name": "app-production-audit",
+      "command": "npm --prefix app audit --omit=dev --json",
+      "exitCode": 0,
+      "signal": null,
+      "required": false,
+      "log": "docs/evidence/day3/app-production-audit.log"
+    },
+    {
+      "name": "app-development-audit",
+      "command": "npm --prefix app audit --json",
+      "exitCode": 1,
+      "signal": null,
+      "required": false,
+      "log": "docs/evidence/day3/app-development-audit.log"
+    }
+  ],
+  "localGatesPassed": true
+}

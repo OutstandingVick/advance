@@ -130,6 +130,11 @@ advertised Sepolia key 1 / EVM ID 11155111. The proof service returned
 `status: degraded`, `cc3_rpc_connected: false`, `eth_rpc_connected: true`.
 The preflight exited nonzero. HTTP 200 alone is not a passing health check.
 
+Later in the September 9 evidence capture the service recovered to healthy,
+with both RPC connections true. A September 10 recheck also passed. See
+`evidence/day3/testnet-preflight.log` for the captured result. Service recovery
+does not supply the missing real proof or deployment receipts.
+
 Gate A/C remain unproven. `deployments/testnet.json` intentionally contains null
 addresses and no proof evidence. The native verifier is mocked in contract
 unit tests; those tests cannot establish a successful live proof. After funding

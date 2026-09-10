@@ -77,7 +77,9 @@ transactions only when explicitly run with a configured funded signer.
 - Funded-wallet deployment and a real source proof remain operational steps;
   no keys are stored in this repository.
 - On September 9, the proof service reported degraded with its Creditcoin RPC
-  disconnected. No live proof success or end-to-end testnet completion is claimed.
+  disconnected, then recovered during the final evidence capture. A September 10
+  health recheck passed. No live proof success or end-to-end testnet completion
+  is claimed.
 
 ## Deployment evidence
 
