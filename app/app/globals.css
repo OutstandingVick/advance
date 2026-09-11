@@ -161,3 +161,6 @@
   transition:transform .15s ease, background .15s ease;
 }
 .lp-cta-btn:hover{transform:translateY(-1px)}
+
+.lp-logo img{display:block;border-radius:8px}
+.lp-logo{align-items:center}

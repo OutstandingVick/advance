@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Advance — portable credit',
   description: 'Verified cross-chain credit history with independent lenders and revocable permissions.',
+  icons: [{ rel: 'icon', url: '/advance-logo.svg', type: 'image/svg+xml' }],
 };
 
 export default function RootLayout({

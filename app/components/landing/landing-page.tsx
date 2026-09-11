@@ -62,7 +62,7 @@ export function LandingPage() {
       <div className="lp-frame">
         <header className="lp-header">
           <a className="lp-logo" href="/">
-            <span className="lp-logo-mark" aria-hidden="true">A</span>
+            <img src="/advance-logo.svg" alt="" width={34} height={34} />
             ADVANCE
           </a>
           <a className="lp-menu" href="#features" aria-label="Explore Advance">
