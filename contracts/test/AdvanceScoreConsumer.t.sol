@@ -23,4 +23,13 @@ contract AdvanceScoreConsumerTest is AdvanceTestBase {
         vm.expectRevert(abi.encodeWithSelector(AdvanceScoreConsumer.InvalidScoreSession.selector, sessionId));
         consumer.currentScore(sessionId);
     }
+
+    function testConsumerRechecksRevocationBeforeReadingScore() public {
+        bytes32 grantId = _grant(address(consumer));
+        bytes32 sessionId = consumer.requestScore(grantId);
+        vm.prank(WALLET);
+        advance.revokeGrant(grantId);
+        vm.expectRevert(abi.encodeWithSelector(AdvanceScoreConsumer.InvalidScoreSession.selector, sessionId));
+        consumer.currentScore(sessionId);
+    }
 }
