@@ -51,3 +51,29 @@ import {IAdvance} from "./interfaces/IAdvance.sol";
 intentional: the registry and consumers use the same named struct definitions,
 which prevents documentation copies from drifting away from the deployed ABI.
 If you vendor them elsewhere, update only that relative import.
+
+## Minimal contract consumer
+
+`contracts/src/examples/AdvanceScoreConsumer.sol` is the copyable example. The
+essential pattern is:
+
+```solidity
+contract MyConsumer {
+    IAdvance public immutable ADVANCE;
+
+    constructor(IAdvance advance) { ADVANCE = advance; }
+
+    function request(bytes32 grantId) external returns (bytes32) {
+        return ADVANCE.requestScore(grantId, 1 hours);
+    }
+
+    function score(bytes32 sessionId) external view returns (uint16) {
+        require(ADVANCE.isScoreValid(sessionId, address(this)), "invalid session");
+        return ADVANCE.getScoreSession(sessionId).score;
+    }
+}
+```
+
+Before `request` can succeed, the wallet must call `createGrant` with
+`consumer = address(MyConsumer)`. The consumer contract—not its operator or
+frontend—is the identity bound into the grant and score session.
