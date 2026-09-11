@@ -97,23 +97,27 @@ export function LandingPage() {
             />
           </section>
 
-          <section className="lp-marquee" aria-hidden="true">
-            <div className="lp-marquee-track">
-              {Array.from({ length: 2 }).map((_, i) => (
-                <span key={i} className="lp-marquee-group">
-                  {[
-                    'Verified facts',
-                    'Independent decisions',
-                    'Portable across chains',
-                    'Revocable access',
-                    'Creditcoin',
-                  ].map((t) => (
-                    <span key={t} className="lp-marquee-item">
-                      {t} <span className="lp-marquee-star">✦</span>
-                    </span>
-                  ))}
-                </span>
-              ))}
+          <section className="lp-solution" aria-labelledby="solution-title">
+            <div className="lp-solution-intro">
+              <h2 id="solution-title">
+                Advance has solved the fragmented credit challenge
+              </h2>
+              <p>
+                ONE VERIFIED HISTORY FOR EVERY CHAIN, LENDER, AND MARKET.
+              </p>
+            </div>
+
+            <div className="lp-keyhole" aria-hidden="true">
+              <span className="lp-keyhole-ring" />
+              <span className="lp-keyhole-core" />
+              <span className="lp-keyhole-stem" />
+            </div>
+
+            <div className="lp-solution-copy">
+              <h3>Build your history once</h3>
+              <p>Verify repayments and let every approved lender read the same score.</p>
+              <h3>No repeated applications, no locked-in profile,</h3>
+              <p>just the credit you earned.<br />Now portable.</p>
             </div>
           </section>
 
