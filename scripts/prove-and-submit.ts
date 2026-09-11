@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { proofProvider } from "@gluwa/usc-sdk";
-import { JsonRpcProvider, Wallet } from "ethers";
-import { AdvanceClient, address, bytes32, parseProof } from "../sdk/src/index";
+import { JsonRpcProvider } from "ethers";
+import { bytes32, parseProof } from "../sdk/src/index";
 
 async function main() {
   const destination = new JsonRpcProvider(required("CREDITCOIN_RPC_URL"));
@@ -29,20 +29,7 @@ async function main() {
     const proof = parseProof(result.data);
     if (proof.chainKey !== chainKey || proof.headerNumber !== receipt.blockNumber)
       throw new Error("Proof does not match requested source block.");
-    const api = new AdvanceClient(
-      address(required("ADVANCE_REGISTRY_ADDRESS")),
-      new Wallet(required("CREDITCOIN_PRIVATE_KEY"), destination),
-    );
-    const confirmed = await api.submitEvidence(action, proof, (phase, tx) =>
-      console.log(phase, tx ?? ""),
-    );
-    console.log(
-      JSON.stringify({
-        evidenceId: confirmed.id,
-        transactionHash: confirmed.receipt.hash,
-        blockNumber: confirmed.receipt.blockNumber,
-      }),
-    );
+    console.log(JSON.stringify({ ...proof, action }, null, 2));
   } finally {
     destination.destroy();
     source.destroy();
