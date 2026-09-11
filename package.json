@@ -16,6 +16,7 @@
     "preflight": "tsx scripts/preflight.ts",
     "proof:generate": "tsx scripts/generate-proof.ts",
     "test:live": "node --test scripts/live/*.test.mjs",
+    "live:funds": "node scripts/live/check-funds.mjs",
     "example:two-lenders": "tsx sdk/examples/two-lenders.ts",
     "test:release": "node --test scripts/release/*.test.mjs",
     "security:scan": "node scripts/release/scan-secrets.mjs",
