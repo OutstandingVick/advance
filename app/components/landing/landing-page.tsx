@@ -28,19 +28,14 @@ const features = [
 
 const steps = [
   {
-    step: 'Step 1',
-    title: 'Build your score',
-    body: 'Submit repayment evidence from any chain. Verified events raise your portable score out of 900.',
+    step: '01',
+    title: 'Connect your wallet',
+    body: 'Advance finds the verified repayment history linked to your wallet.',
   },
   {
-    step: 'Step 2',
-    title: 'Grant permission',
-    body: 'Authorize independent lenders to read your score for a fixed window. Scoped, auditable, revocable.',
-  },
-  {
-    step: 'Step 3',
-    title: 'Get quoted',
-    body: 'Lenders compete on your verified history. Better terms, without handing over your data.',
+    step: '02',
+    title: 'Grant lender access',
+    body: 'Choose the lender and session length. Revoke that lender without affecting anyone else.',
   },
 ];
 
