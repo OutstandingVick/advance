@@ -70,7 +70,6 @@
 
 .lp-hero-visual{
   display:block;width:min(100%,760px);height:auto;justify-self:end;
-  mix-blend-mode:multiply;
 }
 
 /* Marquee */
