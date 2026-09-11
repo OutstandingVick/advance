@@ -1,21 +1,28 @@
 const features = [
   {
-    tag: '01',
-    title: 'Verified repayment history',
-    body: 'Repayment events are recorded as cryptographically verified evidence — not self-reported claims. Your history is yours, portable across every chain you operate on.',
+    icon: 'evidence',
+    title: 'Verified repayment evidence.',
     accent: false,
   },
   {
-    tag: '02',
-    title: 'Authorize independent lenders',
-    body: 'Grant scoped, time-boxed permission to any lender. They read your current score and quote terms. No lender ever sees your full ledger.',
-    accent: false,
-  },
-  {
-    tag: '03',
-    title: 'Revoke in one click',
-    body: 'Cut access instantly. Revocation invalidates authorized sessions on-chain — lenders lose the thread the moment you pull it.',
+    icon: 'portable',
+    title: 'One score across every supported chain.',
     accent: true,
+  },
+  {
+    icon: 'session',
+    title: 'Scoped, time-boxed lender access.',
+    accent: false,
+  },
+  {
+    icon: 'revoke',
+    title: 'Independent revocation keeps you in control.',
+    accent: false,
+  },
+  {
+    icon: 'shield',
+    title: 'Replay-protected by design.',
+    accent: false,
   },
 ];
 
