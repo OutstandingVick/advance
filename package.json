@@ -12,6 +12,7 @@
     "chains": "tsx scripts/discover-chains.ts",
     "proof:prepare": "tsx scripts/prove-and-submit.ts",
     "test:sdk": "node --import tsx --test sdk/test/*.test.ts",
+    "sdk:build": "npm --prefix sdk run build",
     "test:app": "node --import tsx --test app/test/*.test.ts",
     "preflight": "tsx scripts/preflight.ts",
     "proof:generate": "tsx scripts/generate-proof.ts",
@@ -23,7 +24,7 @@
     "security:history": "node scripts/release/scan-secrets.mjs --history",
     "deployment:check": "node scripts/release/deployment-record.mjs",
     "release:evidence": "node scripts/release/capture-evidence.mjs",
-    "check": "npm run typecheck && npm run build && npm test && npm run test:sdk && npm run test:app && npm run test:release && npm run test:live",
+    "check": "npm run typecheck && npm run build && npm run sdk:build && npm test && npm run test:sdk && npm run test:app && npm run test:release && npm run test:live",
     "check:app": "app/node_modules/.bin/tsc --noEmit -p app/tsconfig.json && npm --prefix app run build"
   },
   "dependencies": {
