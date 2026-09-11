@@ -234,7 +234,11 @@ export default function Home() {
           )}
         </section>
         <section className="lenders">
-          <p className="eyebrow">TWO INDEPENDENT CONSUMERS</p>
+          <div className="comparison-heading">
+            <p className="eyebrow">TWO LENDERS · ONE PORTABLE SCORE</p>
+            <h2>Independent access, compared live</h2>
+          </div>
+          <div className="lender-grid">
           {['Northstar Credit', 'Harbor Lending'].map((name, i) => {
             const index = i as 0 | 1,
               l = demo.lenders[index],
@@ -262,7 +266,9 @@ export default function Home() {
                         ? 12
                         : 18
                   }
+                  score={score ?? undefined}
                   expiry={live ? a.expiresAt : l.expiresAt}
+                  now={now}
                   onAction={(type) =>
                     live
                       ? void run(() => advance.act(type, index))
@@ -280,6 +286,7 @@ export default function Home() {
               </div>
             );
           })}
+          </div>
         </section>
       </div>
       <section className="panel activity">
