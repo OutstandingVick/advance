@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { newRehearsal, transition, validSession } from '../lib/rehearsal';
+import { newRehearsal, SESSION_WINDOWS, transition, validSession } from '../lib/rehearsal';
 import { deploymentFrom, emptyConfig, explorer } from '../lib/config';
 
 test('independent consumers and immediate revocation',()=>{
@@ -22,8 +22,9 @@ test('fresh evidence invalidates both snapshots and replay is rejected',()=>{
 test('expiry is invalid at the exact boundary',()=>{
   let s=transition(newRehearsal(),{type:'grant',lender:0},100);
   s=transition(s,{type:'score',lender:0},100);
-  assert.ok(validSession(s,0,3699));assert.equal(validSession(s,0,3700),false);
-  assert.throws(()=>transition(s,{type:'score',lender:0},3700),/active grant/);
+  const boundary=100+SESSION_WINDOWS[0];
+  assert.ok(validSession(s,0,boundary-1));assert.equal(validSession(s,0,boundary),false);
+  assert.throws(()=>transition(s,{type:'score',lender:0},boundary),/active grant/);
 });
 test('missing and duplicate deployments cannot enable live actions',()=>{
   assert.throws(()=>deploymentFrom(emptyConfig));

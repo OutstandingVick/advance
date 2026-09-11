@@ -16,6 +16,7 @@ export const newRehearsal = (): Rehearsal => ({
   lenders: [empty(), empty()],
   events: [],
 });
+export const SESSION_WINDOWS = [45 * 60, 90 * 60] as const;
 const empty = (): LenderState => ({
   grant: false,
   revoked: false,
@@ -61,7 +62,7 @@ export function transition(
       l.grant = true;
       l.revoked = false;
       l.sessionVersion = null;
-      l.expiresAt = now + 3600;
+      l.expiresAt = now + SESSION_WINDOWS[action.lender];
     }
     if (action.type === 'score') {
       if (!l.grant || l.revoked || l.expiresAt <= now)
