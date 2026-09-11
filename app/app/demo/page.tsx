@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { LenderCard } from '@/components/lender-card';
 import { DeploymentForm } from '@/components/deployment-form';
 import { EvidencePanel } from '@/components/evidence-panel';
+import { PillarLegend } from '@/components/pillar-legend';
 import {
   newRehearsal,
   transition,
@@ -13,7 +14,7 @@ import {
 import { emptyConfig, explorer } from '@/lib/config';
 import { useWallet } from '@/hooks/use-wallet';
 import { useAdvance } from '@/hooks/use-advance';
-import { parseProof, explainError as friendlyError } from '../../sdk/src/index';
+import { parseProof, explainError as friendlyError } from '../../../sdk/src/index';
 
 export default function Home() {
   const [live, setLive] = useState(false),
@@ -118,6 +119,7 @@ export default function Home() {
         sessions, not historical data.
       </div>
       <EvidencePanel />
+      <PillarLegend />
       {live && (
         <>
           <DeploymentForm value={config} onChange={setConfig} disabled={busy} />
