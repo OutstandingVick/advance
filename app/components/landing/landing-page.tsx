@@ -1,26 +1,31 @@
 const features = [
   {
-    icon: 'evidence',
+    asset: '/images/features/verified-evidence.png',
+    alt: 'A verified repayment receipt stored in a digital wallet',
     title: 'Verified repayment evidence.',
     accent: false,
   },
   {
-    icon: 'portable',
+    asset: '/images/features/portable-score.png',
+    alt: 'A verified credit passport moving between blockchain networks',
     title: 'One score across every supported chain.',
     accent: true,
   },
   {
-    icon: 'session',
+    asset: '/images/features/timed-session.png',
+    alt: 'A secure key and lender gate controlled by an hourglass',
     title: 'Scoped, time-boxed lender access.',
     accent: false,
   },
   {
-    icon: 'revoke',
+    asset: '/images/features/independent-revocation.png',
+    alt: 'A wallet keeping one lender connected while revoking another',
     title: 'Independent revocation keeps you in control.',
     accent: false,
   },
   {
-    icon: 'shield',
+    asset: '/images/features/replay-protection.png',
+    alt: 'A shield accepting one proof and rejecting its duplicate',
     title: 'Replay-protected by design.',
     accent: false,
   },
@@ -63,30 +68,6 @@ function Arrow({ className = '' }: { className?: string }) {
   );
 }
 
-function FeatureIcon({ name }: { name: string }) {
-  return (
-    <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
-      {name === 'evidence' && <>
-        <path d="M31 18h43l16 16v68H31zM74 18v18h16" />
-        <path d="m43 69 11 11 25-28" />
-      </>}
-      {name === 'portable' && <>
-        <circle cx="60" cy="26" r="17" /><circle cx="30" cy="83" r="17" /><circle cx="90" cy="83" r="17" />
-        <path d="M51 41 38 67m31-26 13 26M47 83h26" />
-      </>}
-      {name === 'session' && <>
-        <circle cx="60" cy="61" r="40" /><path d="M60 38v25l18 11M43 14h34" />
-      </>}
-      {name === 'revoke' && <>
-        <path d="M55 25a24 24 0 1 0 0 48 24 24 0 0 0 0-48Z" /><path d="m72 66 27 27M24 96 96 24" />
-      </>}
-      {name === 'shield' && <>
-        <path d="M60 14 94 28v27c0 24-14 40-34 51-20-11-34-27-34-51V28z" /><path d="m42 59 12 12 25-28" />
-      </>}
-    </svg>
-  );
-}
-
 export function LandingPage() {
   return (
     <div className="lp">
@@ -109,7 +90,7 @@ export function LandingPage() {
               <h1 className="lp-h1">
                 One History.
                 <br />
-                More Possibilities.
+                All Possibilities.
               </h1>
               <p className="lp-sub">
                 VERIFIED CROSS-CHAIN CREDIT FOR ANY WALLET, LENDER, OR MARKET
@@ -163,7 +144,7 @@ export function LandingPage() {
                   key={f.title}
                   className={f.accent ? 'lp-protocol-card is-accent' : 'lp-protocol-card'}
                 >
-                  <FeatureIcon name={f.icon} />
+                  <img src={f.asset} alt={f.alt} loading="lazy" />
                   <h3>{f.title}</h3>
                 </article>
               ))}

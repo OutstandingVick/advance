@@ -139,9 +139,9 @@
   border-radius:12px;background:var(--white);color:var(--blue);
 }
 .lp-protocol-card.is-accent{background:var(--orange);color:var(--white)}
-.lp-protocol-card svg{
-  width:100%;height:210px;padding:18px;
-  stroke:currentColor;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;
+.lp-protocol-card img{
+  display:block;width:100%;height:240px;object-fit:contain;
+  border-radius:8px;
 }
 .lp-protocol-card h3{margin:20px 0 0;font-size:clamp(20px,1.65vw,27px);line-height:1.02;letter-spacing:-1px;font-weight:800}
 
