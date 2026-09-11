@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LenderCard } from '@/components/lender-card';
 import { DeploymentForm } from '@/components/deployment-form';
+import { EvidencePanel } from '@/components/evidence-panel';
 import {
   newRehearsal,
   transition,
@@ -116,6 +117,7 @@ export default function Home() {
         Public chain history remains readable; revocation invalidates authorized
         sessions, not historical data.
       </div>
+      <EvidencePanel />
       {live && (
         <>
           <DeploymentForm value={config} onChange={setConfig} disabled={busy} />
