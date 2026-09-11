@@ -137,13 +137,17 @@
   display:flex;flex-direction:column;justify-content:space-between;
   min-height:390px;padding:24px 20px 28px;
   border-radius:12px;background:var(--white);color:var(--blue);
+  transition:background-color .22s ease,color .22s ease,transform .22s ease;
 }
-.lp-protocol-card.is-accent{background:var(--orange);color:var(--white)}
 .lp-protocol-card img{
   display:block;width:100%;height:240px;object-fit:contain;
   border-radius:8px;
 }
 .lp-protocol-card h3{margin:20px 0 0;font-size:clamp(20px,1.65vw,27px);line-height:1.02;letter-spacing:-1px;font-weight:800}
+@media(hover:hover){
+  .lp-protocol-card:hover{background:var(--orange);color:var(--white);transform:translateY(-8px)}
+  .lp-protocol-card:hover img{mix-blend-mode:multiply}
+}
 
 /* Steps */
 .lp-steps{list-style:none;margin:0;padding:0;display:grid}

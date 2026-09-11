@@ -3,31 +3,26 @@ const features = [
     asset: '/images/features/verified-evidence.png',
     alt: 'A verified repayment receipt stored in a digital wallet',
     title: 'Verified repayment evidence.',
-    accent: false,
   },
   {
     asset: '/images/features/portable-score.png',
     alt: 'A verified credit passport moving between blockchain networks',
     title: 'One score across every supported chain.',
-    accent: true,
   },
   {
     asset: '/images/features/timed-session.png',
     alt: 'A secure key and lender gate controlled by an hourglass',
     title: 'Scoped, time-boxed lender access.',
-    accent: false,
   },
   {
     asset: '/images/features/independent-revocation.png',
     alt: 'A wallet keeping one lender connected while revoking another',
     title: 'Independent revocation keeps you in control.',
-    accent: false,
   },
   {
     asset: '/images/features/replay-protection.png',
     alt: 'A shield accepting one proof and rejecting its duplicate',
     title: 'Replay-protected by design.',
-    accent: false,
   },
 ];
 
@@ -142,7 +137,7 @@ export function LandingPage() {
               {features.map((f) => (
                 <article
                   key={f.title}
-                  className={f.accent ? 'lp-protocol-card is-accent' : 'lp-protocol-card'}
+                  className="lp-protocol-card"
                 >
                   <img src={f.asset} alt={f.alt} loading="lazy" />
                   <h3>{f.title}</h3>
