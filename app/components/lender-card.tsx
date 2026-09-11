@@ -6,7 +6,9 @@ export function LenderCard({
   valid,
   busy,
   rate,
+  score,
   expiry,
+  now,
   onAction,
 }: {
   index: number;
@@ -15,7 +17,9 @@ export function LenderCard({
   valid: boolean;
   busy: boolean;
   rate?: number;
+  score?: number;
   expiry?: number;
+  now: number;
   onAction: (action: 'grant' | 'score' | 'revoke') => void;
 }) {
   return (
@@ -29,6 +33,10 @@ export function LenderCard({
       </div>
       <div className="terms">
         <div>
+          <small>Shared Advance score</small>
+          <strong>{valid && score !== undefined ? score : '—'}</strong>
+        </div>
+        <div>
           <small>Illustrative annual rate</small>
           <strong>{valid && rate !== undefined ? `${rate}%` : '—'}</strong>
         </div>
@@ -39,7 +47,7 @@ export function LenderCard({
       </div>
       {valid && expiry && (
         <p className="metadata">
-          Session expires {new Date(expiry * 1000).toLocaleTimeString()}
+          Time-boxed session · {Math.max(0, Math.ceil((expiry - now) / 60))} min remaining
         </p>
       )}
       <div className="actions">
