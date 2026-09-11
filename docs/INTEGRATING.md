@@ -98,3 +98,31 @@ frontend—is the identity bound into the grant and score session.
 
 Fail closed: if a call fails, a session is invalid, or chain state cannot be
 read, do not use a cached score for a consequential decision.
+
+## Test your integration
+
+Run the repository's copyable consumer tests:
+
+```bash
+forge test --match-contract AdvanceScoreConsumerTest -vv
+```
+
+Your own consumer suite should cover at least:
+
+- an active grant can create a session for your contract;
+- another consumer cannot use that session;
+- revocation immediately makes it unusable;
+- expiry is invalid at the exact boundary;
+- a profile update invalidates the cached session;
+- an unknown session fails closed.
+
+Then run all protocol and SDK gates:
+
+```bash
+npm run check
+npm run sdk:build
+```
+
+For a testnet smoke test, bind only to the registry address listed above, verify
+chain ID `102031`, create a grant for your deployed consumer, request a session,
+and call `isScoreValid` again immediately before using the score.
