@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { newRehearsal, SESSION_WINDOWS, transition, validSession } from '../lib/rehearsal';
 import { deploymentFrom, emptyConfig, explorer } from '../lib/config';
+import { shortHash, verifiedEvidence } from '../lib/evidence';
 
 test('independent consumers and immediate revocation',()=>{
   let state=newRehearsal();
@@ -9,6 +10,13 @@ test('independent consumers and immediate revocation',()=>{
   assert.ok(validSession(state,0,101));assert.ok(validSession(state,1,101));
   state=transition(state,{type:'revoke',lender:0},102);
   assert.equal(validSession(state,0,102),false);assert.ok(validSession(state,1,102));
+});
+test('two active lenders share a score with distinct countdowns',()=>{
+  let state=newRehearsal();
+  for(const lender of [0,1] as const){state=transition(state,{type:'grant',lender},100);state=transition(state,{type:'score',lender},100);}
+  assert.ok(validSession(state,0,101));assert.ok(validSession(state,1,101));
+  assert.notEqual(state.lenders[0].expiresAt,state.lenders[1].expiresAt);
+  assert.equal(state.version,0);
 });
 test('fresh evidence invalidates both snapshots and replay is rejected',()=>{
   let state=newRehearsal();
@@ -34,4 +42,10 @@ test('missing and duplicate deployments cannot enable live actions',()=>{
 test('explorer links reject injected URLs',()=>{
   assert.throws(()=>explorer('javascript:alert(1)'));
   assert.match(explorer(`0x${'ab'.repeat(32)}`),/^https:\/\/creditcoin-testnet.blockscout.com\/tx\/0x/);
+});
+test('verified evidence panel uses the accepted source receipt',()=>{
+  assert.equal(verifiedEvidence.sourceChain,'Ethereum Sepolia');
+  assert.equal(verifiedEvidence.sourceBlock,11681232);
+  assert.match(verifiedEvidence.sourceTransactionHash,/^0x[0-9a-f]{64}$/);
+  assert.match(shortHash(verifiedEvidence.sourceTransactionHash),/^0x[0-9a-f]{8}…[0-9a-f]{8}$/);
 });
