@@ -24,10 +24,11 @@ EVM chain ID.
 
 1. `SourceLoanRegistry` emits a `CreditEvent` on Sepolia.
 2. `scripts/prove-and-submit.ts` waits for the source transaction and its
-   Creditcoin attestation.
+   Creditcoin attestation, then writes a public proof bundle.
 3. `@gluwa/usc-sdk` requests the transaction and continuity proof from the
    proof-builder service.
-4. The script calls `AdvanceRegistry.submitAttestedEvent(...)` on Creditcoin.
+4. Foundry's `SubmitLiveProof` script loads that bundle and calls
+   `AdvanceRegistry.submitAttestedEvent(...)` with the encrypted keystore signer.
 5. `AttestcoinVerifierAdapter` rejects a source-chain-key mismatch and derives
    the transaction index using `BlockProver.calculateTxIndex`.
 6. It rejects an already-consumed `(chainKey, blockHeight, transactionIndex)`.
@@ -120,8 +121,9 @@ that source event, not the completeness or economic truth of the credit file.
 Full event masks do not force all adverse events to be submitted.
 
 `proof:generate` obtains a bundle and uses native `verifySingle` as a read-only
-check. `proof:submit` sends the registry transaction and waits for its successful
-receipt. The former cannot replace the latter in the demo evidence record.
+check. `proof:prepare` additionally waits for source confirmation and attestation.
+Neither command signs anything; the Foundry submission and its canonical receipt
+are required in the demo evidence record.
 
 ## Day 3 observed status
 
