@@ -141,21 +141,26 @@ export function LandingPage() {
             </div>
           </section>
 
-          <section id="how" className="lp-section">
-            <p className="lp-eyebrow">HOW IT WORKS</p>
-            <h2 className="lp-h2">Three moves. That's it.</h2>
-            <ol className="lp-steps">
-              {steps.map((s, i) => (
-                <li key={s.step} className="lp-step">
-                  <span className="lp-step-num">{String(i + 1).padStart(2, '0')}</span>
-                  <div>
-                    <p className="lp-step-eyebrow">{s.step}</p>
-                    <h3>{s.title}</h3>
-                    <p>{s.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+          <section id="how" className="lp-access" aria-labelledby="access-title">
+            <figure className="lp-access-art">
+              <img
+                src="/images/advance-lender-access.png"
+                alt="A wallet owner granting a lender temporary access to verified credit history"
+                loading="lazy"
+              />
+            </figure>
+            <div className="lp-access-copy">
+              <h2 id="access-title">Your history,<br />your lenders</h2>
+              <p className="lp-access-lead">Shared in just 2 steps.</p>
+              <ol className="lp-access-steps">
+                {steps.map((step) => (
+                  <li key={step.step}>
+                    <span>{step.step}</span>
+                    <div><strong>{step.title}</strong><small>{step.body}</small></div>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </section>
 
           <section id="faq" className="lp-section">
