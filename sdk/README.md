@@ -18,13 +18,28 @@ Import `AdvanceReader` or `AdvanceClient` from `@advance-credit/sdk`. Both
 accept a registry address and an ethers v6 provider or signer. Amounts and chain
 timestamps use bigint. Writes return the emitted identifier and receipt.
 
+## Generic: consume Advance directly
+
+This block uses only the Advance registry and works with any integration:
+
 ```ts
-const client = new AdvanceClient(registryAddress, signer);
-const { id: grantId } = await client.createGrant(lender, expiresAt);
-const { id: sessionId } = await client.requestScore(lender, grantId);
-const quote = await client.getQuote(lender, sessionId);
-await client.revokeGrant(grantId);
+const reader = new AdvanceReader(registryAddress, provider);
+const profile = await reader.getProfile(walletAddress);
+const score = await reader.computeScore(walletAddress);
+const grant = await reader.getGrant(grantId);
+
+if (grant.revoked || grant.expiresAt <= BigInt(Math.floor(Date.now() / 1000)))
+  throw new Error("Grant is not active");
+if (!(await reader.isScoreValid(sessionId, yourConsumerAddress)))
+  throw new Error("Score session is not valid for this consumer");
+
+const session = await reader.getScoreSession(sessionId);
+console.log({ profile, score, session });
 ```
+
+The on-chain consumer creates sessions by calling `IAdvance.requestScore`; the
+wallet creates and revokes its grant with `AdvanceClient.createGrant` and
+`AdvanceClient.revokeGrant`.
 
 Call `validateDeployment` before enabling actions. Use `isScoreValid` before
 acting on a cached session; a successful historical quote is not authorization
