@@ -67,6 +67,17 @@ automatically. See [Day 2 status](docs/DAY-2.md), [demo steps](docs/DEMO.md), an
 dependencies without signing. `npm run example:two-lenders` signs testnet
 transactions only when explicitly run with a configured funded signer.
 
+## Integrate Advance
+
+Third-party contracts can vendor [`IAdvance.sol`](contracts/src/interfaces/IAdvance.sol)
+with its [`AdvanceTypes.sol`](contracts/src/AdvanceTypes.sol) dependency and use
+the copyable [`AdvanceScoreConsumer`](contracts/src/examples/AdvanceScoreConsumer.sol)
+as a minimal implementation. Applications can build the `@advance-credit/sdk`
+package for typed reads and wallet-owned writes. Start with the
+[integration guide](docs/INTEGRATING.md), which lists the live testnet addresses,
+required validity checks, generic and ReferenceLender-specific boundaries, and
+consumer test instructions.
+
 ## Verification status
 
 - Contracts and deployment scripts compile.
