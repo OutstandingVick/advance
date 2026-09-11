@@ -126,3 +126,23 @@ npm run sdk:build
 For a testnet smoke test, bind only to the registry address listed above, verify
 chain ID `102031`, create a grant for your deployed consumer, request a session,
 and call `isScoreValid` again immediately before using the score.
+
+## TypeScript integration
+
+Build the local package and import its stable entry point:
+
+```bash
+npm run sdk:build
+```
+
+```ts
+import { AdvanceReader, AdvanceClient } from "@advance-credit/sdk";
+```
+
+Use `AdvanceReader` with a provider for public profile, grant and session reads.
+Use `AdvanceClient` with a signer for wallet-owned grants, revocation, or proof
+submission. The package's `requestScore(lender, ...)` and `getQuote(...)`
+conveniences are explicitly ReferenceLender-specific; generic on-chain consumers
+call `IAdvance.requestScore` from their own contract.
+
+See `sdk/README.md` for separate generic and reference-lender examples.
