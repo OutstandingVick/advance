@@ -142,33 +142,43 @@ export function LandingPage() {
             </div>
           </section>
 
-          <section id="faq" className="lp-section">
-            <p className="lp-eyebrow">FAQ</p>
-            <h2 className="lp-h2">Straight answers.</h2>
-            <div className="lp-faq">
-              {[
-                {
-                  q: 'Is my score private?',
-                  a: 'Your raw history stays with you. Lenders only read the score during an authorized, time-boxed session — and you can revoke it at any moment.',
-                },
-                {
-                  q: 'Which chains are supported?',
-                  a: 'Evidence is anchored on Creditcoin and attests to repayment events from any connected chain. The score travels with you.',
-                },
-                {
-                  q: 'Can a lender keep my data after revocation?',
-                  a: 'Revocation invalidates authorized sessions on-chain. Public chain history remains readable, but future access is cut off immediately.',
-                },
-                {
-                  q: 'What does the score mean?',
-                  a: 'It is a deterministic prototype score out of 900 driven by verified repayment evidence — a coordination primitive for lenders, not a creditworthiness guarantee.',
-                },
-              ].map((item) => (
-                <details key={item.q} className="lp-faq-item">
-                  <summary>{item.q}</summary>
-                  <p>{item.a}</p>
-                </details>
-              ))}
+          <section id="roadmap" className="lp-roadmap" aria-labelledby="roadmap-title">
+            <div className="lp-roadmap-copy">
+              <h2 id="roadmap-title">One protocol.<br />Any credit market.</h2>
+              <ul>
+                <li><strong>Portable credit:</strong> Carry one verified repayment history across supported chains and applications.</li>
+                <li><strong>Permissioned access:</strong> Give each lender a scoped, time-boxed session without exposing raw wallet activity.</li>
+                <li><strong>Independent decisions:</strong> Let many lenders read the same evidence while setting their own terms.</li>
+                <li><strong>User control:</strong> Revoke one lender instantly without disrupting every other active grant.</li>
+              </ul>
+            </div>
+
+            <div className="lp-roadmap-visual" aria-label="Advance roadmap from verified evidence to portable scores and open credit markets">
+              <svg className="lp-roadmap-lines" viewBox="0 0 760 600" aria-hidden="true">
+                <path d="M175 150V238H380V300" />
+                <path d="M380 410V470H600V390" />
+              </svg>
+
+              <article className="lp-phase lp-phase-one">
+                <span className="lp-phase-number">01</span>
+                <div className="lp-phase-icon" aria-hidden="true">✓</div>
+                <p>Phase 1</p>
+                <h3>Verified Evidence</h3>
+              </article>
+
+              <article className="lp-phase lp-phase-two">
+                <span className="lp-phase-number">02</span>
+                <div className="lp-phase-icon" aria-hidden="true">525</div>
+                <p>Phase 2</p>
+                <h3>Portable Score</h3>
+              </article>
+
+              <article className="lp-phase lp-phase-three">
+                <span className="lp-phase-number">03</span>
+                <div className="lp-phase-icon" aria-hidden="true">A</div>
+                <p>Phase 3</p>
+                <h3>Open Credit Markets</h3>
+              </article>
             </div>
           </section>
 
