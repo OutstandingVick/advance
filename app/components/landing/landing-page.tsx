@@ -26,19 +26,6 @@ const features = [
   },
 ];
 
-const steps = [
-  {
-    step: '01',
-    title: 'Connect your wallet',
-    body: 'Advance finds the verified repayment history linked to your wallet.',
-  },
-  {
-    step: '02',
-    title: 'Grant lender access',
-    body: 'Choose the lender and session length. Revoke that lender without affecting anyone else.',
-  },
-];
-
 function Arrow({ className = '' }: { className?: string }) {
   return (
     <svg
@@ -152,14 +139,6 @@ export function LandingPage() {
             <div className="lp-access-copy">
               <h2 id="access-title">Your history,<br />your lenders</h2>
               <p className="lp-access-lead">Shared in just 2 steps.</p>
-              <ol className="lp-access-steps">
-                {steps.map((step) => (
-                  <li key={step.step}>
-                    <span>{step.step}</span>
-                    <div><strong>{step.title}</strong><small>{step.body}</small></div>
-                  </li>
-                ))}
-              </ol>
             </div>
           </section>
 
