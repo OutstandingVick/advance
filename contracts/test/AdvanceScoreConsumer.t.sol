@@ -17,4 +17,10 @@ contract AdvanceScoreConsumerTest is AdvanceTestBase {
         bytes32 sessionId = consumer.requestScore(_grant(address(consumer)));
         assertEq(consumer.currentScore(sessionId), advance.computeScore(WALLET));
     }
+
+    function testConsumerRejectsUnknownSession() public {
+        bytes32 sessionId = keccak256("unknown");
+        vm.expectRevert(abi.encodeWithSelector(AdvanceScoreConsumer.InvalidScoreSession.selector, sessionId));
+        consumer.currentScore(sessionId);
+    }
 }
