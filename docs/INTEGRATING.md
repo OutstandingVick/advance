@@ -77,3 +77,24 @@ contract MyConsumer {
 Before `request` can succeed, the wallet must call `createGrant` with
 `consumer = address(MyConsumer)`. The consumer contract—not its operator or
 frontend—is the identity bound into the grant and score session.
+
+## Security requirements for consumers
+
+1. Call `isScoreValid(sessionId, address(this))` immediately before every action
+   that trusts a score. Never rely on a previously successful quote.
+2. Treat validity as the authoritative active-grant check. It fails when the
+   grant is revoked or expired, the session expires, the consumer differs, or
+   newer evidence changes the wallet profile version.
+3. Read the session only after the validity check and require its `consumer` to
+   be your contract. Do not accept a session created for another integration.
+4. Do not let a caller supply an arbitrary consumer address to the validity
+   check; use `address(this)`.
+5. Choose the shortest practical `validitySeconds`. The registry also enforces
+   its protocol minimum, maximum, and grant-expiry ceiling.
+6. Keep authorization separate from economic execution. A score permits a
+   decision; it must not implicitly authorize moving the wallet's funds.
+7. Public profiles are public chain data. Grants restrict protocol-recognized
+   score sessions, not who can read historical storage.
+
+Fail closed: if a call fails, a session is invalid, or chain state cannot be
+read, do not use a cached score for a consequential decision.
