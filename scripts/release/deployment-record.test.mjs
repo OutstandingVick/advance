@@ -1,11 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
 import { inspectDeployment } from './deployment-record.mjs';
 const addr=n=>`0x${n.repeat(40)}`,hash=`0x${'ab'.repeat(32)}`;
+const empty=()=>({destination:{chainId:102031},source:{chainKey:null,chainId:null,registryAddress:null,deploymentTx:null},advance:{registryAddress:null,lenderAAddress:null,lenderBAddress:null,deploymentTx:null},proofEvidence:[]});
 const complete=()=>({destination:{chainId:102031},source:{chainKey:1,chainId:11155111,registryAddress:addr('1'),deploymentTx:hash},advance:{registryAddress:addr('2'),lenderAAddress:addr('3'),lenderBAddress:addr('4'),deploymentTx:hash},proofEvidence:[{sourceTransactionHash:hash,destinationTransactionHash:hash,evidenceId:hash,receiptStatus:1,destinationBlock:10}]});
 test('null deployment template is incomplete, never verified',()=>{
-  const r=inspectDeployment(JSON.parse(readFileSync('deployments/testnet.json','utf8')));
+  const r=inspectDeployment(empty());
   assert.equal(r.status,'incomplete');assert.ok(r.blockers.length>0);assert.deepEqual(r.errors,[]);
 });
 test('complete record still requires independent on-chain verification',()=>assert.equal(inspectDeployment(complete()).status,'record-complete-unverified'));

@@ -23,8 +23,9 @@
     "security:scan": "node scripts/release/scan-secrets.mjs",
     "security:history": "node scripts/release/scan-secrets.mjs --history",
     "deployment:check": "node scripts/release/deployment-record.mjs",
+    "integration:check": "node scripts/release/check-integration-docs.mjs",
     "release:evidence": "node scripts/release/capture-evidence.mjs",
-    "check": "npm run typecheck && npm run build && npm run sdk:build && npm test && npm run test:sdk && npm run test:app && npm run test:release && npm run test:live",
+    "check": "npm run typecheck && npm run build && npm run sdk:build && npm test && npm run test:sdk && npm run test:app && npm run test:release && npm run test:live && npm run integration:check",
     "check:app": "app/node_modules/.bin/tsc --noEmit -p app/tsconfig.json && npm --prefix app run build"
   },
   "dependencies": {
