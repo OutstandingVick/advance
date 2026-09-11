@@ -31,3 +31,23 @@ deployer used nonce zero on two different networks.
   demonstration consumer, not part of the generic interface.
 
 The canonical deployment data is in `deployments/testnet.json`.
+
+## Solidity files and imports
+
+Vendor these two files without changing their relative layout:
+
+```text
+contracts/src/AdvanceTypes.sol
+contracts/src/interfaces/IAdvance.sol
+```
+
+Then import the interface from your consumer:
+
+```solidity
+import {IAdvance} from "./interfaces/IAdvance.sol";
+```
+
+`IAdvance.sol` imports `../AdvanceTypes.sol`. Keeping the two-file dependency is
+intentional: the registry and consumers use the same named struct definitions,
+which prevents documentation copies from drifting away from the deployed ABI.
+If you vendor them elsewhere, update only that relative import.
