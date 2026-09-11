@@ -6,10 +6,11 @@ import {SourceLoanRegistry} from "../src/source/SourceLoanRegistry.sol";
 
 contract DeploySource is Script {
     function run() external returns (SourceLoanRegistry registry) {
-        uint256 deployerKey = vm.envUint("SOURCE_CHAIN_PRIVATE_KEY");
-        vm.startBroadcast(deployerKey);
+        require(block.chainid == 11155111, "Sepolia only");
+        address deployer = vm.envAddress("DEPLOYER_ADDRESS");
+        require(deployer != address(0), "Missing deployer");
+        vm.startBroadcast(deployer);
         registry = new SourceLoanRegistry();
         vm.stopBroadcast();
     }
 }
-
