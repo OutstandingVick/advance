@@ -148,7 +148,13 @@ export default function Home() {
       )}
       {error && (
         <div className="error" role="alert">
-          {error}
+          <strong>{error}</strong>
+          {error.toLowerCase().includes('replay') && (
+            <p>
+              Why this matters: this exact evidence cannot be reused to inflate
+              the borrower&apos;s score twice.
+            </p>
+          )}
         </div>
       )}
       {busy && (
