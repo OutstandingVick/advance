@@ -16,8 +16,9 @@ evidence is still missing. The [hosted rehearsal](https://advance-credit-demo.ou
 is owner-private, not a publicly usable submission. No production-readiness,
 complete debt history, or confidential-data guarantee is claimed.
 
-[Reproduce checks](docs/REPRODUCING.md) · [Screenshots](docs/SCREENSHOTS.md) ·
-[Security review](docs/SECURITY.md) · [Freeze blockers](docs/FEATURE-FREEZE.md)
+[Reproduce checks](docs/REPRODUCING.md) · [Live testnet runbook](docs/LIVE-DEPLOYMENT.md) ·
+[Screenshots](docs/SCREENSHOTS.md) · [Security review](docs/SECURITY.md) ·
+[Freeze blockers](docs/FEATURE-FREEZE.md)
 
 ## Day 1 scope
 
@@ -44,6 +45,7 @@ CREDITCOIN_RPC_URL=https://rpc.cc3-testnet.creditcoin.network npm run chains
 
 Copy `.env.example` to `.env` before deployment. See
 [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the runbook and
+[`docs/LIVE-DEPLOYMENT.md`](docs/LIVE-DEPLOYMENT.md) for the encrypted-keystore commands, and
 [`docs/ATTESTCOIN-INTEGRATION.md`](docs/ATTESTCOIN-INTEGRATION.md) for the exact
 proof path.
 
