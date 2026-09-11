@@ -91,6 +91,8 @@ contract MyConsumer {
 Before `request` can succeed, the wallet must call `createGrant` with
 `consumer = address(MyConsumer)`. The consumer contract—not its operator or
 frontend—is the identity bound into the grant and score session.
+The wallet can later call `revokeGrant(grantId)` to invalidate that grant and
+every score session derived from it.
 
 ## Security requirements for consumers
 
