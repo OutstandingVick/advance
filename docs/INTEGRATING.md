@@ -32,6 +32,20 @@ deployer used nonce zero on two different networks.
 
 The canonical deployment data is in `deployments/testnet.json`.
 
+## The four protocol pillars
+
+- **Permissions:** a wallet creates a consumer-scoped, expiring grant. A grant
+  for one contract cannot authorize another contract.
+- **Sessions:** the authorized consumer requests a bounded score session tied to
+  the wallet, consumer, grant, profile version, issue time, and expiry.
+- **Revocation:** only the wallet can revoke its grant, and revocation immediately
+  invalidates every session derived from it.
+- **Attack prevention:** native proof verification, chain/emitter/action checks,
+  strict receipt decoding, replay protection, profile-version invalidation, and
+  fail-closed expiry prevent unverified or stale scores from being trusted.
+
+These properties are protocol behavior, not optional frontend conventions.
+
 ## Solidity files and imports
 
 Vendor these two files without changing their relative layout:
