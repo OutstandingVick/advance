@@ -65,65 +65,36 @@ export function LandingPage() {
             <span className="lp-logo-mark" aria-hidden="true">A</span>
             ADVANCE
           </a>
-          <nav className="lp-nav">
-            <a href="#how">How it works</a>
-            <a href="#features">Protocol</a>
-            <a href="#faq">FAQ</a>
-          </nav>
-          <a className="lp-cta-btn lp-header-cta" href="/demo">
-            Launch app <Arrow className="lp-btn-arrow" />
+          <a className="lp-menu" href="#features" aria-label="Explore Advance">
+            <span />
+            <span />
+            <span />
           </a>
         </header>
 
         <main>
           <section className="lp-hero">
-            <p className="lp-eyebrow">YOUR CREDIT, CONNECTED</p>
-            <h1 className="lp-h1">
-              One history.
-              <br />
-              <span className="lp-h1-accent">More possibilities.</span>
-            </h1>
-            <p className="lp-sub">
-              Portable cross-chain credit attestations on Creditcoin. Verify
-              repayment events, authorize independent lenders, revoke access —
-              in one click.
-            </p>
-            <div className="lp-hero-actions">
-              <a className="lp-cta-btn lp-btn-primary" href="/demo">
-                Launch the app <Arrow className="lp-btn-arrow" />
-              </a>
-              <a className="lp-cta-btn lp-btn-outline" href="#how">See how it works</a>
+            <div className="lp-hero-copy">
+              <h1 className="lp-h1">
+                One History.
+                <br />
+                More Possibilities.
+              </h1>
+              <p className="lp-sub">
+                VERIFIED CROSS-CHAIN CREDIT FOR ANY WALLET, LENDER, OR MARKET
+              </p>
+              <div className="lp-hero-actions">
+                <a className="lp-cta-btn lp-btn-primary" href="/demo">
+                  Use Advance now!
+                </a>
+              </div>
             </div>
 
-            <div className="lp-hero-visual" aria-hidden="true">
-              <div className="lp-score-card">
-                <p className="lp-eyebrow lp-eyebrow-light">PORTABLE PROFILE</p>
-                <div className="lp-score">
-                  685<span>/ 900</span>
-                </div>
-                <div className="lp-score-bar">
-                  <span style={{ width: '76%' }} />
-                </div>
-                <p className="lp-score-note">On-chain score · Creditcoin</p>
-              </div>
-              <div className="lp-lender-chip lp-lender-a">
-                <span className="lp-dot" />
-                <div>
-                  <strong>Northstar Credit</strong>
-                  <small>12.0% APR · access granted</small>
-                </div>
-              </div>
-              <div className="lp-lender-chip lp-lender-b">
-                <span className="lp-dot lp-dot-muted" />
-                <div>
-                  <strong>Harbor Lending</strong>
-                  <small>session revoked</small>
-                </div>
-              </div>
-              <div className="lp-event-chip">
-                <code>+25</code> repayment verified
-              </div>
-            </div>
+            <img
+              className="lp-hero-visual"
+              src="/images/advance-credit-vault.png"
+              alt="An isometric vault securing verified credit evidence between two lenders"
+            />
           </section>
 
           <section className="lp-marquee" aria-hidden="true">
