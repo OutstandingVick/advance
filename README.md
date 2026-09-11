@@ -11,8 +11,8 @@ The same verified wallet profile produces terms from two unrelated reference
 lenders. The wallet can revoke either lender independently, while expired
 scores and replayed evidence fail closed.
 
-**Release status:** feature scope is frozen, but live testnet proof/deployment
-evidence is still missing. The [hosted rehearsal](https://advance-credit-demo.outstandingvick.chatgpt.site)
+**Release status:** feature scope is frozen and the Sepolia-to-Creditcoin live
+proof path is recorded. The [hosted rehearsal](https://advance-credit-demo.outstandingvick.chatgpt.site)
 is owner-private, not a publicly usable submission. No production-readiness,
 complete debt history, or confidential-data guarantee is claimed.
 
@@ -76,22 +76,21 @@ transactions only when explicitly run with a configured funded signer.
 - The live Creditcoin RPC, proof-builder health endpoint, and ChainInfo
   precompile have been checked.
 - Sepolia is currently advertised as source chain key `1`.
-- Funded-wallet deployment and a real source proof remain operational steps;
-  no keys are stored in this repository.
+- Funded-wallet deployments and one native source proof succeeded on September
+  11, 2026; no keys are stored in this repository.
 - On September 9, the proof service reported degraded with its Creditcoin RPC
   disconnected, then recovered during the final evidence capture. A September 10
-  health recheck passed. No live proof success or end-to-end testnet completion
-  is claimed.
+  health recheck passed, followed by the recorded end-to-end testnet proof.
 
 ## Deployment evidence
 
 | Component | Network | Address/evidence |
 |---|---|---|
-| Source fixture | Sepolia, EVM 11155111 / protocol key 1 | Not recorded |
-| Advance registry | Creditcoin Testnet, EVM 102031 | Not recorded |
-| Reference lenders A/B | Creditcoin Testnet | Not recorded |
+| Source fixture | Sepolia, EVM 11155111 / protocol key 1 | `0x3b52607c3718874f45eF249fB1A92D43f8B3D613` |
+| Advance registry | Creditcoin Testnet, EVM 102031 | `0x3b52607c3718874f45eF249fB1A92D43f8B3D613` |
+| Reference lenders A/B | Creditcoin Testnet | `0xA760E5f08c62159B6096b0a561D6328439f120E7` / `0x2304C8cd29e4a9c34539B0E7eE309a39A3658EaC` |
 | Native verifier | Creditcoin Testnet | `0x0000000000000000000000000000000000000FD2` (protocol precompile, not an Advance deployment) |
-| Accepted live source proof | Sepolia → Creditcoin | Not recorded |
+| Accepted live source proof | Sepolia → Creditcoin | `0x26e1852a23b9bdcdc05d3af0151587eea0a1870d30b214b81421140e7c7a37d0` |
 
 [Deployment record](deployments/testnet.json) is the source of truth; null means
 missing, never a zero-address deployment. Network explorers:
