@@ -1,0 +1,30 @@
+{
+  "name": "@advance-credit/sdk",
+  "version": "0.1.0",
+  "description": "Typed client for consuming Advance credit profiles on Creditcoin",
+  "license": "MIT",
+  "private": false,
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "peerDependencies": {
+    "ethers": "^6.17.0"
+  },
+  "devDependencies": {
+    "ethers": "^6.17.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.2"
+  }
+}
