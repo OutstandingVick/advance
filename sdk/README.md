@@ -41,6 +41,23 @@ The on-chain consumer creates sessions by calling `IAdvance.requestScore`; the
 wallet creates and revokes its grant with `AdvanceClient.createGrant` and
 `AdvanceClient.revokeGrant`.
 
+## ReferenceLender-specific demo
+
+The following helpers intentionally target the repository's demonstration
+`ReferenceLender` ABI. They are not required by a generic Advance consumer:
+
+```ts
+const client = new AdvanceClient(registryAddress, signer);
+const { id: grantId } = await client.createGrant(referenceLender, expiresAt);
+const { id: sessionId } = await client.requestScore(referenceLender, grantId);
+const illustrativeTerms = await client.getQuote(referenceLender, sessionId);
+await client.revokeGrant(grantId);
+```
+
+`requestScore(lender, grantId)` calls `ReferenceLender.requestBorrowerScore`;
+`getQuote` calls its illustrative pricing function. A third-party contract
+should define its own business logic around `IAdvance` instead.
+
 Call `validateDeployment` before enabling actions. Use `isScoreValid` before
 acting on a cached session; a successful historical quote is not authorization
 to draw a loan later. The current reference consumer only quotes terms.
