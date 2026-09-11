@@ -223,6 +223,11 @@
   .lp-protocol-card:nth-child(n+4){min-height:330px}
   .lp-access{grid-template-columns:1fr 1fr;min-height:650px;padding-left:28px;padding-right:28px}
   .lp-access-copy h2{letter-spacing:-3px}
+  .lp-roadmap{grid-template-columns:1fr;padding:72px 44px}
+  .lp-roadmap-copy{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}
+  .lp-roadmap-copy h2{font-size:58px;margin:0}
+  .lp-roadmap-copy ul{gap:20px}
+  .lp-roadmap-visual{width:min(100%,760px);min-height:570px;margin:0 auto}
 }
 @media(max-width:700px){
   .lp{padding:0}
@@ -256,6 +261,24 @@
   .lp-access-lead{font-size:27px;margin:18px 0 28px}
   .lp-access-art{grid-row:2}
   .lp-access-art img{max-height:520px;object-position:center bottom}
+  .lp-roadmap{gap:58px;padding:64px 20px 72px;overflow:hidden}
+  .lp-roadmap-copy{display:block}
+  .lp-roadmap-copy h2{font-size:clamp(44px,13vw,62px);letter-spacing:-3px;margin-bottom:36px}
+  .lp-roadmap-copy ul{gap:22px}
+  .lp-roadmap-copy li{font-size:18px}
+  .lp-roadmap-visual{display:grid;gap:42px;width:100%;min-height:0;margin:0;padding-left:22px}
+  .lp-roadmap-lines{left:28px;width:6px;height:calc(100% - 80px);top:60px;background:var(--blue);border-radius:99px}
+  .lp-roadmap-lines path{display:none}
+  .lp-phase{position:relative;inset:auto;display:grid;grid-template-columns:130px 1fr;column-gap:24px;align-items:center;width:100%}
+  .lp-phase-icon{grid-row:1 / span 2;width:120px;height:105px;margin:0;border-radius:24px 24px 14px 14px;box-shadow:9px 9px 0 var(--blue);font-size:44px}
+  .lp-phase-three .lp-phase-icon{width:112px;height:112px;font-size:48px}
+  .lp-phase-number{top:-14px;left:93px;right:auto;width:40px;height:40px;font-size:13px}
+  .lp-phase p{align-self:end;font-size:16px}
+  .lp-phase h3{align-self:start;font-size:23px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .lp-protocol-card,.lp-cta-btn{transition:none}
 }
 
 .lp-cta-btn{
