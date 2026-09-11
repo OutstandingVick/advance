@@ -1,8 +1,22 @@
-# Advance client
+# Advance TypeScript SDK
 
-Import `AdvanceReader` or `AdvanceClient` from `sdk/src/index.ts`. Both accept
-a registry address and an ethers v6 provider or signer. All amounts and chain
-timestamps use bigint. Writes return the actual emitted identifier and receipt.
+The package name is `@advance-credit/sdk`. It is built locally for this
+hackathon repository and has not been published to npm.
+
+```bash
+npm --prefix sdk run build
+```
+
+From this consumers can install the repository package directly while it
+remains unpublished:
+
+```bash
+npm install ../advance/sdk
+```
+
+Import `AdvanceReader` or `AdvanceClient` from `@advance-credit/sdk`. Both
+accept a registry address and an ethers v6 provider or signer. Amounts and chain
+timestamps use bigint. Writes return the emitted identifier and receipt.
 
 ```ts
 const client = new AdvanceClient(registryAddress, signer);
