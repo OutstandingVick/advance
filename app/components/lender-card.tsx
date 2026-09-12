@@ -25,10 +25,13 @@ export function LenderCard({
   return (
     <article className="lender-card">
       <div className="lender-heading">
-        <span className="number">0{index + 1}</span>
-        <h2>{name}</h2>
+        <span className="lender-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
+        <span className="lender-identity">
+          <h2>{name}</h2>
+          <small>Consumer 0{index + 1} · Creditcoin Testnet</small>
+        </span>
         <span className={valid ? 'pill active' : 'pill'}>
-          {valid ? 'Session active' : granted ? 'Permission set' : 'Not shared'}
+          <i aria-hidden="true" />{valid ? 'Session active' : granted ? 'Permission set' : 'Not shared'}
         </span>
       </div>
       <div className="terms">
