@@ -31,3 +31,7 @@
 .demo-shell .mode-switch{display:inline-flex;gap:3px;margin:0 0 18px;padding:3px;border:1px solid var(--demo-border);border-radius:9px;background:#f1f5f9}
 .demo-shell .mode-switch button{height:34px;padding:0 14px;border:0;border-radius:6px;background:transparent;color:var(--demo-muted);box-shadow:none;font-size:13px;font-weight:650}
 .demo-shell .mode-switch button[aria-pressed="true"]{background:white;color:var(--demo-text);box-shadow:0 1px 3px rgb(15 23 42 / 10%)}
+.demo-shell .notice{position:relative;margin:0 0 22px;padding:12px 14px 12px 42px;border:1px solid #bfdbfe;border-radius:9px;background:var(--demo-blue-soft);color:#334155;font-size:13px;line-height:1.5}
+.demo-shell .notice::before{content:'i';position:absolute;left:14px;top:13px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--demo-blue);color:white;font-size:11px;font-weight:800;font-style:normal}
+.demo-shell .notice-live{border-color:#bbf7d0;background:#f0fdf4}
+.demo-shell .notice-live::before{content:'✓';background:#16a34a}

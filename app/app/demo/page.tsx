@@ -114,7 +114,7 @@ export default function Home() {
           Live testnet
         </Button>
       </div>
-      <div className="notice">
+      <div className={`notice ${live ? 'notice-live' : 'notice-rehearsal'}`}>
         {live
           ? 'Verified deployments are preloaded. Connect a wallet with Creditcoin testnet gas to begin.'
           : 'Interactive rehearsal · Sample data only. No wallet or blockchain transactions.'}{' '}
