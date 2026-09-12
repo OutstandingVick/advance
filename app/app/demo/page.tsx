@@ -286,6 +286,7 @@ export default function Home() {
                 />
                 {!live && (
                   <Button
+                    className="simulate-expiry"
                     variant="ghost"
                     onClick={() => rehearse({ type: 'expire', lender: index })}
                   >
@@ -299,7 +300,7 @@ export default function Home() {
         </section>
       </div>
       <section className="panel activity">
-        <h2>Activity</h2>
+        <div className="activity-heading"><h2>Activity</h2><span>Session audit log</span></div>
         <ol aria-live="polite">
           {(live ? events : demo.events).map((e, i) => (
             <li key={`${i}-${e}`}>{e}</li>

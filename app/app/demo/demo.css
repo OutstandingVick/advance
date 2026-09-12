@@ -84,3 +84,18 @@
 .demo-shell .terms dt{color:var(--demo-muted);font-size:12px}
 .demo-shell .terms dd{margin:0;color:var(--demo-text);font-size:13px;font-weight:700;text-align:right}
 .demo-shell .terms>div:first-child dd{color:var(--demo-blue);font-family:var(--font-geist-mono),monospace;font-size:17px}
+.demo-shell .session-expiry{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;padding:10px 16px;border-bottom:1px solid var(--demo-border);color:var(--demo-muted);font-size:11px}
+.session-expiry span{display:flex;align-items:center;gap:7px}
+.session-expiry i{width:7px;height:7px;border-radius:50%;background:#22c55e}
+.session-expiry strong{color:#15803d;font-size:11px}
+.demo-shell .lender-actions{display:grid;grid-template-columns:1fr 1fr auto;gap:7px;margin:0;padding:14px 16px}
+.demo-shell .lender-actions button{height:32px;border-radius:7px;font-size:11px;font-weight:700}
+.demo-shell .grant-action{background:var(--demo-blue)}
+.demo-shell .revoke-action{color:#dc2626}
+.demo-shell .revoke-action:hover{background:#fef2f2;color:#b91c1c}
+.demo-shell .simulate-expiry{height:28px;margin:5px 8px 0;color:var(--demo-muted);font-size:10px}
+.demo-shell .activity{margin-top:22px;padding:0;overflow:hidden}
+.activity-heading{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-bottom:1px solid var(--demo-border)}
+.activity-heading h2{font-size:14px}
+.activity-heading span{color:var(--demo-muted);font-size:11px}
+.demo-shell .activity ol,.demo-shell .activity>p{margin:0;padding:16px 38px;color:#475569;font-size:12px}

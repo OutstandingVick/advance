@@ -49,24 +49,25 @@ export function LenderCard({
         </div>
       </dl>
       {valid && expiry && (
-        <p className="metadata">
-          Time-boxed session · {Math.max(0, Math.ceil((expiry - now) / 60))} min remaining
+        <p className="metadata session-expiry">
+          <span><i aria-hidden="true" />Time-boxed session</span>
+          <strong>{Math.max(0, Math.ceil((expiry - now) / 60))} min remaining</strong>
         </p>
       )}
-      <div className="actions">
-        <Button disabled={busy} onClick={() => onAction('grant')}>
+      <div className="actions lender-actions">
+        <Button className="grant-action" disabled={busy} onClick={() => onAction('grant')}>
           {granted ? 'Renew permission' : 'Grant permission'}
         </Button>
         <Button
           disabled={busy || !granted}
-          variant="outline"
+          variant="outline" className="terms-action"
           onClick={() => onAction('score')}
         >
           Get terms
         </Button>
         <Button
           disabled={busy || !granted}
-          variant="ghost"
+          variant="ghost" className="revoke-action"
           onClick={() => onAction('revoke')}
         >
           Revoke
