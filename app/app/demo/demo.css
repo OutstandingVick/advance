@@ -55,3 +55,13 @@
 .evidence-footer code{color:#cbd5e1;font-family:var(--font-geist-mono),monospace}
 .demo-shell .evidence-footer a{color:#93c5fd;font-weight:650;text-decoration:none}
 .demo-shell .evidence-footer a:hover{text-decoration:underline}
+.demo-shell .pillar-legend{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 0 26px;border:1px solid var(--demo-border);border-radius:12px;background:white;overflow:hidden}
+.demo-shell .pillar-legend article{display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:12px;min-height:72px;padding:13px 16px;border-bottom:1px solid var(--demo-border)}
+.demo-shell .pillar-legend article:nth-child(odd){border-right:1px solid var(--demo-border)}
+.demo-shell .pillar-legend article:nth-last-child(-n+2){border-bottom:0}
+.pillar-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:9px;background:var(--demo-blue-soft);color:var(--demo-blue);font-size:11px;font-weight:800}
+.pillar-copy strong,.pillar-copy small{display:block}
+.pillar-copy strong{color:var(--demo-text);font-size:13px}
+.pillar-copy small{margin-top:2px;color:var(--demo-muted);font-size:12px}
+.pillar-state{display:flex;align-items:center;gap:6px;color:#15803d;font-size:11px;font-weight:700}
+.pillar-state i{width:6px;height:6px;border-radius:50%;background:#22c55e}
