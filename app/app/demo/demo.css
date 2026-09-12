@@ -1,0 +1,19 @@
+.demo-shell{
+  --demo-navy:#1e293b;
+  --demo-blue:#2563eb;
+  --demo-blue-soft:#eff6ff;
+  --demo-text:#0f172a;
+  --demo-muted:#64748b;
+  --demo-border:#e2e8f0;
+  --demo-surface:#ffffff;
+  max-width:1180px;
+  padding:0 32px 56px;
+  color:var(--demo-text);
+}
+.demo-shell .panel,
+.demo-shell .lender-card{
+  background:var(--demo-surface);
+  border-color:var(--demo-border);
+  border-radius:12px;
+  box-shadow:0 1px 2px rgb(15 23 42 / 4%);
+}

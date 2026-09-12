@@ -70,7 +70,7 @@ export default function Home() {
   }
   const score = live ? advance.score : demo.hasEvidence ? 525 : 500;
   return (
-    <main className="workspace">
+    <main className="workspace demo-shell">
       <header className="topbar">
         <a className="wordmark" href="/">
           advance<span>↗</span>
