@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { LenderCard } from '@/components/lender-card';
 import { DeploymentForm } from '@/components/deployment-form';
@@ -29,7 +30,6 @@ export default function Home() {
   const locked = useRef(false);
   const [now, setNow] = useState(0);
   useEffect(() => {
-    setNow(Math.floor(Date.now() / 1000));
     const timer = setInterval(
       () => setNow(Math.floor(Date.now() / 1000)),
       1000,
@@ -72,14 +72,14 @@ export default function Home() {
   return (
     <main className="workspace demo-shell">
       <header className="topbar">
-        <a className="wordmark" href="/" aria-label="Advance home">
+        <Link className="wordmark" href="/" aria-label="Advance home">
           <span className="wordmark-mark" aria-hidden="true">A</span>
           advance
-        </a>
+        </Link>
         <span className="network-badge"><i aria-hidden="true" />Creditcoin · Testnet</span>
       </header>
       <section className="intro">
-        <p className="eyebrow">YOUR CREDIT, CONNECTED</p>
+        <p className="eyebrow">Your credit, connected</p>
         <h1>
           One history.
           <br />
@@ -90,7 +90,8 @@ export default function Home() {
           current score.
         </p>
       </section>
-      <div className="mode-switch" role="group" aria-label="Demo environment">
+      <fieldset className="mode-switch">
+        <legend className="sr-only">Demo environment</legend>
         <Button
           disabled={busy}
           variant={!live ? 'default' : 'outline'}
@@ -113,7 +114,7 @@ export default function Home() {
         >
           Live testnet
         </Button>
-      </div>
+      </fieldset>
       <div className={`notice ${live ? 'notice-live' : 'notice-rehearsal'}`}>
         {live
           ? 'Verified deployments are preloaded. Connect a wallet with Creditcoin testnet gas to begin.'
@@ -160,11 +161,9 @@ export default function Home() {
           )}
         </div>
       )}
-      {busy && (
-        <p role="status">
-          Working… check your wallet if approval is requested. Do not resubmit.
-        </p>
-      )}
+      <output className={busy ? 'working-status' : 'sr-only'} aria-live="polite" aria-atomic="true">
+        {busy ? 'Working… check your wallet if approval is requested. Do not resubmit.' : ''}
+      </output>
       {hash && live && (
         <p>
           <a href={explorer(hash)} target="_blank" rel="noreferrer">
@@ -174,7 +173,7 @@ export default function Home() {
       )}
       <div className="workspace-grid">
         <section className="panel profile">
-          <p className="eyebrow">PORTABLE PROFILE</p>
+          <p className="eyebrow">Portable profile</p>
           <div className="score">
             {score ?? '—'}
             <span>/ 900</span>
@@ -224,9 +223,15 @@ export default function Home() {
                 placeholder="Generate with npm run proof:generate"
               />
               <Button
-                disabled={busy || !wallet.account || !proof.trim()}
+                disabled={busy}
                 onClick={() =>
                   run(async () => {
+                    if (!wallet.account) {
+                      throw new Error('Connect your wallet before submitting evidence.');
+                    }
+                    if (!proof.trim()) {
+                      throw new Error('Paste a proof bundle before submitting evidence. Generate one with npm run proof:generate.');
+                    }
                     const parsed = parseProof(JSON.parse(proof));
                     const { api } = await advance.client();
                     await api.submitEvidence(action, parsed, (phase, tx) => {
@@ -244,7 +249,7 @@ export default function Home() {
         </section>
         <section className="lenders">
           <div className="comparison-heading">
-            <p className="eyebrow">TWO LENDERS · ONE PORTABLE SCORE</p>
+            <p className="eyebrow">Two lenders · One portable score</p>
             <h2>Independent access, compared live</h2>
           </div>
           <div className="lender-grid">
