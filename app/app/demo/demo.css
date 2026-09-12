@@ -28,3 +28,6 @@
 .demo-shell .intro .eyebrow{margin:0 0 12px;color:var(--demo-blue);font-size:11px;letter-spacing:1.8px}
 .demo-shell .intro h1{max-width:760px;margin:0 0 18px;color:var(--demo-text);font-size:clamp(42px,5vw,64px);line-height:1;letter-spacing:-3.2px;font-weight:720}
 .demo-shell .intro>p:last-child{max-width:590px;margin:0;color:var(--demo-muted);font-size:17px;line-height:1.55}
+.demo-shell .mode-switch{display:inline-flex;gap:3px;margin:0 0 18px;padding:3px;border:1px solid var(--demo-border);border-radius:9px;background:#f1f5f9}
+.demo-shell .mode-switch button{height:34px;padding:0 14px;border:0;border-radius:6px;background:transparent;color:var(--demo-muted);box-shadow:none;font-size:13px;font-weight:650}
+.demo-shell .mode-switch button[aria-pressed="true"]{background:white;color:var(--demo-text);box-shadow:0 1px 3px rgb(15 23 42 / 10%)}

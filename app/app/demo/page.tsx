@@ -90,10 +90,11 @@ export default function Home() {
           current score.
         </p>
       </section>
-      <div className="mode-switch">
+      <div className="mode-switch" role="group" aria-label="Demo environment">
         <Button
           disabled={busy}
           variant={!live ? 'default' : 'outline'}
+          aria-pressed={!live}
           onClick={() => {
             setLive(false);
             setError('');
@@ -104,6 +105,7 @@ export default function Home() {
         <Button
           disabled={busy}
           variant={live ? 'default' : 'outline'}
+          aria-pressed={live}
           onClick={() => {
             setLive(true);
             setError('');
