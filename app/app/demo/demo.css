@@ -50,3 +50,8 @@
 .demo-shell .evidence-grid dd{display:flex;align-items:center;gap:8px;margin:0;color:#f8fafc;font-size:13px;font-weight:600;overflow-wrap:anywhere}
 .demo-shell .evidence-grid code{padding:3px 6px;border-radius:5px;background:#0f172a;color:#bfdbfe;font-family:var(--font-geist-mono),monospace;font-size:12px}
 .evidence-network-dot{width:8px;height:8px;border-radius:50%;background:#627eea;box-shadow:0 0 0 3px rgb(98 126 234 / 15%)}
+.evidence-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 24px;border-top:1px solid #334155;background:#172033;color:#94a3b8;font-size:12px}
+.evidence-footer span{display:flex;align-items:center;gap:8px}
+.evidence-footer code{color:#cbd5e1;font-family:var(--font-geist-mono),monospace}
+.demo-shell .evidence-footer a{color:#93c5fd;font-weight:650;text-decoration:none}
+.demo-shell .evidence-footer a:hover{text-decoration:underline}

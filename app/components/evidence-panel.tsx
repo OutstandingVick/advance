@@ -23,9 +23,12 @@ export function EvidencePanel() {
         <div><dt>Source block</dt><dd><code>#{formatBlockNumber(evidence.sourceBlock)}</code></dd></div>
         <div><dt>Verified on Creditcoin</dt><dd><time dateTime={evidence.verifiedAt}>{formatVerifiedAt(evidence.verifiedAt)}</time></dd></div>
       </dl>
-      <a href={`https://creditcoin-testnet.blockscout.com/tx/${evidence.destinationTransactionHash}`} target="_blank" rel="noreferrer">
-        Inspect native verification ↗
-      </a>
+      <div className="evidence-footer">
+        <span>Verification tx <code title={evidence.destinationTransactionHash}>{shortHash(evidence.destinationTransactionHash)}</code></span>
+        <a href={`https://creditcoin-testnet.blockscout.com/tx/${evidence.destinationTransactionHash}`} target="_blank" rel="noreferrer">
+          Inspect native verification ↗
+        </a>
+      </div>
     </section>
   );
 }
