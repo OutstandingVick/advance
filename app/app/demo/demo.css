@@ -35,3 +35,10 @@
 .demo-shell .notice::before{content:'i';position:absolute;left:14px;top:13px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--demo-blue);color:white;font-size:11px;font-weight:800;font-style:normal}
 .demo-shell .notice-live{border-color:#bbf7d0;background:#f0fdf4}
 .demo-shell .notice-live::before{content:'✓';background:#16a34a}
+.demo-shell .evidence-panel{margin:0 0 18px;padding:0;border:1px solid #334155;border-radius:12px;background:var(--demo-navy);color:white;overflow:hidden;box-shadow:0 12px 30px rgb(15 23 42 / 10%)}
+.demo-shell .evidence-heading{padding:22px 24px 18px;border-bottom:1px solid #334155}
+.demo-shell .evidence-heading .eyebrow{margin:0 0 6px;color:#93c5fd;font-size:10px;letter-spacing:1.7px}
+.demo-shell .evidence-heading h2{font-size:21px;letter-spacing:-.4px}
+.evidence-subtitle{margin:3px 0 0;color:#94a3b8;font-size:13px}
+.demo-shell .verified-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid #166534;border-radius:7px;background:#052e16;color:#86efac;font-size:12px;font-weight:700}
+.demo-shell .verified-badge i{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgb(74 222 128 / 12%)}

@@ -13,8 +13,9 @@ export function EvidencePanel() {
         <div>
           <p className="eyebrow">ATTESTCOIN PROOF</p>
           <h2 id="evidence-title">Verified evidence</h2>
+          <p className="evidence-subtitle">On-chain attestation record</p>
         </div>
-        <span className="verified-badge">verify() returned true</span>
+        <span className="verified-badge"><i aria-hidden="true" />verify() returned true</span>
       </div>
       <dl className="evidence-grid">
         <div><dt>Source chain</dt><dd>{evidence.sourceChain}</dd></div>
