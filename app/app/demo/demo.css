@@ -17,3 +17,10 @@
   border-radius:12px;
   box-shadow:0 1px 2px rgb(15 23 42 / 4%);
 }
+.demo-shell .topbar{
+  min-height:72px;padding:16px 0;border-bottom:1px solid var(--demo-border);
+}
+.demo-shell .wordmark{display:flex;align-items:center;gap:10px;color:var(--demo-text);font-size:22px;letter-spacing:-.6px}
+.demo-shell .wordmark-mark{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--demo-blue);color:white;font-size:15px;letter-spacing:0}
+.network-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--demo-border);border-radius:999px;background:white;color:#475569;font-size:13px;font-weight:600}
+.network-badge i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px #dcfce7}

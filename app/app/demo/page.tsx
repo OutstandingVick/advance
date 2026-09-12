@@ -72,10 +72,11 @@ export default function Home() {
   return (
     <main className="workspace demo-shell">
       <header className="topbar">
-        <a className="wordmark" href="/">
-          advance<span>↗</span>
+        <a className="wordmark" href="/" aria-label="Advance home">
+          <span className="wordmark-mark" aria-hidden="true">A</span>
+          advance
         </a>
-        <span>Creditcoin · Testnet</span>
+        <span className="network-badge"><i aria-hidden="true" />Creditcoin · Testnet</span>
       </header>
       <section className="intro">
         <p className="eyebrow">YOUR CREDIT, CONNECTED</p>
