@@ -99,3 +99,40 @@
 .activity-heading h2{font-size:14px}
 .activity-heading span{color:var(--demo-muted);font-size:11px}
 .demo-shell .activity ol,.demo-shell .activity>p{margin:0;padding:16px 38px;color:#475569;font-size:12px}
+.demo-shell .workspace-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.demo-shell .profile{position:sticky;top:18px;padding:22px;background:var(--demo-navy);border-color:var(--demo-navy);color:white}
+.demo-shell .profile .eyebrow{color:#93c5fd;font-size:10px;letter-spacing:1.5px}
+.demo-shell .score{margin:6px 0 4px;font-size:64px;line-height:1.1;letter-spacing:-4px}
+.demo-shell .score span{color:#94a3b8;font-size:14px}
+.demo-shell .profile h2{font-size:14px}
+.demo-shell .profile p{color:#94a3b8;font-size:12px}
+.demo-shell .settings{padding:0;overflow:hidden}
+.demo-shell .settings summary{padding:14px 16px;font-size:13px}
+.demo-shell .settings>p,.demo-shell .settings .form-grid{margin:0;padding:0 16px 14px}
+.demo-shell footer{padding:28px 0;color:var(--demo-muted);font-size:12px}
+.demo-shell footer a{color:var(--demo-blue);font-weight:650;text-decoration:none}
+.demo-shell button:focus-visible,.demo-shell a:focus-visible,.demo-shell summary:focus-visible{outline:2px solid var(--demo-blue);outline-offset:2px}
+
+@media(max-width:900px){
+  .demo-shell .workspace-grid{grid-template-columns:1fr}
+  .demo-shell .profile{position:static}
+  .demo-shell .evidence-grid{grid-template-columns:1fr}
+  .demo-shell .evidence-grid>div:nth-child(odd){border-right:0}
+  .demo-shell .evidence-grid>div:nth-last-child(-n+2){border-bottom:1px solid #334155}
+  .demo-shell .evidence-grid>div:last-child{border-bottom:0}
+}
+@media(max-width:700px){
+  .demo-shell{padding:0 16px 40px}
+  .demo-shell .topbar{min-height:64px}
+  .demo-shell .intro{padding:38px 0 24px}
+  .demo-shell .intro h1{font-size:43px;letter-spacing:-2.3px}
+  .demo-shell .evidence-heading,.evidence-footer{align-items:flex-start;flex-direction:column}
+  .demo-shell .evidence-grid>div{grid-template-columns:1fr;gap:5px;padding:12px 16px}
+  .demo-shell .pillar-legend{grid-template-columns:1fr}
+  .demo-shell .pillar-legend article:nth-child(odd){border-right:0}
+  .demo-shell .pillar-legend article:nth-last-child(2){border-bottom:1px solid var(--demo-border)}
+  .demo-shell .lender-grid{grid-template-columns:1fr}
+  .demo-shell .lender-actions{grid-template-columns:1fr 1fr}
+  .demo-shell .revoke-action{grid-column:1 / -1}
+}
+@media(prefers-reduced-motion:reduce){.demo-shell *{scroll-behavior:auto!important;transition-duration:.01ms!important}}
