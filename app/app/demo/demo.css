@@ -42,3 +42,11 @@
 .evidence-subtitle{margin:3px 0 0;color:#94a3b8;font-size:13px}
 .demo-shell .verified-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid #166534;border-radius:7px;background:#052e16;color:#86efac;font-size:12px;font-weight:700}
 .demo-shell .verified-badge i{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgb(74 222 128 / 12%)}
+.demo-shell .evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0;padding:0}
+.demo-shell .evidence-grid>div{display:grid;grid-template-columns:150px minmax(0,1fr);align-items:center;min-height:58px;padding:12px 24px;border:0;border-bottom:1px solid #334155}
+.demo-shell .evidence-grid>div:nth-child(odd){border-right:1px solid #334155}
+.demo-shell .evidence-grid>div:nth-last-child(-n+2){border-bottom:0}
+.demo-shell .evidence-grid dt{color:#94a3b8;font-size:11px;font-weight:650;letter-spacing:.5px;text-transform:uppercase}
+.demo-shell .evidence-grid dd{display:flex;align-items:center;gap:8px;margin:0;color:#f8fafc;font-size:13px;font-weight:600;overflow-wrap:anywhere}
+.demo-shell .evidence-grid code{padding:3px 6px;border-radius:5px;background:#0f172a;color:#bfdbfe;font-family:var(--font-geist-mono),monospace;font-size:12px}
+.evidence-network-dot{width:8px;height:8px;border-radius:50%;background:#627eea;box-shadow:0 0 0 3px rgb(98 126 234 / 15%)}
