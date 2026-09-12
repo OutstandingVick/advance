@@ -11,7 +11,7 @@ import {
   validSession,
   type Action,
 } from '@/lib/rehearsal';
-import { emptyConfig, explorer } from '@/lib/config';
+import { explorer, testnetConfig } from '@/lib/config';
 import { useWallet } from '@/hooks/use-wallet';
 import { useAdvance } from '@/hooks/use-advance';
 import { parseProof, explainError as friendlyError } from '../../../sdk/src/index';
@@ -19,7 +19,7 @@ import { parseProof, explainError as friendlyError } from '../../../sdk/src/inde
 export default function Home() {
   const [live, setLive] = useState(false),
     [demo, setDemo] = useState(newRehearsal);
-  const [config, setConfig] = useState(emptyConfig),
+  const [config, setConfig] = useState(testnetConfig),
     [busy, setBusy] = useState(false);
   const [error, setError] = useState(''),
     [events, setEvents] = useState<string[]>([]);
@@ -113,7 +113,7 @@ export default function Home() {
       </div>
       <div className="notice">
         {live
-          ? 'Live mode requires real deployments and testnet gas. No contracts are preconfigured.'
+          ? 'Verified deployments are preloaded. Connect a wallet with Creditcoin testnet gas to begin.'
           : 'Interactive rehearsal · Sample data only. No wallet or blockchain transactions.'}{' '}
         Public chain history remains readable; revocation invalidates authorized
         sessions, not historical data.

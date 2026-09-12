@@ -17,10 +17,10 @@ export function DeploymentForm({
   ] as const;
   return (
     <details className="panel settings">
-      <summary>Testnet deployment addresses</summary>
+      <summary>Verified testnet deployment addresses</summary>
       <p>
-        Use contracts deployed from this repository on Creditcoin Testnet, with
-        a Sepolia source registry.
+        These deployed contracts are preloaded from the repository&apos;s verified
+        deployment record. You can expand this panel to inspect or replace them.
       </p>
       <div className="form-grid">
         {fields.map(([key, label]) => (

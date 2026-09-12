@@ -12,6 +12,13 @@ export const emptyConfig: ConfigInput = {
   lenderA: '',
   lenderB: '',
 };
+
+export const testnetConfig: ConfigInput = {
+  registry: '0x3b52607c3718874f45eF249fB1A92D43f8B3D613',
+  sourceRegistry: '0x3b52607c3718874f45eF249fB1A92D43f8B3D613',
+  lenderA: '0xA760E5f08c62159B6096b0a561D6328439f120E7',
+  lenderB: '0x2304C8cd29e4a9c34539B0E7eE309a39A3658EaC',
+};
 export function deploymentFrom(input: ConfigInput): Deployment {
   const lenders = [address(input.lenderA), address(input.lenderB)] as const;
   if (lenders[0] === lenders[1])

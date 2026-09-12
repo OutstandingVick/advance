@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { newRehearsal, SESSION_WINDOWS, transition, validSession } from '../lib/rehearsal';
-import { deploymentFrom, emptyConfig, explorer } from '../lib/config';
+import { deploymentFrom, emptyConfig, explorer, testnetConfig } from '../lib/config';
 import { shortHash, verifiedEvidence } from '../lib/evidence';
 
 test('independent consumers and immediate revocation',()=>{
@@ -38,6 +38,11 @@ test('missing and duplicate deployments cannot enable live actions',()=>{
   assert.throws(()=>deploymentFrom(emptyConfig));
   const a='0x1111111111111111111111111111111111111111';
   assert.throws(()=>deploymentFrom({registry:a,sourceRegistry:a,lenderA:a,lenderB:a}),/different/);
+});
+test('verified testnet deployments are ready for live mode',()=>{
+  const deployment=deploymentFrom(testnetConfig);
+  assert.equal(deployment.chainId,102031);
+  assert.notEqual(deployment.lenders[0],deployment.lenders[1]);
 });
 test('explorer links reject injected URLs',()=>{
   assert.throws(()=>explorer('javascript:alert(1)'));
