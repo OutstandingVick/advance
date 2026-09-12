@@ -39,12 +39,12 @@ export function LenderCard({
   const [revokeOpen, setRevokeOpen] = useState(false);
 
   return (
-    <article className="lender-card">
+    <article className={`lender-card ${valid ? 'lender-card-active' : ''}`}>
       <div className="lender-heading">
         <span className="lender-avatar" aria-hidden="true">{name.slice(0, 1)}</span>
         <span className="lender-identity">
           <h3>{name}</h3>
-          <small>Consumer 0{index + 1} · Creditcoin Testnet</small>
+          <small>Credit consumer 0{index + 1}</small>
         </span>
         <span className={valid ? 'pill active' : 'pill'}>
           <i aria-hidden="true" />{valid ? 'Session active' : granted ? 'Permission set' : 'Not shared'}

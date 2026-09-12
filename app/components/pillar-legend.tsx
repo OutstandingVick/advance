@@ -1,20 +1,25 @@
 const pillars = [
-  ['Scoped Grant', 'Permission belongs to one lender.', 'SG'],
-  ['Time-Boxed Session', 'Every score has an expiry.', 'TS'],
-  ['Independent Revocation', 'One lender can be removed alone.', 'IR'],
-  ['Replay-Protected', 'Evidence can update a profile once.', 'RP'],
+  ['Scoped Grant', 'One lender'],
+  ['Time-Boxed Session', 'Automatic expiry'],
+  ['Independent Revocation', 'Isolated access'],
+  ['Replay-Protected', 'Evidence used once'],
 ] as const;
 
 export function PillarLegend() {
   return (
-    <section className="pillar-legend" aria-label="Advance protocol guarantees">
-      {pillars.map(([name, detail, initials]) => (
-        <article key={name}>
-          <span className="pillar-icon" aria-hidden="true">{initials}</span>
-          <span className="pillar-copy"><strong>{name}</strong><small>{detail}</small></span>
-          <span className="pillar-state"><i aria-hidden="true" />Enforced</span>
-        </article>
-      ))}
+    <section className="trust-strip" id="permissions" aria-labelledby="trust-title">
+      <div className="trust-heading">
+        <span className="trust-mark" aria-hidden="true">✓</span>
+        <span><strong id="trust-title">Protocol safeguards</strong><small>Enforced by Advance</small></span>
+      </div>
+      <div className="trust-items">
+        {pillars.map(([name, detail]) => (
+          <span className="trust-item" key={name}>
+            <i aria-hidden="true" />
+            <span><strong>{name}</strong><small>{detail}</small></span>
+          </span>
+        ))}
+      </div>
     </section>
   );
 }

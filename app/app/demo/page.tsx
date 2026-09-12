@@ -16,6 +16,7 @@ import { explorer, testnetConfig } from '@/lib/config';
 import { useWallet } from '@/hooks/use-wallet';
 import { useAdvance } from '@/hooks/use-advance';
 import { parseProof, explainError as friendlyError } from '../../../sdk/src/index';
+import { formatVerifiedAt, verifiedEvidence } from '@/lib/evidence';
 
 export default function Home() {
   const [live, setLive] = useState(false),
@@ -73,48 +74,44 @@ export default function Home() {
     <main className="workspace demo-shell">
       <header className="topbar">
         <Link className="wordmark" href="/" aria-label="Advance home">
-          <span className="wordmark-mark" aria-hidden="true">A</span>
-          advance
+          {/* oxlint-disable-next-line next/no-img-element */}
+          <img src="/advance-logo.svg" alt="" width="42" height="42" />
+          <span>advance</span>
         </Link>
-        <span className="network-badge"><i aria-hidden="true" />Creditcoin · Testnet</span>
+        <div className="topbar-actions">
+          <fieldset className="mode-switch">
+            <legend className="sr-only">Demo environment</legend>
+            <Button disabled={busy} variant={!live ? 'default' : 'outline'} aria-pressed={!live} onClick={() => { setLive(false); setError(''); }}>Rehearsal</Button>
+            <Button disabled={busy} variant={live ? 'default' : 'outline'} aria-pressed={live} onClick={() => { setLive(true); setError(''); }}>Live testnet</Button>
+          </fieldset>
+          <span className="network-badge"><i aria-hidden="true" />Creditcoin · Testnet</span>
+        </div>
       </header>
-      <section className="intro">
-        <p className="eyebrow">Your credit, connected</p>
-        <h1>
-          One history.
-          <br />
-          More possibilities.
-        </h1>
-        <p>
-          Verify repayment events. Authorize independent lenders to use a
-          current score.
-        </p>
+
+      <nav className="section-nav" aria-label="Demo sections">
+        <a href="#overview">Overview</a><a href="#credit-history">Credit history</a><a href="#lenders">Lenders</a><a href="#permissions">Permissions</a><a href="#activity">Activity</a>
+      </nav>
+
+      <section className="score-hero" id="overview" aria-labelledby="page-title">
+        <div className="score-hero-copy">
+          <p className="eyebrow">Portable credit profile</p>
+          <h1 id="page-title">One history. More possibilities.</h1>
+          <p>Verify repayment history once, then share a current score with independent lenders on your terms.</p>
+          <div className="hero-actions">
+            <a className="primary-link" href="#lenders">Share with lender</a>
+            {!live && <Button variant="outline" onClick={() => rehearse({ type: 'evidence' })}>{demo.hasEvidence ? 'Test replay protection' : 'Add sample payment'}</Button>}
+          </div>
+        </div>
+        <div className="score-summary">
+          <div className="score-label-row"><span>Advance Score</span><span className="verified-status"><i aria-hidden="true" />Verified</span></div>
+          <div className="score-value">{score ?? '—'}<span>/ 900</span></div>
+          <dl className="score-meta">
+            <div><dt>Source</dt><dd>Ethereum Sepolia</dd></div>
+            <div><dt>Verified on</dt><dd>Creditcoin Testnet</dd></div>
+            <div><dt>Last verified</dt><dd><time dateTime={verifiedEvidence.verifiedAt}>{formatVerifiedAt(verifiedEvidence.verifiedAt)}</time></dd></div>
+          </dl>
+        </div>
       </section>
-      <fieldset className="mode-switch">
-        <legend className="sr-only">Demo environment</legend>
-        <Button
-          disabled={busy}
-          variant={!live ? 'default' : 'outline'}
-          aria-pressed={!live}
-          onClick={() => {
-            setLive(false);
-            setError('');
-          }}
-        >
-          Rehearsal
-        </Button>
-        <Button
-          disabled={busy}
-          variant={live ? 'default' : 'outline'}
-          aria-pressed={live}
-          onClick={() => {
-            setLive(true);
-            setError('');
-          }}
-        >
-          Live testnet
-        </Button>
-      </fieldset>
       <div className={`notice ${live ? 'notice-live' : 'notice-rehearsal'}`}>
         {live
           ? 'Verified deployments are preloaded. Connect a wallet with Creditcoin testnet gas to begin.'
@@ -125,7 +122,7 @@ export default function Home() {
       <EvidencePanel />
       <PillarLegend />
       {live && (
-        <>
+        <section className="connection-panel" aria-label="Testnet connection">
           <DeploymentForm value={config} onChange={setConfig} disabled={busy} />
           <div className="actions">
             <Button disabled={busy} onClick={() => run(wallet.connect)}>
@@ -148,7 +145,7 @@ export default function Home() {
               Disconnect
             </Button>
           </div>
-        </>
+        </section>
       )}
       {error && (
         <div className="error" role="alert">
@@ -171,28 +168,23 @@ export default function Home() {
           </a>
         </p>
       )}
-      <div className="workspace-grid">
-        <section className="panel profile">
-          <p className="eyebrow">Portable profile</p>
-          <div className="score">
-            {score ?? '—'}
-            <span>/ 900</span>
-          </div>
-          <h2>{live ? 'On-chain score' : 'Rehearsal score'}</h2>
+      <div className="content-grid">
+        <section className="history-panel" aria-labelledby="history-title">
+          <div className="section-heading"><div><p className="eyebrow">Credit history</p><h2 id="history-title">Evidence workspace</h2></div><span className="section-state">{live ? 'Live' : 'Rehearsal'}</span></div>
           <p>
             {live
               ? `Profile version: ${advance.profile?.version.toString() ?? 'not loaded'}`
               : 'A sample payment adds 25 points. This is a deterministic prototype, not a creditworthiness assessment.'}
           </p>
           {!live ? (
-            <div className="actions">
+            <div className="history-actions">
               <Button onClick={() => rehearse({ type: 'evidence' })}>
                 {demo.hasEvidence
                   ? 'Try evidence replay'
                   : 'Add sample payment'}
               </Button>
               <Button
-                variant="secondary"
+                variant="outline"
                 onClick={() => {
                   setDemo(newRehearsal());
                   setError('');
@@ -247,10 +239,9 @@ export default function Home() {
             </div>
           )}
         </section>
-        <section className="lenders">
-          <div className="comparison-heading">
-            <p className="eyebrow">Two lenders · One portable score</p>
-            <h2>Independent access, compared live</h2>
+        <section className="lenders" id="lenders" aria-labelledby="lenders-title">
+          <div className="section-heading">
+            <div><p className="eyebrow">Connected lenders</p><h2 id="lenders-title">Independent access, compared live</h2></div><span className="lender-count">2 lenders</span>
           </div>
           <div className="lender-grid">
           {['Northstar Credit', 'Harbor Lending'].map((name, i) => {
@@ -304,17 +295,15 @@ export default function Home() {
           </div>
         </section>
       </div>
-      <section className="panel activity">
-        <div className="activity-heading"><h2>Activity</h2><span>Session audit log</span></div>
-        <ol aria-live="polite">
+      <section className="activity" id="activity" aria-labelledby="activity-title">
+        <div className="activity-heading"><div><p className="eyebrow">Recent events</p><h2 id="activity-title">Activity</h2></div><span>Session audit log</span></div>
+        <ol className="activity-feed" aria-live="polite">
           {(live ? events : demo.events).map((e, i) => (
-            <li key={`${i}-${e}`}>{e}</li>
+            <li key={`${i}-${e}`}><span className="activity-icon" aria-hidden="true">✓</span><span>{e}</span><time>Just now</time></li>
           ))}
         </ol>
         {!(live ? events : demo.events).length && (
-          <p>
-            No actions yet. Grant permission to each lender, then request terms.
-          </p>
+          <div className="activity-empty"><span aria-hidden="true">◎</span><div><strong>No activity yet</strong><p>Grant a lender permission or add repayment evidence to begin the audit trail.</p></div></div>
         )}
       </section>
       <footer>
