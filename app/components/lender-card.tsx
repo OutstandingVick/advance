@@ -34,20 +34,20 @@ export function LenderCard({
           <i aria-hidden="true" />{valid ? 'Session active' : granted ? 'Permission set' : 'Not shared'}
         </span>
       </div>
-      <div className="terms">
+      <dl className="terms">
         <div>
-          <small>Shared Advance score</small>
-          <strong>{valid && score !== undefined ? score : '—'}</strong>
+          <dt>Shared Advance score</dt>
+          <dd>{valid && score !== undefined ? score : '—'}</dd>
         </div>
         <div>
-          <small>Illustrative annual rate</small>
-          <strong>{valid && rate !== undefined ? `${rate}%` : '—'}</strong>
+          <dt>Illustrative annual rate</dt>
+          <dd>{valid && rate !== undefined ? `${rate}%` : '—'}</dd>
         </div>
         <div>
-          <small>Access</small>
-          <strong>{valid ? 'Authorized' : 'Needs permission'}</strong>
+          <dt>Access</dt>
+          <dd>{valid ? 'Authorized' : 'Needs permission'}</dd>
         </div>
-      </div>
+      </dl>
       {valid && expiry && (
         <p className="metadata">
           Time-boxed session · {Math.max(0, Math.ceil((expiry - now) / 60))} min remaining

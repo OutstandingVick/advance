@@ -79,3 +79,8 @@
 .demo-shell .pill i{width:6px;height:6px;border-radius:50%;background:#94a3b8}
 .demo-shell .pill.active{border-color:#bbf7d0;background:#f0fdf4;color:#15803d}
 .demo-shell .pill.active i{background:#22c55e}
+.demo-shell .terms{display:grid;grid-template-columns:1fr;margin:0;padding:0 16px}
+.demo-shell .terms>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;min-height:48px;padding:9px 0;border-bottom:1px solid var(--demo-border)}
+.demo-shell .terms dt{color:var(--demo-muted);font-size:12px}
+.demo-shell .terms dd{margin:0;color:var(--demo-text);font-size:13px;font-weight:700;text-align:right}
+.demo-shell .terms>div:first-child dd{color:var(--demo-blue);font-family:var(--font-geist-mono),monospace;font-size:17px}
