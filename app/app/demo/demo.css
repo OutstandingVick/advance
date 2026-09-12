@@ -24,3 +24,7 @@
 .demo-shell .wordmark-mark{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--demo-blue);color:white;font-size:15px;letter-spacing:0}
 .network-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border:1px solid var(--demo-border);border-radius:999px;background:white;color:#475569;font-size:13px;font-weight:600}
 .network-badge i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px #dcfce7}
+.demo-shell .intro{padding:54px 0 28px;border-bottom:0}
+.demo-shell .intro .eyebrow{margin:0 0 12px;color:var(--demo-blue);font-size:11px;letter-spacing:1.8px}
+.demo-shell .intro h1{max-width:760px;margin:0 0 18px;color:var(--demo-text);font-size:clamp(42px,5vw,64px);line-height:1;letter-spacing:-3.2px;font-weight:720}
+.demo-shell .intro>p:last-child{max-width:590px;margin:0;color:var(--demo-muted);font-size:17px;line-height:1.55}
