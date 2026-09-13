@@ -15,7 +15,7 @@ import {
 import { explorer, testnetConfig } from '@/lib/config';
 import { useWallet } from '@/hooks/use-wallet';
 import { useAdvance } from '@/hooks/use-advance';
-import { parseProof, explainError as friendlyError } from '../../../sdk/src/index';
+import { parseProof, explainError as friendlyError } from '@/lib/proof';
 import { formatVerifiedAt, verifiedEvidence } from '@/lib/evidence';
 
 export default function Home() {
