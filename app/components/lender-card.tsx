@@ -101,44 +101,46 @@ export function LenderCard({
       )}
       <div className="actions lender-actions">
         <Button className="grant-action" disabled={busy} onClick={() => onAction('grant')}>
-          {granted ? 'Renew permission' : 'Grant permission'}
+          {valid ? 'Renew access' : granted ? 'Share again' : 'Share score'}
         </Button>
         <Button
           disabled={busy || !granted}
           variant="outline" className="terms-action"
           onClick={() => onAction('score')}
         >
-          Get terms
+          {valid ? 'Refresh offer' : 'Open session'}
         </Button>
-        <AlertDialog open={revokeOpen} onOpenChange={setRevokeOpen}>
-          <AlertDialogTrigger
-            disabled={busy || !granted}
-            render={<Button variant="ghost" className="revoke-action" />}
-          >
-            Revoke
-          </AlertDialogTrigger>
-          <AlertDialogContent className="demo-revoke-dialog">
-            <AlertDialogHeader>
-              <AlertDialogTitle>Revoke {name}?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This ends only this lender&apos;s session. Other active lender
-                permissions stay unchanged.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Keep session</AlertDialogCancel>
-              <AlertDialogAction
-                variant="destructive"
-                onClick={() => {
-                  setRevokeOpen(false);
-                  onAction('revoke');
-                }}
-              >
-                Revoke access
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        {granted && !revoked && (
+          <AlertDialog open={revokeOpen} onOpenChange={setRevokeOpen}>
+            <AlertDialogTrigger
+              disabled={busy}
+              render={<Button variant="ghost" className="revoke-action" />}
+            >
+              Revoke access
+            </AlertDialogTrigger>
+            <AlertDialogContent className="demo-revoke-dialog">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Revoke {name}?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This ends only this lender&apos;s session. Other active lender
+                  permissions stay unchanged.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Keep session</AlertDialogCancel>
+                <AlertDialogAction
+                  variant="destructive"
+                  onClick={() => {
+                    setRevokeOpen(false);
+                    onAction('revoke');
+                  }}
+                >
+                  Revoke access
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        )}
       </div>
     </article>
   );
