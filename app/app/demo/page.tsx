@@ -70,6 +70,9 @@ export default function Home() {
     }
   }
   const score = live ? advance.score : demo.hasEvidence ? 525 : 500;
+  const activeSessionCount = live
+    ? advance.access.filter((item) => item.valid && !item.revoked).length
+    : demo.lenders.filter((_, index) => validSession(demo, index as 0 | 1, now)).length;
   return (
     <main className="workspace demo-shell">
       <header className="topbar">
@@ -250,7 +253,8 @@ export default function Home() {
         </section>
         <section className="lenders" id="lenders" aria-labelledby="lenders-title">
           <div className="section-heading">
-            <div><p className="eyebrow">Connected lenders</p><h2 id="lenders-title">Independent access, compared live</h2></div><span className="lender-count">2 lenders</span>
+            <div><p className="eyebrow">Step 2 · Connected lenders</p><h2 id="lenders-title">Choose who can access your score</h2><p className="section-description">Each lender receives a separate, time-boxed permission. Sharing with one never grants access to the other.</p></div>
+            <span className="lender-count">{activeSessionCount} of 2 active</span>
           </div>
           <div className="lender-grid">
           {['Northstar Credit', 'Harbor Lending'].map((name, i) => {
