@@ -170,7 +170,12 @@ export default function Home() {
       )}
       <div className="content-grid">
         <section className="history-panel" aria-labelledby="history-title">
-          <div className="section-heading"><div><p className="eyebrow">Credit history</p><h2 id="history-title">Evidence workspace</h2></div><span className="section-state">{live ? 'Live' : 'Rehearsal'}</span></div>
+          <div className="section-heading"><div><p className="eyebrow">Step 1 · Credit history</p><h2 id="history-title">Build verified history</h2></div><span className="section-state">{live ? 'Live' : 'Rehearsal'}</span></div>
+          <div className="history-score" aria-label={`Current Advance Score: ${score ?? 'not loaded'} out of 900`}>
+            <span>Current score</span>
+            <strong>{score ?? '—'}<small>/ 900</small></strong>
+            <em>{!live && demo.hasEvidence ? '+25 from verified payment' : 'Ready for verified evidence'}</em>
+          </div>
           <p>
             {live
               ? `Profile version: ${advance.profile?.version.toString() ?? 'not loaded'}`
@@ -238,6 +243,10 @@ export default function Home() {
               </Button>
             </div>
           )}
+          <p className="history-bridge">
+            <span aria-hidden="true">→</span>
+            One verified profile can be shared with either lender independently.
+          </p>
         </section>
         <section className="lenders" id="lenders" aria-labelledby="lenders-title">
           <div className="section-heading">
