@@ -62,6 +62,23 @@ export function LenderCard({
           <i aria-hidden="true" />{status}
         </span>
       </div>
+      <div className="permission-summary">
+        <span className="permission-mark" aria-hidden="true">
+          {valid ? '✓' : revoked ? '×' : granted ? '→' : '○'}
+        </span>
+        <div>
+          <strong>{status}</strong>
+          <p>
+            {valid
+              ? `${name} can read this score until the session expires.`
+              : revoked
+                ? `${name} can no longer read this score.`
+                : granted
+                  ? 'Permission is granted. Request terms to open the session.'
+                  : 'Your score stays private until you grant access.'}
+          </p>
+        </div>
+      </div>
       <dl className="terms">
         <div>
           <dt>Shared Advance score</dt>
