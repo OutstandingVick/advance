@@ -294,13 +294,13 @@ export default function Home() {
                       : rehearse({ type, lender: index })
                   }
                 />
-                {!live && (
+                {!live && l.grant && !l.revoked && (
                   <Button
                     className="simulate-expiry"
                     variant="ghost"
                     onClick={() => rehearse({ type: 'expire', lender: index })}
                   >
-                    Simulate expiry
+                    Test session expiry
                   </Button>
                 )}
               </div>
