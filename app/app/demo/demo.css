@@ -96,16 +96,17 @@
 .demo-shell .settings>p,.demo-shell .settings .form-grid{margin:0;padding:0 16px 14px}
 .connection-panel>.actions{margin:10px 0 0}
 
-.content-grid{display:grid;grid-template-columns:minmax(280px,.72fr) minmax(0,1.7fr);gap:32px;align-items:start}
+.content-grid{display:grid;grid-template-columns:minmax(260px,320px) minmax(0,1fr);gap:24px;align-items:start;padding:8px 0 0}
 .history-panel{padding:24px;border:1px solid var(--demo-border);border-radius:12px;background:var(--demo-surface);box-shadow:0 1px 2px rgb(15 23 42 / 3%)}
 .section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:18px}
 .section-heading h2{margin:4px 0 0;font-size:20px;letter-spacing:-.35px}
+.section-description{max-width:620px;margin:8px 0 0;color:var(--demo-muted);font-size:13px;line-height:1.5;text-wrap:pretty}
 .section-state,.lender-count{padding:5px 8px;border-radius:999px;background:#f1f5f9;color:var(--demo-muted);font-size:11px;font-weight:700;white-space:nowrap}
 .history-panel>p{margin:0 0 20px;color:var(--demo-muted);font-size:14px;line-height:1.55;text-wrap:pretty}
 .history-actions{display:flex;gap:10px;flex-wrap:wrap}.history-actions button{min-height:40px}
 .proof-form{display:grid;gap:10px}.proof-form label{font-size:13px;font-weight:650}.proof-form textarea{min-height:150px}
 
-.demo-shell .lenders{margin:0;scroll-margin-top:72px}
+.demo-shell .lenders{min-width:0;margin:0;scroll-margin-top:72px}
 .lender-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .lender-grid>div{min-width:0}
 .lender-card{height:100%;padding:0;border:1px solid var(--demo-border);border-radius:12px;background:var(--demo-surface);box-shadow:0 1px 2px rgb(15 23 42 / 3%);overflow:hidden}
