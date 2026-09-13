@@ -261,6 +261,7 @@ export default function Home() {
                       ? a.valid && (a.expiresAt ?? 0) > now
                       : validSession(demo, index, now)
                   }
+                  revoked={live ? a.revoked : l.revoked}
                   busy={busy || (live && !wallet.account)}
                   rate={
                     live

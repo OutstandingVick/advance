@@ -18,6 +18,7 @@ export function LenderCard({
   name,
   granted,
   valid,
+  revoked,
   busy,
   rate,
   score,
@@ -29,6 +30,7 @@ export function LenderCard({
   name: string;
   granted: boolean;
   valid: boolean;
+  revoked: boolean;
   busy: boolean;
   rate?: number;
   score?: number;
@@ -37,6 +39,16 @@ export function LenderCard({
   onAction: (action: 'grant' | 'score' | 'revoke') => void;
 }) {
   const [revokeOpen, setRevokeOpen] = useState(false);
+  const expired = granted && !revoked && !valid && Boolean(expiry && expiry <= now);
+  const status = valid
+    ? 'Session active'
+    : revoked
+      ? 'Access revoked'
+      : expired
+        ? 'Session expired'
+        : granted
+          ? 'Grant ready'
+          : 'Not shared';
 
   return (
     <article className={`lender-card ${valid ? 'lender-card-active' : ''}`}>
@@ -46,8 +58,8 @@ export function LenderCard({
           <h3>{name}</h3>
           <small>Credit consumer 0{index + 1}</small>
         </span>
-        <span className={valid ? 'pill active' : 'pill'}>
-          <i aria-hidden="true" />{valid ? 'Session active' : granted ? 'Permission set' : 'Not shared'}
+        <span className={`pill ${valid ? 'active' : ''} ${revoked || expired ? 'inactive' : ''}`}>
+          <i aria-hidden="true" />{status}
         </span>
       </div>
       <dl className="terms">
