@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "ethers": [
+        "./node_modules/ethers"
       ]
     },
     "plugins": [
