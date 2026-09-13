@@ -93,12 +93,14 @@ export function LenderCard({
           <dd>{valid ? 'Score · read only' : 'No active access'}</dd>
         </div>
       </dl>
-      {valid && expiry && (
-        <p className="metadata session-expiry">
-          <span><i aria-hidden="true" />Time-boxed session</span>
-          <strong>{Math.max(0, Math.ceil((expiry - now) / 60))} min remaining</strong>
-        </p>
-      )}
+      <p className="metadata session-expiry">
+        <span><i aria-hidden="true" />Time-boxed access</span>
+        <strong>
+          {valid && expiry
+            ? `${Math.max(0, Math.ceil((expiry - now) / 60))} min remaining`
+            : `${index === 0 ? 45 : 90} min session`}
+        </strong>
+      </p>
       <div className="actions lender-actions">
         <Button className="grant-action" disabled={busy} onClick={() => onAction('grant')}>
           {valid ? 'Renew access' : granted ? 'Share again' : 'Share score'}
