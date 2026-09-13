@@ -82,15 +82,15 @@ export function LenderCard({
       <dl className="terms">
         <div>
           <dt>Shared Advance score</dt>
-          <dd>{valid && score !== undefined ? score : '—'}</dd>
+          <dd>{valid && score !== undefined ? `${score} / 900` : 'Private'}</dd>
         </div>
         <div>
-          <dt>Illustrative annual rate</dt>
-          <dd>{valid && rate !== undefined ? `${rate}%` : '—'}</dd>
+          <dt>Illustrative APR</dt>
+          <dd>{valid && rate !== undefined ? `${rate}%` : 'After sharing'}</dd>
         </div>
         <div>
-          <dt>Access</dt>
-          <dd>{valid ? 'Authorized' : 'Needs permission'}</dd>
+          <dt>Permission scope</dt>
+          <dd>{valid ? 'Score · read only' : 'No active access'}</dd>
         </div>
       </dl>
       {valid && expiry && (
