@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'One verified history, many independent lenders.',
-  description: 'Verified cross-chain credit history with independent lenders and revocable permissions.',
+  title: 'Advance — Portable, verified onchain credit',
+  description: 'Advance turns verified repayment activity into a portable, permissioned credit profile on Creditcoin.',
   icons: [{ rel: 'icon', url: '/advance-logo.svg', type: 'image/svg+xml' }],
 };
 
