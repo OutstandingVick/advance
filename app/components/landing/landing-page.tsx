@@ -360,7 +360,7 @@ export function LandingPage() {
               </div>
             </dl>
             <footer>
-              <span>Evidence consumed once</span>
+              <a href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0" target="_blank" rel="noreferrer">View source transaction ↗</a>
               <strong>Replay protected</strong>
             </footer>
           </article>
