@@ -992,6 +992,147 @@
   }
 }
 
+/* Architecture: two editorial service columns with explicit protocol steps. */
+.architecture {
+  padding: 122px max(40px, calc((100vw - 1260px) /2)) 132px;
+  background: #fff;
+}
+.architecture-heading {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 52px;
+  padding-bottom: 68px;
+  border-bottom: 1px solid var(--line);
+}
+.architecture-heading h2 {
+  max-width: 930px;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(48px, 5.4vw, 80px);
+  font-weight: 680;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+}
+.architecture-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(60px, 9vw, 150px);
+  padding: 76px clamp(0px, 4vw, 68px) 0;
+}
+.architecture-column {
+  text-align: center;
+}
+.architecture-column > h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(34px, 3vw, 48px);
+  font-weight: 620;
+  letter-spacing: -0.045em;
+}
+.architecture-column > p {
+  max-width: 520px;
+  min-height: 78px;
+  margin: 20px auto 46px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.architecture-rows {
+  display: grid;
+  gap: 14px;
+}
+.architecture-rows > div {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 34px;
+  align-items: center;
+  min-height: 92px;
+  text-align: left;
+  background: #f3f5f8;
+  transition:
+    background-color 0.15s,
+    color 0.15s,
+    transform 0.15s;
+}
+.architecture-rows > div:hover {
+  background: #edf1ff;
+  transform: translateX(3px);
+}
+.architecture-rows > div > span {
+  align-self: stretch;
+  display: grid;
+  place-items: center;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--font-geist-mono);
+  font-size: 14px;
+  font-weight: 700;
+}
+.architecture-rows p {
+  margin: 0;
+  padding: 14px 20px;
+}
+.architecture-rows strong,
+.architecture-rows small {
+  display: block;
+}
+.architecture-rows strong {
+  color: var(--navy);
+  font-size: 17px;
+}
+.architecture-rows small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+.architecture-rows b {
+  color: var(--navy);
+  font-size: 22px;
+  font-weight: 400;
+}
+.architecture-column:last-child .architecture-rows > div > span {
+  background: var(--orange);
+}
+@media (max-width: 900px) {
+  .architecture-heading {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .architecture-columns {
+    gap: 34px;
+    padding-inline: 0;
+  }
+  .architecture-column > p {
+    min-height: 104px;
+  }
+}
+@media (max-width: 720px) {
+  .architecture {
+    padding: 76px 20px 82px;
+  }
+  .architecture-heading {
+    padding-bottom: 42px;
+  }
+  .architecture-heading h2 {
+    font-size: 43px;
+  }
+  .architecture-columns {
+    grid-template-columns: 1fr;
+    gap: 70px;
+    padding-top: 52px;
+  }
+  .architecture-column > p {
+    min-height: 0;
+    margin-bottom: 30px;
+  }
+  .architecture-rows > div {
+    grid-template-columns: 58px minmax(0, 1fr) 28px;
+  }
+  .architecture-rows p {
+    padding-inline: 14px;
+  }
+}
+
 /* Hero art direction: oversized identity, centered guardian, restrained product proof. */
 .site-header {
   position: absolute;

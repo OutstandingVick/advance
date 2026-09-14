@@ -209,26 +209,51 @@ export function LandingPage() {
           className="architecture"
           aria-labelledby="architecture-title"
         >
-          <div className="section-heading">
+          <header className="architecture-heading">
             <p className="section-index">Architecture / 02</p>
             <h2 id="architecture-title">
-              One verified history.
-              <br />
-              <span>Many independent lenders.</span>
+              One verified history. Many independent lenders.
             </h2>
-            <p>
-              Advance turns a source-chain event into a current, reusable signal
-              through a four-stage verification and permission flow.
-            </p>
-          </div>
-          <div className="stage-grid">
-            {stages.map(([n, t, d]) => (
-              <article key={n}>
-                <span>{n}</span>
-                <h3>{t}</h3>
-                <p>{d}</p>
-              </article>
-            ))}
+          </header>
+          <div className="architecture-columns">
+            <article className="architecture-column">
+              <h3>Verify the history</h3>
+              <p>
+                A source-chain repayment becomes trusted credit evidence through
+                native verification on Creditcoin.
+              </p>
+              <div className="architecture-rows">
+                {stages.slice(0, 2).map(([n, t, d]) => (
+                  <div key={n}>
+                    <span>{n}</span>
+                    <p>
+                      <strong>{t}</strong>
+                      <small>{d}</small>
+                    </p>
+                    <b aria-hidden="true">→</b>
+                  </div>
+                ))}
+              </div>
+            </article>
+            <article className="architecture-column">
+              <h3>Share the score</h3>
+              <p>
+                The verified event updates one portable profile that the
+                borrower can share on precise terms.
+              </p>
+              <div className="architecture-rows">
+                {stages.slice(2).map(([n, t, d]) => (
+                  <div key={n}>
+                    <span>{n}</span>
+                    <p>
+                      <strong>{t}</strong>
+                      <small>{d}</small>
+                    </p>
+                    <b aria-hidden="true">→</b>
+                  </div>
+                ))}
+              </div>
+            </article>
           </div>
         </section>
 
