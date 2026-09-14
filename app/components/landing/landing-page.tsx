@@ -131,7 +131,7 @@ export function LandingPage() {
             <div className="system-topline">
               <span>Advance verification rail</span>
               <b>
-                <i /> Testnet live
+                <i /> Deployed on testnet
               </b>
             </div>
             <div className="system-flow">
@@ -160,14 +160,14 @@ export function LandingPage() {
                 <span>N</span>
                 <div>
                   <small>Northstar Credit</small>
-                  <strong>Active · 45 min</strong>
+                  <strong>Rehearsal · 45 min</strong>
                 </div>
               </article>
               <article>
                 <span>H</span>
                 <div>
                   <small>Harbor Lending</small>
-                  <strong>Active · 90 min</strong>
+                  <strong>Rehearsal · 90 min</strong>
                 </div>
               </article>
             </div>
