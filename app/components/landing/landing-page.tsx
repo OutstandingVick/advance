@@ -1,209 +1,65 @@
-const features = [
-  {
-    asset: '/images/features/verified-evidence.png',
-    alt: 'A verified repayment receipt stored in a digital wallet',
-    title: 'Verified repayment evidence.',
-  },
-  {
-    asset: '/images/features/portable-score.png',
-    alt: 'A verified credit passport moving between blockchain networks',
-    title: 'One score across every supported chain.',
-  },
-  {
-    asset: '/images/features/timed-session.png',
-    alt: 'A secure key and lender gate controlled by an hourglass',
-    title: 'Scoped, time-boxed lender access.',
-  },
-  {
-    asset: '/images/features/independent-revocation.png',
-    alt: 'A wallet keeping one lender connected while revoking another',
-    title: 'Independent revocation keeps you in control.',
-  },
-  {
-    asset: '/images/features/replay-protection.png',
-    alt: 'A shield accepting one proof and rejecting its duplicate',
-    title: 'Replay-protected by design.',
-  },
-];
+const githubUrl = 'https://github.com/OutstandingVick/advance';
 
-function Arrow({ className = '' }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M7 17L17 7M17 7H9M17 7v8"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
+function Arrow() { return <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>; }
+function Check() { return <svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="m4 9.5 3 3 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>; }
+
+const stages = [
+  ['01', 'Repayment', 'A supported credit event occurs on a source chain.'],
+  ['02', 'Verification', 'Creditcoin verifies the source transaction and expected event.'],
+  ['03', 'Profile', 'Accepted evidence updates a versioned profile and deterministic score.'],
+  ['04', 'Permission', 'The borrower grants each lender scoped, expiring access.'],
+];
+const safeguards = [
+  ['01', 'Scoped grants', 'Authorization is bound to one lender contract—not every application.'],
+  ['02', 'Time-boxed sessions', 'Every score session expires automatically at a defined boundary.'],
+  ['03', 'Independent revocation', 'Remove one lender without interrupting another valid permission.'],
+  ['04', 'Replay + stale-session protection', 'Evidence counts once. Old score snapshots fail after profile updates.'],
+];
+const capabilities = ['Ethereum Sepolia repayment evidence','Creditcoin Testnet verification','Onchain Advance Score','Two independent lender contracts','Grant and session creation','Independent lender revocation','Duplicate evidence rejection','Stale-session invalidation','Transaction and activity trail','Rehearsal and Live Testnet modes'];
 
 export function LandingPage() {
-  return (
-    <div className="lp">
-      <div className="lp-frame">
-        <header className="lp-header">
-          <a className="lp-logo" href="/">
-            <img src="/advance-logo.svg" alt="" width={34} height={34} />
-            ADVANCE
-          </a>
-          <a className="lp-menu" href="#features" aria-label="Explore Advance">
-            <span />
-            <span />
-            <span />
-          </a>
-        </header>
+  return <div className="site">
+    <header className="site-header">
+      <a className="site-brand" href="/" aria-label="Advance home"><img src="/advance-logo.svg" alt="" width="36" height="36" /><span>advance</span></a>
+      <nav className="site-nav" aria-label="Primary navigation"><a href="#how-it-works">How it works</a><a href="#security">Security</a><a href="#developers">Developers</a><a href="/docs">Docs</a><a href={githubUrl}>GitHub</a></nav>
+      <a className="button button-primary header-action" href="/demo">Launch app <Arrow /></a>
+    </header>
+    <main>
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-copy"><p className="site-eyebrow">Cross-chain credit attestation oracle</p><h1 id="hero-title">Repay once.<br /><span>Prove it anywhere.</span></h1><p className="hero-lead">Advance turns verified onchain repayment activity into a portable credit profile while letting borrowers control exactly which lenders can use it and for how long.</p><div className="hero-actions"><a className="button button-primary" href="/demo">Launch Advance <Arrow /></a><a className="text-link" href="#how-it-works">Explore the protocol <Arrow /></a></div></div>
+        <div className="hero-system" aria-label="Ethereum repayment evidence is verified on Creditcoin and shared with authorized lenders">
+          <div className="system-topline"><span>Advance verification rail</span><b><i /> Testnet live</b></div>
+          <div className="system-flow"><article className="system-node"><small>Source</small><strong>Ethereum</strong><span>Repayment event</span></article><span className="flow-arrow">→</span><article className="system-node"><small>Attestation</small><strong>✓ Verified</strong><span>Proof accepted</span></article><span className="flow-arrow">→</span><article className="system-node profile-node"><small>Creditcoin profile</small><strong>525 <em>/ 900</em></strong><span>Profile version 2</span></article></div>
+          <div className="lender-branches"><article><span>N</span><div><small>Northstar Credit</small><strong>Active · 45 min</strong></div></article><article><span>H</span><div><small>Harbor Lending</small><strong>Active · 90 min</strong></div></article></div><p className="system-caption">One verified profile. Two independently authorized consumers.</p>
+        </div>
+      </section>
 
-        <main>
-          <section className="lp-hero">
-            <div className="lp-hero-copy">
-              <h1 className="lp-h1">
-                One History.
-                <br />
-                All Possibilities.
-              </h1>
-              <p className="lp-sub">
-                VERIFIED CROSS-CHAIN CREDIT FOR ANY WALLET, LENDER, OR MARKET
-              </p>
-              <div className="lp-hero-actions">
-                <a className="lp-cta-btn lp-btn-primary" href="/demo">
-                  Use Advance now!
-                </a>
-              </div>
-            </div>
+      <section className="problem" aria-labelledby="problem-title"><p className="section-index">The problem / 01</p><div className="problem-grid"><h2 id="problem-title">Your repayment history shouldn&apos;t end where the chain does.</h2><div><p>Onchain reputation is fragmented between networks and protocols. Borrowers repeatedly rebuild trust. Lenders repeatedly rebuild verification infrastructure.</p><p>Advance creates a shared verification layer: credit events can travel, while control over who reads the resulting score stays with the borrower.</p></div></div><div className="fragment-map"><div><span>Ethereum</span><span>Other EVM chains</span><span>Lending protocols</span></div><strong>→</strong><article><img src="/advance-logo.svg" alt="" /><b>Advance</b><small>Shared verified credit layer</small></article><strong>→</strong><div><span>Portable profile</span><span>Borrower-controlled access</span></div></div></section>
 
-            <img
-              className="lp-hero-visual"
-              src="/images/advance-credit-vault.png"
-              alt="An isometric vault securing verified credit evidence between two lenders"
-            />
-          </section>
+      <section id="how-it-works" className="architecture" aria-labelledby="architecture-title"><div className="section-heading"><p className="section-index">Architecture / 02</p><h2 id="architecture-title">One verified history.<br /><span>Many independent lenders.</span></h2><p>Advance turns a source-chain event into a current, reusable signal through a four-stage verification and permission flow.</p></div><div className="stage-grid">{stages.map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></section>
 
-          <section className="lp-solution" aria-labelledby="solution-title">
-            <div className="lp-solution-intro">
-              <h2 id="solution-title">
-                Advance has solved the fragmented credit challenge
-              </h2>
-              <p>
-                ONE VERIFIED HISTORY FOR EVERY CHAIN, LENDER, AND MARKET.
-              </p>
-            </div>
+      <section id="security" className="security" aria-labelledby="security-title"><div><p className="section-index">Permission model / 03</p><h2 id="security-title">Portable reputation without public permission.</h2><p>Advance separates proof of reputation from permission to use it. Lenders receive only a current score session—never custody or control of borrower funds.</p></div><div className="safeguard-list">{safeguards.map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></section>
 
-            <div className="lp-keyhole" aria-hidden="true">
-              <span className="lp-keyhole-ring" />
-              <span className="lp-keyhole-core" />
-              <span className="lp-keyhole-stem" />
-            </div>
+      <section className="isolation" aria-labelledby="isolation-title"><div className="section-heading"><p className="section-index">Lender isolation / 04</p><h2 id="isolation-title">One reputation.<br /><span>Independent permissions.</span></h2></div><div className="isolation-demo"><div className="borrower-card"><small>Portable profile</small><strong>Advance Score</strong><b>525 <em>/ 900</em></b><span>✓ Verified on Creditcoin</span></div><div className="lender-states"><article className="revoked"><h3><i>N</i> Northstar Credit</h3><b>Revoked</b><p>Its previous score session is no longer valid.</p></article><article className="active"><h3><i>H</i> Harbor Lending</h3><b>Still valid</b><p>Its independent grant remains active.</p></article></div></div></section>
 
-            <div className="lp-solution-copy">
-              <h3>Build your history once</h3>
-              <p>Verify repayments and let every approved lender read the same score.</p>
-              <h3>No repeated applications, no locked-in profile,</h3>
-              <p>just the credit you earned.<br />Now portable.</p>
-            </div>
-          </section>
+      <section className="provenance" aria-labelledby="provenance-title"><div><p className="section-index">Verification / 05</p><h2 id="provenance-title">Don&apos;t trust the score.<br /><span>Verify its provenance.</span></h2><p>Advance binds every accepted event to the facts required to verify where it came from.</p></div><article className="attestation-record"><header><div><small>Attestcoin proof</small><h3>Verified evidence</h3></div><span>✓ verify() returned true</span></header><dl><div><dt>Source chain</dt><dd>Ethereum Sepolia</dd></div><div><dt>Originating contract</dt><dd><code>0x3b52…D613</code></dd></div><div><dt>Transaction</dt><dd><code>0xc459…1fb0</code></dd></div><div><dt>Event position</dt><dd>Receipt log 0</dd></div><div><dt>Destination</dt><dd>Creditcoin Testnet</dd></div><div><dt>Profile version</dt><dd>Version 2</dd></div></dl><footer><span>Evidence consumed once</span><strong>Replay protected</strong></footer></article></section>
 
-          <section id="features" className="lp-protocol" aria-labelledby="protocol-title">
-            <h2 id="protocol-title" className="lp-protocol-title">
-              <span>Credit wasn&apos;t portable.</span>
-              <strong><b>›››</b> Until now.</strong>
-            </h2>
-            <div className="lp-protocol-grid">
-              {features.map((f) => (
-                <article
-                  key={f.title}
-                  className="lp-protocol-card"
-                >
-                  <img src={f.asset} alt={f.alt} loading="lazy" />
-                  <h3>{f.title}</h3>
-                </article>
-              ))}
-            </div>
-          </section>
+      <section id="developers" className="developers" aria-labelledby="developers-title"><div><p className="section-index">For developers / 06</p><h2 id="developers-title">Credit infrastructure you can plug into.</h2><p>Lending protocols can import the Advance interface, request a score session, and validate it immediately before making a credit decision.</p><ul><li>Solidity consumer interface</li><li>Typed TypeScript SDK</li><li>Reference lender contracts</li><li>Deployment and proof tooling</li></ul><div className="developer-actions"><a className="button button-light" href="/docs">Read the docs <Arrow /></a><a className="text-link light-link" href={githubUrl}>View GitHub <Arrow /></a></div></div><pre><code>{`import {IAdvance} from "./IAdvance.sol";
 
-          <section id="how" className="lp-access" aria-labelledby="access-title">
-            <figure className="lp-access-art">
-              <img
-                src="/images/advance-lender-access.png"
-                alt="A wallet owner granting a lender temporary access to verified credit history"
-                loading="lazy"
-              />
-            </figure>
-            <div className="lp-access-copy">
-              <h2 id="access-title">Your history,<br />your lenders</h2>
-              <p className="lp-access-lead">Shared in just 2 steps.</p>
-            </div>
-          </section>
+function useScore(bytes32 sessionId)
+    external view returns (uint16 score)
+{
+    require(
+      ADVANCE.isScoreValid(sessionId, address(this)),
+      "invalid session"
+    );
+    return ADVANCE.getScoreSession(sessionId).score;
+}`}</code></pre></section>
 
-          <section id="roadmap" className="lp-roadmap" aria-labelledby="roadmap-title">
-            <div className="lp-roadmap-copy">
-              <h2 id="roadmap-title">One protocol.<br />Any credit market.</h2>
-              <ul>
-                <li><strong>Portable credit:</strong> Carry one verified repayment history across supported chains and applications.</li>
-                <li><strong>Permissioned access:</strong> Give each lender a scoped, time-boxed session without exposing raw wallet activity.</li>
-                <li><strong>Independent decisions:</strong> Let many lenders read the same evidence while setting their own terms.</li>
-                <li><strong>User control:</strong> Revoke one lender instantly without disrupting every other active grant.</li>
-              </ul>
-            </div>
+      <section className="prototype" aria-labelledby="prototype-title"><div className="section-heading"><p className="section-index">Working prototype / 07</p><h2 id="prototype-title">Not a concept.<br /><span>A working credit rail.</span></h2><p>Deployed contracts, recorded cross-chain proof evidence, tested authorization boundaries, and an interactive product flow.</p></div><div className="capability-grid">{capabilities.map((c,i)=><div key={c}><span><Check /></span><p>{c}</p><small>{String(i+1).padStart(2,'0')}</small></div>)}</div><p className="prototype-note"><strong>Transparent by design.</strong> Rehearsal uses deterministic sample data. Live Testnet mode connects to deployed Creditcoin contracts and requires testnet gas.</p></section>
 
-            <div className="lp-roadmap-visual" aria-label="Advance roadmap from verified evidence to portable scores and open credit markets">
-              <svg className="lp-roadmap-lines" viewBox="0 0 760 600" aria-hidden="true">
-                <path d="M175 150V238H380V300" />
-                <path d="M380 410V470H600V390" />
-              </svg>
-
-              <article className="lp-phase lp-phase-one">
-                <span className="lp-phase-number">01</span>
-                <div className="lp-phase-icon" aria-hidden="true">✓</div>
-                <p>Phase 1</p>
-                <h3>Verified Evidence</h3>
-              </article>
-
-              <article className="lp-phase lp-phase-two">
-                <span className="lp-phase-number">02</span>
-                <div className="lp-phase-icon" aria-hidden="true">525</div>
-                <p>Phase 2</p>
-                <h3>Portable Score</h3>
-              </article>
-
-              <article className="lp-phase lp-phase-three">
-                <span className="lp-phase-number">03</span>
-                <div className="lp-phase-icon" aria-hidden="true">A</div>
-                <p>Phase 3</p>
-                <h3>Open Credit Markets</h3>
-              </article>
-            </div>
-          </section>
-
-          <section className="lp-cta">
-            <h2 className="lp-cta-title">
-              Take your credit
-              <br />
-              <span>everywhere.</span>
-            </h2>
-            <a className="lp-cta-btn lp-btn-primary lp-btn-dark" href="/demo">
-              Launch the app <Arrow className="lp-btn-arrow" />
-            </a>
-          </section>
-        </main>
-
-        <footer className="lp-footer">
-          <span>© {new Date().getFullYear()} Advance — verified facts, independent decisions.</span>
-          <span className="lp-footer-links">
-            <a href="/docs">Documentation</a>
-            <a href="https://github.com/OutstandingVick/advance" target="_blank" rel="noreferrer">
-              Explore the protocol ↗
-            </a>
-          </span>
-        </footer>
-      </div>
-    </div>
-  );
+      <section className="final-cta" aria-labelledby="final-title"><p className="site-eyebrow">Portable reputation. Borrower-controlled access.</p><h2 id="final-title">Credit should travel.<br /><span>Control should stay with the borrower.</span></h2><p>Verify repayment history once, then carry the reputation you earned into every compatible credit market.</p><div><a className="button button-primary" href="/demo">Launch Advance <Arrow /></a><a className="text-link" href="/docs">Explore the protocol <Arrow /></a></div></section>
+    </main>
+    <footer className="site-footer"><a className="site-brand" href="/"><img src="/advance-logo.svg" alt="" width="32" height="32" /><span>advance</span></a><p>Cross-chain credit attestation infrastructure.</p><nav><a href="#how-it-works">How it works</a><a href="#security">Security</a><a href="/docs">Docs</a><a href={githubUrl}>GitHub</a></nav><small>© {new Date().getFullYear()} Advance. Infrastructure, not a lender.</small></footer>
+  </div>;
 }
