@@ -409,6 +409,7 @@ function useScore(bytes32 sessionId)
     return ADVANCE.getScoreSession(sessionId).score;
 }`}</code>
           </pre>
+          <a className="source-link" href={`${githubUrl}/blob/main/contracts/src/interfaces/IAdvance.sol`} target="_blank" rel="noreferrer">Open the complete interface <Arrow /></a>
         </section>
 
         <section className="prototype" aria-labelledby="prototype-title">

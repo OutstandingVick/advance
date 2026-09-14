@@ -647,6 +647,7 @@
   color: #d8e4f4;
   font: 14px/1.75 var(--font-geist-mono);
 }
+.developers{position:relative}.source-link{position:absolute;right:max(40px,calc((100vw - 1296px)/2));bottom:76px;display:inline-flex;align-items:center;gap:8px;color:#9fb7ff;font-size:13px;font-weight:700}
 .prototype {
   padding: 120px max(40px, calc((100vw - 1296px) /2));
   background: #fff;
