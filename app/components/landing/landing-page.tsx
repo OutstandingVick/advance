@@ -106,10 +106,11 @@ export function LandingPage() {
       </header>
       <main>
         <section className="hero" aria-labelledby="hero-title">
+          <p className="hero-word" aria-hidden="true">
+            ADVANCE
+          </p>
           <div className="hero-copy">
-            <p className="site-eyebrow">
-              Cross-chain credit attestation oracle
-            </p>
+            <p className="hero-pill">Cross-chain credit attestation oracle</p>
             <h1 id="hero-title">
               Repay once.
               <br />
@@ -130,55 +131,34 @@ export function LandingPage() {
             </div>
           </div>
           <div
-            className="hero-system"
-            aria-label="Ethereum repayment evidence is verified on Creditcoin and shared with authorized lenders"
+            className="hero-art"
+            aria-label="Advance vault guardian holding verified credit evidence"
           >
-            <div className="system-topline">
-              <span>Advance verification rail</span>
-              <b>
-                <i /> Deployed on testnet
-              </b>
-            </div>
-            <div className="system-flow">
-              <article className="system-node">
-                <small>Source</small>
-                <strong>Ethereum</strong>
-                <span>Repayment event</span>
-              </article>
-              <span className="flow-arrow">→</span>
-              <article className="system-node">
-                <small>Attestation</small>
-                <strong>✓ Verified</strong>
-                <span>Proof accepted</span>
-              </article>
-              <span className="flow-arrow">→</span>
-              <article className="system-node profile-node">
-                <small>Creditcoin profile</small>
-                <strong>
-                  525 <em>/ 900</em>
-                </strong>
-                <span>Profile version 2</span>
-              </article>
-            </div>
-            <div className="lender-branches">
-              <article>
-                <span>N</span>
-                <div>
-                  <small>Northstar Credit</small>
-                  <strong>Rehearsal · 45 min</strong>
-                </div>
-              </article>
-              <article>
-                <span>H</span>
-                <div>
-                  <small>Harbor Lending</small>
-                  <strong>Rehearsal · 90 min</strong>
-                </div>
-              </article>
-            </div>
-            <p className="system-caption">
-              One verified profile. Two independently authorized consumers.
-            </p>
+            <Image
+              src="/images/advance-vault-guardian.png"
+              alt="A navy vault guardian holding a verified credit token"
+              width="1024"
+              height="1536"
+              priority
+            />
+          </div>
+          <aside className="hero-proof">
+            <span>
+              <i /> Verified on Creditcoin
+            </span>
+            <strong>
+              525 <small>/ 900</small>
+            </strong>
+            <p>Portable profile · Version 2</p>
+          </aside>
+          <div className="hero-ticker" aria-hidden="true">
+            <span>VERIFIED REPAYMENT</span>
+            <b>✳</b>
+            <span>PORTABLE CREDIT</span>
+            <b>✳</b>
+            <span>BORROWER CONTROL</span>
+            <b>✳</b>
+            <span>INDEPENDENT LENDERS</span>
           </div>
         </section>
 
