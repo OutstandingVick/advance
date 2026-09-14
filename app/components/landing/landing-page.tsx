@@ -83,9 +83,30 @@ const capabilities = [
   'Rehearsal and Live Testnet modes',
 ];
 const prototypeGroups = [
-  { number: '01', title: 'Verification rail', summary: 'From a source-chain repayment to an accepted Creditcoin profile update.', items: capabilities.slice(0, 3), mark: '⌁' },
-  { number: '02', title: 'Permission engine', summary: 'Consumer-scoped access that expires, revokes independently, and fails closed.', items: capabilities.slice(3, 8), mark: '◎' },
-  { number: '03', title: 'Integration surface', summary: 'A complete product path for users, judges, and third-party protocols.', items: capabilities.slice(8), mark: '◇' },
+  {
+    number: '01',
+    title: 'Verification rail',
+    summary:
+      'From a source-chain repayment to an accepted Creditcoin profile update.',
+    items: capabilities.slice(0, 3),
+    mark: '⌁',
+  },
+  {
+    number: '02',
+    title: 'Permission engine',
+    summary:
+      'Consumer-scoped access that expires, revokes independently, and fails closed.',
+    items: capabilities.slice(3, 8),
+    mark: '◎',
+  },
+  {
+    number: '03',
+    title: 'Integration surface',
+    summary:
+      'A complete product path for users, judges, and third-party protocols.',
+    items: capabilities.slice(8),
+    mark: '◇',
+  },
 ];
 
 export function LandingPage() {
@@ -426,9 +447,37 @@ function useScore(bytes32 sessionId)
         </section>
 
         <section className="prototype" aria-labelledby="prototype-title">
-          <header className="prototype-intro"><p className="section-index">Working prototype / 07</p><h2 id="prototype-title">From repayment data to portable credit—one verified execution loop.</h2><Link className="prototype-action" href="/demo">Run the demo <Arrow /></Link></header>
+          <header className="prototype-intro">
+            <p className="section-index">Working prototype / 07</p>
+            <h2 id="prototype-title">
+              From repayment data to portable credit—one verified execution
+              loop.
+            </h2>
+            <Link className="prototype-action" href="/demo">
+              Run the demo <Arrow />
+            </Link>
+          </header>
           <div className="prototype-columns">
-            {prototypeGroups.map((group) => <article key={group.number}><div className="prototype-mark" aria-hidden="true"><span>{group.mark}</span><i /><i /></div><small>{group.number}</small><h3>{group.title}</h3><p>{group.summary}</p><ul>{group.items.map(item => <li key={item}><Check />{item}</li>)}</ul></article>)}
+            {prototypeGroups.map((group) => (
+              <article key={group.number}>
+                <div className="prototype-mark" aria-hidden="true">
+                  <span>{group.mark}</span>
+                  <i />
+                  <i />
+                </div>
+                <small>{group.number}</small>
+                <h3>{group.title}</h3>
+                <p>{group.summary}</p>
+                <ul>
+                  {group.items.map((item) => (
+                    <li key={item}>
+                      <Check />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
           <p className="prototype-note">
             <strong>Transparent by design.</strong> Rehearsal uses deterministic
