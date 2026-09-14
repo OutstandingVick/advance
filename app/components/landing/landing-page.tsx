@@ -196,7 +196,7 @@ export function LandingPage() {
               </p>
             </div>
           </div>
-          <div className="fragment-map">
+          <div className="fragment-map" aria-label="Fragmented histories converge into a borrower-controlled Advance profile">
             <div>
               <span>Ethereum</span>
               <span>Other EVM chains</span>
@@ -280,7 +280,7 @@ export function LandingPage() {
               <span>Independent permissions.</span>
             </h2>
           </div>
-          <div className="isolation-demo">
+          <div className="isolation-demo" aria-label="Northstar is revoked while Harbor remains independently authorized">
             <div className="borrower-card">
               <small>Portable profile</small>
               <strong>Advance Score</strong>
