@@ -285,11 +285,80 @@ export function LandingPage() {
         </section>
 
         <section className="trust-showcase" aria-labelledby="trust-title">
-          <header className="trust-heading"><p className="section-index">Built for verifiable credit</p><h2 id="trust-title">Portable trust, without giving up control.</h2><p>Advance proves where a score came from, keeps each lender permission independent, and makes every authorization current and inspectable.</p></header>
+          <header className="trust-heading">
+            <p className="section-index">Built for verifiable credit</p>
+            <h2 id="trust-title">Portable trust, without giving up control.</h2>
+            <p>
+              Advance proves where a score came from, keeps each lender
+              permission independent, and makes every authorization current and
+              inspectable.
+            </p>
+          </header>
           <div className="trust-grid">
-            <article className="trust-card"><div className="trust-visual score-visual"><span>Advance Score</span><strong>525<small>/900</small></strong><b>✓ Verified on Creditcoin</b></div><footer><i />Portable profile</footer></article>
-            <article className="trust-card"><div className="trust-visual lender-visual"><span className="profile-dot">525</span><div><b>N</b><small>Revoked</small></div><div><b>H</b><small>Still valid</small></div></div><footer><i />Independent permissions</footer></article>
-            <article className="trust-card"><div className="trust-visual proof-visual"><span>Attestcoin proof</span><strong>verify() returned true</strong><dl><div><dt>Source</dt><dd>Ethereum Sepolia</dd></div><div><dt>Transaction</dt><dd><code>0xc459…1fb0</code></dd></div><div><dt>Profile</dt><dd>Version 2</dd></div></dl></div><footer><i />Verifiable provenance <a href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0" target="_blank" rel="noreferrer" aria-label="View the source transaction on Etherscan">↗</a></footer></article>
+            <article className="trust-card">
+              <div className="trust-visual score-visual">
+                <span>Advance Score</span>
+                <strong>
+                  525<small>/900</small>
+                </strong>
+                <b>✓ Verified on Creditcoin</b>
+              </div>
+              <footer>
+                <i />
+                Portable profile
+              </footer>
+            </article>
+            <article className="trust-card">
+              <div className="trust-visual lender-visual">
+                <span className="profile-dot">525</span>
+                <div>
+                  <b>N</b>
+                  <small>Revoked</small>
+                </div>
+                <div>
+                  <b>H</b>
+                  <small>Still valid</small>
+                </div>
+              </div>
+              <footer>
+                <i />
+                Independent permissions
+              </footer>
+            </article>
+            <article className="trust-card">
+              <div className="trust-visual proof-visual">
+                <span>Attestcoin proof</span>
+                <strong>verify() returned true</strong>
+                <dl>
+                  <div>
+                    <dt>Source</dt>
+                    <dd>Ethereum Sepolia</dd>
+                  </div>
+                  <div>
+                    <dt>Transaction</dt>
+                    <dd>
+                      <code>0xc459…1fb0</code>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Profile</dt>
+                    <dd>Version 2</dd>
+                  </div>
+                </dl>
+              </div>
+              <footer>
+                <i />
+                Verifiable provenance{' '}
+                <a
+                  href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="View the source transaction on Etherscan"
+                >
+                  ↗
+                </a>
+              </footer>
+            </article>
           </div>
         </section>
 
