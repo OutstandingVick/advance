@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 const githubUrl = 'https://github.com/OutstandingVick/advance';
 
 function Arrow() {
@@ -84,22 +87,22 @@ export function LandingPage() {
   return (
     <div className="site">
       <header className="site-header">
-        <a className="site-brand" href="/" aria-label="Advance home">
-          <img src="/advance-logo.svg" alt="" width="36" height="36" />
+        <Link className="site-brand" href="/" aria-label="Advance home">
+          <Image src="/advance-logo.svg" alt="" width="36" height="36" />
           <span>advance</span>
-        </a>
+        </Link>
         <nav className="site-nav" aria-label="Primary navigation">
           <a href="#how-it-works">How it works</a>
           <a href="#security">Security</a>
           <a href="#developers">Developers</a>
-          <a href="/docs">Docs</a>
+          <Link href="/docs">Docs</Link>
           <a href={githubUrl} target="_blank" rel="noreferrer">
             GitHub
           </a>
         </nav>
-        <a className="button button-primary header-action" href="/demo">
+        <Link className="button button-primary header-action" href="/demo">
           Launch app <Arrow />
-        </a>
+        </Link>
       </header>
       <main>
         <section className="hero" aria-labelledby="hero-title">
@@ -118,9 +121,9 @@ export function LandingPage() {
               lenders can use it and for how long.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="/demo">
+              <Link className="button button-primary" href="/demo">
                 Launch Advance <Arrow />
-              </a>
+              </Link>
               <a className="text-link" href="#how-it-works">
                 Explore the protocol <Arrow />
               </a>
@@ -209,7 +212,7 @@ export function LandingPage() {
             </div>
             <strong>→</strong>
             <article>
-              <img src="/advance-logo.svg" alt="" />
+              <Image src="/advance-logo.svg" alt="" width="38" height="38" />
               <b>Advance</b>
               <small>Shared verified credit layer</small>
             </article>
@@ -402,9 +405,9 @@ export function LandingPage() {
               <li>Deployment and proof tooling</li>
             </ul>
             <div className="developer-actions">
-              <a className="button button-light" href="/docs">
+              <Link className="button button-light" href="/docs">
                 Read the docs <Arrow />
-              </a>
+              </Link>
               <a
                 className="text-link light-link"
                 href={githubUrl}
@@ -483,25 +486,25 @@ function useScore(bytes32 sessionId)
             into every compatible credit market.
           </p>
           <div>
-            <a className="button button-primary" href="/demo">
+            <Link className="button button-primary" href="/demo">
               Launch Advance <Arrow />
-            </a>
-            <a className="text-link" href="/docs">
+            </Link>
+            <Link className="text-link" href="/docs">
               Explore the protocol <Arrow />
-            </a>
+            </Link>
           </div>
         </section>
       </main>
       <footer className="site-footer">
-        <a className="site-brand" href="/">
-          <img src="/advance-logo.svg" alt="" width="32" height="32" />
+        <Link className="site-brand" href="/">
+          <Image src="/advance-logo.svg" alt="" width="32" height="32" />
           <span>advance</span>
-        </a>
+        </Link>
         <p>Cross-chain credit attestation infrastructure.</p>
-        <nav>
+        <nav aria-label="Footer navigation">
           <a href="#how-it-works">How it works</a>
           <a href="#security">Security</a>
-          <a href="/docs">Docs</a>
+          <Link href="/docs">Docs</Link>
           <a href={githubUrl} target="_blank" rel="noreferrer">
             GitHub
           </a>
