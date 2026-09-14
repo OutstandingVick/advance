@@ -325,3 +325,4 @@
 .fragment-map article small {
   color: #9fb4d1;
 }
+.architecture{padding:120px max(40px,calc((100vw - 1296px)/2));background:#fff}.section-heading{display:grid;grid-template-columns:1fr 2fr 1fr;gap:40px;align-items:start}.section-heading h2{margin:0;color:var(--navy);font-size:clamp(48px,5vw,76px);line-height:.98;letter-spacing:-.05em;font-weight:680}.section-heading h2 span{color:var(--blue)}.section-heading>p:last-child{margin:4px 0 0;color:var(--muted);font-size:17px;line-height:1.6}.stage-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:82px;border-block:1px solid var(--line)}.stage-grid article{min-height:310px;padding:27px;border-right:1px solid var(--line)}.stage-grid article:last-child{border:0}.stage-grid article>span{color:var(--blue);font-family:var(--font-geist-mono);font-size:13px}.stage-grid h3{margin:105px 0 12px;color:var(--navy);font-size:25px}.stage-grid p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
