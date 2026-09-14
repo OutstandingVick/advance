@@ -196,9 +196,12 @@ export function LandingPage() {
 
         <footer className="lp-footer">
           <span>© {new Date().getFullYear()} Advance — verified facts, independent decisions.</span>
-          <a href="https://github.com/OutstandingVick/advance" target="_blank" rel="noreferrer">
-            Explore the protocol ↗
-          </a>
+          <span className="lp-footer-links">
+            <a href="/docs">Documentation</a>
+            <a href="https://github.com/OutstandingVick/advance" target="_blank" rel="noreferrer">
+              Explore the protocol ↗
+            </a>
+          </span>
         </footer>
       </div>
     </div>

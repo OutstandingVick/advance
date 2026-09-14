@@ -210,6 +210,7 @@
   padding:24px 40px;font-size:14px;color:#3c4668;background:var(--white);
 }
 .lp-footer a{font-weight:700;color:var(--blue)}
+.lp-footer-links{display:flex;gap:20px;flex-wrap:wrap}
 
 @media(max-width:1000px){
   .lp{padding:0}
