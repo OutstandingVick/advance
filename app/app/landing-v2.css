@@ -1789,4 +1789,137 @@
   flex: 0 0 16px;
   color: var(--blue);
 }
-.prototype-mark{position:relative;width:140px;height:110px;display:grid;place-items:center}.prototype-mark span{position:relative;z-index:2;display:grid;place-items:center;width:82px;height:82px;border:1.5px solid var(--navy);background:#f3f5f7;color:var(--blue);font-size:38px}.prototype-mark i{position:absolute;width:82px;height:82px;border:1px solid #8b98a7}.prototype-mark i:nth-of-type(1){transform:translateX(-18px)}.prototype-mark i:nth-of-type(2){transform:translateX(18px)}.prototype-columns article:nth-child(2) .prototype-mark span{border-radius:50%;background:var(--blue);color:#fff}.prototype-columns article:nth-child(2) .prototype-mark i{border-radius:50%}.prototype-columns article:nth-child(3) .prototype-mark{transform:skewX(-8deg)}.prototype-columns article:nth-child(3) .prototype-mark span{background:var(--orange);color:#fff}.prototype-note{margin:0;padding:22px 42px;border:1px solid #cfd6df;border-top:0;background:#fff;color:var(--muted)}.prototype-note strong{color:var(--navy)}.prototype-action:hover{background:#e64900}.prototype-columns>article:hover{background:#fff}.prototype-columns>article:hover .prototype-mark span{transform:translateY(-4px)}.prototype-mark span{transition:transform .15s ease}
+.prototype-mark {
+  position: relative;
+  width: 140px;
+  height: 110px;
+  display: grid;
+  place-items: center;
+}
+.prototype-mark span {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 82px;
+  height: 82px;
+  border: 1.5px solid var(--navy);
+  background: #f3f5f7;
+  color: var(--blue);
+  font-size: 38px;
+}
+.prototype-mark i {
+  position: absolute;
+  width: 82px;
+  height: 82px;
+  border: 1px solid #8b98a7;
+}
+.prototype-mark i:nth-of-type(1) {
+  transform: translateX(-18px);
+}
+.prototype-mark i:nth-of-type(2) {
+  transform: translateX(18px);
+}
+.prototype-columns article:nth-child(2) .prototype-mark span {
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+}
+.prototype-columns article:nth-child(2) .prototype-mark i {
+  border-radius: 50%;
+}
+.prototype-columns article:nth-child(3) .prototype-mark {
+  transform: skewX(-8deg);
+}
+.prototype-columns article:nth-child(3) .prototype-mark span {
+  background: var(--orange);
+  color: #fff;
+}
+.prototype-note {
+  margin: 0;
+  padding: 22px 42px;
+  border: 1px solid #cfd6df;
+  border-top: 0;
+  background: #fff;
+  color: var(--muted);
+}
+.prototype-note strong {
+  color: var(--navy);
+}
+.prototype-action:hover {
+  background: #e64900;
+}
+.prototype-columns > article:hover {
+  background: #fff;
+}
+.prototype-columns > article:hover .prototype-mark span {
+  transform: translateY(-4px);
+}
+.prototype-mark span {
+  transition: transform 0.15s ease;
+}
+@media (max-width: 980px) {
+  .prototype-intro {
+    grid-template-columns: 1fr;
+    min-height: 420px;
+  }
+  .prototype-action {
+    grid-column: auto;
+  }
+  .prototype-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+  .prototype-columns > article:last-child {
+    grid-column: 1/-1;
+    min-height: 430px;
+  }
+  .prototype-columns article > p {
+    min-height: 0;
+  }
+}
+@media (max-width: 640px) {
+  .prototype {
+    padding-inline: 0;
+  }
+  .prototype-intro {
+    min-height: auto;
+    padding: 70px 20px 58px;
+    border-inline: 0;
+  }
+  .prototype-intro h2 {
+    font-size: 44px;
+  }
+  .prototype-action {
+    width: max-content;
+  }
+  .prototype-columns {
+    grid-template-columns: 1fr;
+    border-left: 0;
+  }
+  .prototype-columns > article,
+  .prototype-columns > article:last-child {
+    grid-column: auto;
+    min-height: auto;
+    padding: 46px 20px;
+    border-right: 0;
+    border-bottom: 1px solid #cfd6df;
+  }
+  .prototype-mark {
+    margin: auto;
+  }
+  .prototype-columns article > small {
+    margin-top: 30px;
+  }
+  .prototype-note {
+    padding: 20px;
+    border-inline: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .prototype-mark span {
+    transition: none;
+  }
+  .prototype-columns > article:hover .prototype-mark span {
+    transform: none;
+  }
+}
