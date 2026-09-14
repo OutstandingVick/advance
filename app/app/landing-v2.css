@@ -697,4 +697,59 @@
 .prototype-note strong {
   color: var(--ink);
 }
-.final-cta{padding:140px max(40px,calc((100vw - 1296px)/2));text-align:center;background:#eef3ff}.final-cta h2{margin:24px auto 26px;color:var(--navy);font-size:clamp(52px,6.2vw,90px);line-height:.98;letter-spacing:-.06em}.final-cta h2 span{color:var(--blue)}.final-cta>p:not(.site-eyebrow){max-width:650px;margin:0 auto;color:var(--muted);font-size:18px}.final-cta>div{display:flex;justify-content:center;align-items:center;gap:28px;margin-top:36px}.site-footer{max-width:1440px;margin:auto;padding:54px 44px 28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid var(--line)}.site-footer p{margin:0;color:var(--muted);text-align:right}.site-footer nav{display:flex;gap:24px;font-size:14px;font-weight:650}.site-footer nav a:hover{color:var(--blue)}.site-footer small{color:#8290a1;text-align:right}
+.final-cta {
+  padding: 140px max(40px, calc((100vw - 1296px) /2));
+  text-align: center;
+  background: #eef3ff;
+}
+.final-cta h2 {
+  margin: 24px auto 26px;
+  color: var(--navy);
+  font-size: clamp(52px, 6.2vw, 90px);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+.final-cta h2 span {
+  color: var(--blue);
+}
+.final-cta > p:not(.site-eyebrow) {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 18px;
+}
+.final-cta > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin-top: 36px;
+}
+.site-footer {
+  max-width: 1440px;
+  margin: auto;
+  padding: 54px 44px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  border-top: 1px solid var(--line);
+}
+.site-footer p {
+  margin: 0;
+  color: var(--muted);
+  text-align: right;
+}
+.site-footer nav {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+  font-weight: 650;
+}
+.site-footer nav a:hover {
+  color: var(--blue);
+}
+.site-footer small {
+  color: #8290a1;
+  text-align: right;
+}
+@media(max-width:1100px){.site-header{padding-inline:28px}.site-nav{display:none}.header-action{margin-left:auto}.hero{grid-template-columns:1fr;padding:80px 40px}.hero-copy{max-width:800px}.hero-system{width:min(100%,760px)}.problem-grid,.security,.provenance,.developers{grid-template-columns:1fr;gap:52px}.section-heading{grid-template-columns:1fr}.stage-grid{grid-template-columns:1fr 1fr}.stage-grid article:nth-child(2){border-right:0}.isolation-demo{gap:50px}.site-footer{padding-inline:32px}}
