@@ -795,4 +795,133 @@
     padding-inline: 32px;
   }
 }
-@media(max-width:720px){.site-header{height:70px;padding-inline:18px}.header-action{min-height:38px;padding-inline:13px;font-size:13px}.site-brand{font-size:20px}.hero{min-height:auto;padding:66px 20px 68px;gap:52px}.hero-copy h1{font-size:clamp(50px,15vw,70px)}.hero-lead{font-size:17px}.hero-actions{align-items:flex-start;flex-direction:column;gap:20px}.hero-system{padding:12px}.system-flow{grid-template-columns:1fr}.flow-arrow{transform:rotate(90deg);justify-self:center}.system-node{min-height:118px}.lender-branches{grid-template-columns:1fr}.problem,.architecture,.security,.isolation,.provenance,.developers,.prototype,.final-cta{padding:78px 20px}.problem h2,.section-heading h2,.security h2,.provenance h2,.developers h2{font-size:43px}.problem-grid{gap:34px}.fragment-map{grid-template-columns:1fr;margin-top:50px}.fragment-map>strong{transform:rotate(90deg);justify-self:center}.stage-grid{grid-template-columns:1fr}.stage-grid article{min-height:220px;border-right:0}.stage-grid h3{margin-top:60px}.isolation .section-heading{grid-template-columns:1fr}.isolation-demo{grid-template-columns:1fr;padding:22px}.borrower-card b{font-size:64px}.attestation-record header{align-items:flex-start;flex-direction:column;gap:14px}.attestation-record dl>div{grid-template-columns:1fr;gap:4px}.attestation-record dd{text-align:left}.developers ul,.capability-grid{grid-template-columns:1fr}.capability-grid>div:nth-child(odd){border-right:0}.final-cta>div,.developer-actions{align-items:center;flex-direction:column}.site-footer{grid-template-columns:1fr;padding:42px 20px 24px}.site-footer p,.site-footer small{text-align:left}.site-footer nav{flex-wrap:wrap}}
+@media (max-width: 720px) {
+  .site-header {
+    height: 70px;
+    padding-inline: 18px;
+  }
+  .header-action {
+    min-height: 38px;
+    padding-inline: 13px;
+    font-size: 13px;
+  }
+  .site-brand {
+    font-size: 20px;
+  }
+  .hero {
+    min-height: auto;
+    padding: 66px 20px 68px;
+    gap: 52px;
+  }
+  .hero-copy h1 {
+    font-size: clamp(50px, 15vw, 70px);
+  }
+  .hero-lead {
+    font-size: 17px;
+  }
+  .hero-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-system {
+    padding: 12px;
+  }
+  .system-flow {
+    grid-template-columns: 1fr;
+  }
+  .flow-arrow {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+  .system-node {
+    min-height: 118px;
+  }
+  .lender-branches {
+    grid-template-columns: 1fr;
+  }
+  .problem,
+  .architecture,
+  .security,
+  .isolation,
+  .provenance,
+  .developers,
+  .prototype,
+  .final-cta {
+    padding: 78px 20px;
+  }
+  .problem h2,
+  .section-heading h2,
+  .security h2,
+  .provenance h2,
+  .developers h2 {
+    font-size: 43px;
+  }
+  .problem-grid {
+    gap: 34px;
+  }
+  .fragment-map {
+    grid-template-columns: 1fr;
+    margin-top: 50px;
+  }
+  .fragment-map > strong {
+    transform: rotate(90deg);
+    justify-self: center;
+  }
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+  .stage-grid article {
+    min-height: 220px;
+    border-right: 0;
+  }
+  .stage-grid h3 {
+    margin-top: 60px;
+  }
+  .isolation .section-heading {
+    grid-template-columns: 1fr;
+  }
+  .isolation-demo {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+  .borrower-card b {
+    font-size: 64px;
+  }
+  .attestation-record header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .attestation-record dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .attestation-record dd {
+    text-align: left;
+  }
+  .developers ul,
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+  .capability-grid > div:nth-child(odd) {
+    border-right: 0;
+  }
+  .final-cta > div,
+  .developer-actions {
+    align-items: center;
+    flex-direction: column;
+  }
+  .site-footer {
+    grid-template-columns: 1fr;
+    padding: 42px 20px 24px;
+  }
+  .site-footer p,
+  .site-footer small {
+    text-align: left;
+  }
+  .site-footer nav {
+    flex-wrap: wrap;
+  }
+}
+.site a:focus-visible{outline:3px solid var(--orange);outline-offset:4px;border-radius:4px}@media(prefers-reduced-motion:reduce){.site *{scroll-behavior:auto!important;transition:none!important}.button:hover{transform:none}}
