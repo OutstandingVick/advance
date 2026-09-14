@@ -93,7 +93,9 @@ export function LandingPage() {
           <a href="#security">Security</a>
           <a href="#developers">Developers</a>
           <a href="/docs">Docs</a>
-          <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={githubUrl} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
         </nav>
         <a className="button button-primary header-action" href="/demo">
           Launch app <Arrow />
@@ -196,7 +198,10 @@ export function LandingPage() {
               </p>
             </div>
           </div>
-          <div className="fragment-map" aria-label="Fragmented histories converge into a borrower-controlled Advance profile">
+          <div
+            className="fragment-map"
+            aria-label="Fragmented histories converge into a borrower-controlled Advance profile"
+          >
             <div>
               <span>Ethereum</span>
               <span>Other EVM chains</span>
@@ -280,7 +285,10 @@ export function LandingPage() {
               <span>Independent permissions.</span>
             </h2>
           </div>
-          <div className="isolation-demo" aria-label="Northstar is revoked while Harbor remains independently authorized">
+          <div
+            className="isolation-demo"
+            aria-label="Northstar is revoked while Harbor remains independently authorized"
+          >
             <div className="borrower-card">
               <small>Portable profile</small>
               <strong>Advance Score</strong>
@@ -360,7 +368,13 @@ export function LandingPage() {
               </div>
             </dl>
             <footer>
-              <a href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0" target="_blank" rel="noreferrer">View source transaction ↗</a>
+              <a
+                href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View source transaction ↗
+              </a>
               <strong>Replay protected</strong>
             </footer>
           </article>
@@ -391,7 +405,12 @@ export function LandingPage() {
               <a className="button button-light" href="/docs">
                 Read the docs <Arrow />
               </a>
-              <a className="text-link light-link" href={githubUrl} target="_blank" rel="noreferrer">
+              <a
+                className="text-link light-link"
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
                 View GitHub <Arrow />
               </a>
             </div>
@@ -409,7 +428,14 @@ function useScore(bytes32 sessionId)
     return ADVANCE.getScoreSession(sessionId).score;
 }`}</code>
           </pre>
-          <a className="source-link" href={`${githubUrl}/blob/main/contracts/src/interfaces/IAdvance.sol`} target="_blank" rel="noreferrer">Open the complete interface <Arrow /></a>
+          <a
+            className="source-link"
+            href={`${githubUrl}/blob/main/contracts/src/interfaces/IAdvance.sol`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open the complete interface <Arrow />
+          </a>
         </section>
 
         <section className="prototype" aria-labelledby="prototype-title">
@@ -476,7 +502,9 @@ function useScore(bytes32 sessionId)
           <a href="#how-it-works">How it works</a>
           <a href="#security">Security</a>
           <a href="/docs">Docs</a>
-          <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+          <a href={githubUrl} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
         </nav>
         <small>
           © {new Date().getFullYear()} Advance. Infrastructure, not a lender.
