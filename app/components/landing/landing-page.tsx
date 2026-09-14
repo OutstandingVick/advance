@@ -284,108 +284,13 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="isolation" aria-labelledby="isolation-title">
-          <div className="section-heading">
-            <p className="section-index">Lender isolation / 04</p>
-            <h2 id="isolation-title">
-              One reputation.
-              <br />
-              <span>Independent permissions.</span>
-            </h2>
+        <section className="trust-showcase" aria-labelledby="trust-title">
+          <header className="trust-heading"><p className="section-index">Built for verifiable credit</p><h2 id="trust-title">Portable trust, without giving up control.</h2><p>Advance proves where a score came from, keeps each lender permission independent, and makes every authorization current and inspectable.</p></header>
+          <div className="trust-grid">
+            <article className="trust-card"><div className="trust-visual score-visual"><span>Advance Score</span><strong>525<small>/900</small></strong><b>✓ Verified on Creditcoin</b></div><footer><i />Portable profile</footer></article>
+            <article className="trust-card"><div className="trust-visual lender-visual"><span className="profile-dot">525</span><div><b>N</b><small>Revoked</small></div><div><b>H</b><small>Still valid</small></div></div><footer><i />Independent permissions</footer></article>
+            <article className="trust-card"><div className="trust-visual proof-visual"><span>Attestcoin proof</span><strong>verify() returned true</strong><dl><div><dt>Source</dt><dd>Ethereum Sepolia</dd></div><div><dt>Transaction</dt><dd><code>0xc459…1fb0</code></dd></div><div><dt>Profile</dt><dd>Version 2</dd></div></dl></div><footer><i />Verifiable provenance <a href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0" target="_blank" rel="noreferrer" aria-label="View the source transaction on Etherscan">↗</a></footer></article>
           </div>
-          <div
-            className="isolation-demo"
-            aria-label="Northstar is revoked while Harbor remains independently authorized"
-          >
-            <div className="borrower-card">
-              <small>Portable profile</small>
-              <strong>Advance Score</strong>
-              <b>
-                525 <em>/ 900</em>
-              </b>
-              <span>✓ Verified on Creditcoin</span>
-            </div>
-            <div className="lender-states">
-              <article className="revoked">
-                <h3>
-                  <i>N</i> Northstar Credit
-                </h3>
-                <b>Revoked</b>
-                <p>Its previous score session is no longer valid.</p>
-              </article>
-              <article className="active">
-                <h3>
-                  <i>H</i> Harbor Lending
-                </h3>
-                <b>Still valid</b>
-                <p>Its independent grant remains active.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="provenance" aria-labelledby="provenance-title">
-          <div>
-            <p className="section-index">Verification / 05</p>
-            <h2 id="provenance-title">
-              Don&apos;t trust the score.
-              <br />
-              <span>Verify its provenance.</span>
-            </h2>
-            <p>
-              Advance binds every accepted event to the facts required to verify
-              where it came from.
-            </p>
-          </div>
-          <article className="attestation-record">
-            <header>
-              <div>
-                <small>Attestcoin proof</small>
-                <h3>Verified evidence</h3>
-              </div>
-              <span>✓ verify() returned true</span>
-            </header>
-            <dl>
-              <div>
-                <dt>Source chain</dt>
-                <dd>Ethereum Sepolia</dd>
-              </div>
-              <div>
-                <dt>Originating contract</dt>
-                <dd>
-                  <code>0x3b52…D613</code>
-                </dd>
-              </div>
-              <div>
-                <dt>Transaction</dt>
-                <dd>
-                  <code>0xc459…1fb0</code>
-                </dd>
-              </div>
-              <div>
-                <dt>Event position</dt>
-                <dd>Receipt log 0</dd>
-              </div>
-              <div>
-                <dt>Destination</dt>
-                <dd>Creditcoin Testnet</dd>
-              </div>
-              <div>
-                <dt>Profile version</dt>
-                <dd>Version 2</dd>
-              </div>
-            </dl>
-            <footer>
-              <a
-                href="https://sepolia.etherscan.io/tx/0xc459eaa208582a5768f0a46487053cc0398aafec1057d7c39aa28175b7ad1fb0"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View source transaction ↗
-              </a>
-              <strong>Replay protected</strong>
-            </footer>
-          </article>
         </section>
 
         <section
